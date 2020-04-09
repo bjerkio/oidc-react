@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "start": "node build/index.js",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.release.json",
     "test": "jest --coverage src --passWithNoTests",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint . --ext .ts,.tsx",
