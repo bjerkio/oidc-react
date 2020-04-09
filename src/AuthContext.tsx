@@ -24,6 +24,16 @@ export interface AuthProviderProps {
    */
   redirectUri?: string;
   /**
+   * Tells the authorization server which grant to execute
+   *
+   * Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
+   */
+  responseType?: string;
+  /**
+   * A space-delimited list of permissions that the application requires.
+   */
+  scope?: string;
+  /**
    * Defaults to `windows.location`.
    */
   location?: Location;
@@ -57,7 +67,7 @@ export const AuthContext = React.createContext<AuthContextProps>({
 });
 
 /**
- * 
+ *
  * @param props AuthProviderProps
  */
 export const AuthProvider: FC<AuthProviderProps> = (props) => {
@@ -72,15 +82,21 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const [userData, setUserData] = useState<User | null>(null);
 
   if (!userManager) {
-    const { authority, clientId, redirectUri } = props;
+    const {
+      authority,
+      clientId,
+      redirectUri,
+      responseType,
+      scope,
+    } = props;
     userManager = new UserManager({
       authority,
       client_id: clientId,
       redirect_uri: redirectUri,
       silent_redirect_uri: redirectUri,
       post_logout_redirect_uri: redirectUri,
-      response_type: 'code',
-      scope: 'openid',
+      response_type: responseType || 'code',
+      scope: scope || 'openid',
       loadUserInfo: true,
     });
   }
