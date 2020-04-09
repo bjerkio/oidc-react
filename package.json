@@ -1,0 +1,79 @@
+{
+  "name": "oidc-react",
+  "version": "0.0.0-development",
+  "private": false,
+  "description": "",
+  "main": "build/src/index.js",
+  "files": [
+    "/build"
+  ],
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "tsc",
+    "test": "jest --coverage src --passWithNoTests",
+    "test:watch": "npm run test -- --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "generate-docs": "typedoc --out docs src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjerkio/oidc-react.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bjerkio/oidc-react/issues"
+  },
+  "devDependencies": {
+    "@jedmao/semantic-release-npm-github-config": "^1.0.9",
+    "@testing-library/jest-dom": "^5.4.0",
+    "@testing-library/react": "^10.0.2",
+    "@types/faker": "^4.1.5",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^12.12.6",
+    "@types/react": "^16.9.11",
+    "@types/react-router": "^5.1.2",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-react": "^7.19.0",
+    "faker": "^4.1.0",
+    "jest": "^25.3.0",
+    "jest-cli": "^25.3.0",
+    "ts-jest": "^25.3.1",
+    "ts-node-dev": "^1.0.0-pre.40",
+    "typedoc": "^0.17.3",
+    "typedoc-plugin-markdown": "^2.2.16",
+    "typescript": "^3.5.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__fixtures__/",
+      "<rootDir>/build"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    }
+  },
+  "homepage": "https://github.com/bjerkio/oidc-react#readme",
+  "dependencies": {
+    "oidc-client": "^1.9.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-router": "^5.1.2"
+  }
+}
