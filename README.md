@@ -15,7 +15,7 @@
 
 ## About
 
-React component (AuthContext) to provide OpenID Connect and OAuth2 protocol support. Has [hooks](guides/HOOKS.md) 🎉
+React component (AuthProvider) to provide OpenID Connect and OAuth2 protocol support. Has [hooks](guides/HOOKS.md) 🎉
 
 Based on [oidc-client-js](https://github.com/IdentityModel/oidc-client-js).
 
