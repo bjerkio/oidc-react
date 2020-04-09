@@ -11,7 +11,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/04b50822a61583ccdb5f/maintainability)](https://codeclimate.com/github/bjerkio/oidc-react/maintainability)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=bjerkio/oidc-react&identifier=253005089)](https://dependabot.com)
 
-![oidc-react logo](assets/logo.png)
+![oidc-react logo](assets/logo.jpg)
 
 ## About
 
