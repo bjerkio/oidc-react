@@ -1,3 +1,15 @@
 {
-  "extends": "@jedmao/semantic-release-npm-github-config"
+  "extends": "@jedmao/semantic-release-npm-github-config",
+  "branches": [
+    {
+      "name": "master"
+    },
+    {
+      "name": "next"
+    },
+    {
+      "name": "alpha",
+      "prerelease": true
+    }
+  ]
 }
