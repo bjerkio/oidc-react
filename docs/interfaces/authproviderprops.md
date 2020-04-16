@@ -14,6 +14,7 @@
 * [autoSignIn](authproviderprops.md#optional-autosignin)
 * [clientId](authproviderprops.md#optional-clientid)
 * [location](authproviderprops.md#optional-location)
+* [onBeforeSignIn](authproviderprops.md#optional-onbeforesignin)
 * [onSignIn](authproviderprops.md#optional-onsignin)
 * [onSignOut](authproviderprops.md#optional-onsignout)
 * [redirectUri](authproviderprops.md#optional-redirecturi)
@@ -52,6 +53,16 @@ ___
 • **location**? : *[Location](location.md)*
 
 Defaults to `windows.location`.
+
+___
+
+### `Optional` onBeforeSignIn
+
+• **onBeforeSignIn**? : *undefined | function*
+
+On before sign in hook. Can be use to store the current url for use after signing in.
+
+This only gets called if autoSignIn is true
 
 ___
 

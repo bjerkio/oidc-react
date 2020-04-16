@@ -41,15 +41,22 @@ export interface AuthProviderProps {
    * defaults to true
    */
   autoSignIn?: boolean;
+
+  /**
+   * On before sign in hook. Can be use to store the current url for use after signing in.
+   *
+   * This only gets called if autoSignIn is true
+   */
+  onBeforeSignIn?: () => void;
   /**
    * On sign out hook. Can be a async function.
    * @param userData User
    */
-  onSignIn?: (userData: User | null) => Promise<void>;
+  onSignIn?: (userData: User | null) => Promise<void> | void;
   /**
    * On sign out hook. Can be a async function.
    */
-  onSignOut?: () => Promise<void>;
+  onSignOut?: () => Promise<void> | void;
 }
 
 export interface AuthContextProps {
@@ -74,6 +81,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const {
     children,
     autoSignIn = true,
+    onBeforeSignIn,
     onSignIn,
     onSignOut,
     location = window.location,
@@ -82,13 +90,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const [userData, setUserData] = useState<User | null>(null);
 
   if (!userManager) {
-    const {
-      authority,
-      clientId,
-      redirectUri,
-      responseType,
-      scope,
-    } = props;
+    const { authority, clientId, redirectUri, responseType, scope } = props;
     userManager = new UserManager({
       authority,
       client_id: clientId,
@@ -132,6 +134,9 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
 
       const user = await userManager!.getUser();
       if ((!user || user === null) && autoSignIn) {
+        if (onBeforeSignIn) {
+          onBeforeSignIn();
+        }
         signIn();
       } else {
         setUserData(user);
