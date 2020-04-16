@@ -18,6 +18,7 @@
 
 * [AuthProvider](README.md#const-authprovider)
 * [useAuth](README.md#const-useauth)
+* [withAuth](README.md#withauth)
 
 ## Variables
 
@@ -49,3 +50,23 @@ ___
 ▸ **useAuth**(): *[AuthContextProps](interfaces/authcontextprops.md)*
 
 **Returns:** *[AuthContextProps](interfaces/authcontextprops.md)*
+
+___
+
+###  withAuth
+
+▸ **withAuth**<**P**>(`Component`: React.ComponentType‹P›): *FunctionComponent‹object›*
+
+A public higher-order component to access the imperative API
+
+**Type parameters:**
+
+▪ **P**: *[AuthContextProps](interfaces/authcontextprops.md)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`Component` | React.ComponentType‹P› |
+
+**Returns:** *FunctionComponent‹object›*
