@@ -14,9 +14,12 @@
 * [autoSignIn](authproviderprops.md#optional-autosignin)
 * [clientId](authproviderprops.md#optional-clientid)
 * [location](authproviderprops.md#optional-location)
+* [onBeforeSignIn](authproviderprops.md#optional-onbeforesignin)
 * [onSignIn](authproviderprops.md#optional-onsignin)
 * [onSignOut](authproviderprops.md#optional-onsignout)
 * [redirectUri](authproviderprops.md#optional-redirecturi)
+* [responseType](authproviderprops.md#optional-responsetype)
+* [scope](authproviderprops.md#optional-scope)
 * [userManager](authproviderprops.md#optional-usermanager)
 
 ## Properties
@@ -53,6 +56,16 @@ Defaults to `windows.location`.
 
 ___
 
+### `Optional` onBeforeSignIn
+
+• **onBeforeSignIn**? : *undefined | function*
+
+On before sign in hook. Can be use to store the current url for use after signing in.
+
+This only gets called if autoSignIn is true
+
+___
+
 ### `Optional` onSignIn
 
 • **onSignIn**? : *undefined | function*
@@ -76,6 +89,24 @@ ___
 • **redirectUri**? : *undefined | string*
 
 The redirect URI of your client application to receive a response from the OIDC/OAuth2 provider.
+
+___
+
+### `Optional` responseType
+
+• **responseType**? : *undefined | string*
+
+Tells the authorization server which grant to execute
+
+Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
+
+___
+
+### `Optional` scope
+
+• **scope**? : *undefined | string*
+
+A space-delimited list of permissions that the application requires.
 
 ___
 
