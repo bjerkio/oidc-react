@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.4](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2020-04-16)
+
+
+### Features
+
+* Add onBeforeSignIn hook ([e2f609e](https://github.com/bjerkio/oidc-react/commit/e2f609ef205cc05f4040a6281460ccd2a2441e35))
+* Add withAuth higher order component ([9f2cea8](https://github.com/bjerkio/oidc-react/commit/9f2cea8c74476a7e74490cd8ae18e82a832d18e0))
+
 # [1.0.0-alpha.3](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2020-04-09)
 
 
