@@ -133,7 +133,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
       }
 
       const user = await userManager!.getUser();
-      if ((!user || user === null) && autoSignIn) {
+      if ((!user || user === null || user.expired) && autoSignIn) {
         if (onBeforeSignIn) {
           onBeforeSignIn();
         }
