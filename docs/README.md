@@ -55,7 +55,7 @@ ___
 
 ###  withAuth
 
-▸ **withAuth**<**P**>(`Component`: React.ComponentType‹P›): *FunctionComponent‹object›*
+▸ **withAuth**<**P**>(`Component`: React.ComponentType‹P›): *React.ComponentType‹Omit‹P, keyof AuthContextProps››*
 
 A public higher-order component to access the imperative API
 
@@ -69,4 +69,4 @@ Name | Type |
 ------ | ------ |
 `Component` | React.ComponentType‹P› |
 
-**Returns:** *FunctionComponent‹object›*
+**Returns:** *React.ComponentType‹Omit‹P, keyof AuthContextProps››*
