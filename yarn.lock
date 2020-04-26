@@ -880,9 +880,9 @@
     "@types/react" "*"
 
 "@types/react-router@^5.1.2":
-  version "5.1.5"
-  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.5.tgz#7b2f9b7cc3d350e92664c4e38c0ef529286fe628"
-  integrity sha512-RZPdCtZympi6X7EkGyaU7ISiAujDYTWgqMF9owE3P6efITw27IWQykcti0BvA5h4Mu1LLl5rxrpO3r8kHyUZ/Q==
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.6.tgz#5646c6e3e0cb30dbd1fcf5f8fd4f88262ae19b25"
+  integrity sha512-YCIwRd+zcWZZIwfeWFptiualuziG84asMa1QU2+QMLhVc9GeS5LEfZlHCi3X4GMd3Eez6UkjOwyc+uQmHkzMUw==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
