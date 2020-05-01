@@ -149,7 +149,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const context: AuthContextProps = {
     signIn,
     signOut: async () => {
-      await userManager!.removeUser();
+      await userManager!.signoutRedirect();
       setUserData(null);
       onSignOut && onSignOut();
     },

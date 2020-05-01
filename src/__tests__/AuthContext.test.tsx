@@ -113,7 +113,7 @@ describe('AuthContext', () => {
       getUser: async () => ({
         access_token: 'token',
       }),
-      removeUser: jest.fn(),
+      signoutRedirect: jest.fn(),
     } as any;
     const onSignOut = jest.fn();
     render(
@@ -131,6 +131,6 @@ describe('AuthContext', () => {
       </AuthProvider>,
     );
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
-    await waitFor(() => expect(userManager.removeUser).toHaveBeenCalled());
+    await waitFor(() => expect(userManager.signoutRedirect).toHaveBeenCalled());
   });
 });
