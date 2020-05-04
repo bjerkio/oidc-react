@@ -42,7 +42,7 @@
     "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-react": "^7.19.0",
     "faker": "^4.1.0",
-    "jest": "^25.3.0",
+    "jest": "^26.0.0",
     "jest-cli": "^25.3.0",
     "ts-jest": "^25.3.1",
     "ts-node-dev": "^1.0.0-pre.40",
