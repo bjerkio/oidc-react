@@ -61,7 +61,7 @@ export interface AuthProviderProps {
 
 export interface AuthContextProps {
   signIn: () => void;
-  signOut: () => void;
+  signOut: (providerLogout?: boolean) => void;
   /**
    * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
    */
@@ -148,8 +148,8 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
 
   const context: AuthContextProps = {
     signIn,
-    signOut: async () => {
-      await userManager!.signoutRedirect();
+    signOut: async (providerLogout?: boolean) => {
+      providerLogout ? await userManager!.signoutRedirect() : await userManager!.removeUser();
       setUserData(null);
       onSignOut && onSignOut();
     },
