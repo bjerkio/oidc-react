@@ -1,91 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
 import { UserManager, User } from 'oidc-client';
-
-export interface Location {
-  search: string;
-  hash: string;
-}
-
-export interface AuthProviderSignOutProps {
-  /**
-   * Trigger a redirect of the current window to the end session endpoint
-   * 
-   * You can also provide an object. This object will be sent with the
-   * function.
-   * 
-   * @example
-   * ```javascript
-   * const config = {
-   *  signOutRedirect: {
-   *    state: 'abrakadabra',
-   *  },
-   * };
-   * ```
-   */
-  signoutRedirect?: boolean | unknown;
-}
-
-export interface AuthProviderProps {
-  /**
-   * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
-   */
-  userManager?: UserManager;
-  /**
-   * The URL of the OIDC/OAuth2 provider.
-   */
-  authority?: string;
-  /**
-   * Your client application's identifier as registered with the OIDC/OAuth2 provider.
-   */
-  clientId?: string;
-  /**
-   * The redirect URI of your client application to receive a response from the OIDC/OAuth2 provider.
-   */
-  redirectUri?: string;
-  /**
-   * Tells the authorization server which grant to execute
-   *
-   * Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
-   */
-  responseType?: string;
-  /**
-   * A space-delimited list of permissions that the application requires.
-   */
-  scope?: string;
-  /**
-   * Defaults to `windows.location`.
-   */
-  location?: Location;
-  /**
-   * defaults to true
-   */
-  autoSignIn?: boolean;
-
-  /**
-   * On before sign in hook. Can be use to store the current url for use after signing in.
-   *
-   * This only gets called if autoSignIn is true
-   */
-  onBeforeSignIn?: () => void;
-  /**
-   * On sign out hook. Can be a async function.
-   * @param userData User
-   */
-  onSignIn?: (userData: User | null) => Promise<void> | void;
-  /**
-   * On sign out hook. Can be a async function.
-   */
-  onSignOut?: (options?: AuthProviderSignOutProps) => Promise<void> | void;
-}
-
-export interface AuthContextProps {
-  signIn: () => void;
-  signOut: (options?: AuthProviderSignOutProps) => void;
-  /**
-   * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
-   */
-  userData?: User | null;
-}
+import {
+  Location,
+  AuthProviderProps,
+  AuthContextProps,
+} from './AuthContextInterface';
 
 export const AuthContext = React.createContext<AuthContextProps>({
   signIn: /* istanbul ignore next */ () => {},
@@ -93,34 +12,60 @@ export const AuthContext = React.createContext<AuthContextProps>({
 });
 
 /**
+ * @private
+ * @hidden
+ * @param location 
+ */
+export const hasCodeInUrl = (location: Location): boolean => {
+  const searchParams = new URLSearchParams(location.search);
+  const hashParams = new URLSearchParams(location.hash.replace('#', '?'));
+
+  return Boolean(
+    searchParams.get('code') ||
+    searchParams.get('id_token') ||
+    searchParams.get('session_state') ||
+    hashParams.get('code') ||
+    hashParams.get('id_token') ||
+    hashParams.get('session_state')
+  );
+}
+
+/**
+ * @private
+ * @hidden
+ * @param props 
+ */
+export const initUserManager = (props: AuthProviderProps): UserManager => {
+  if (props.userManager) return props.userManager;
+  const { authority, clientId, redirectUri, responseType, scope } = props;
+  return new UserManager({
+    authority,
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    silent_redirect_uri: redirectUri,
+    post_logout_redirect_uri: redirectUri,
+    response_type: responseType || 'code',
+    scope: scope || 'openid',
+    loadUserInfo: true,
+  });
+}
+
+/**
  *
  * @param props AuthProviderProps
  */
-export const AuthProvider: FC<AuthProviderProps> = (props) => {
-  const {
+export const AuthProvider: FC<AuthProviderProps> = ({
     children,
     autoSignIn = true,
     onBeforeSignIn,
     onSignIn,
     onSignOut,
     location = window.location,
-  } = props;
-  let { userManager } = props;
+    ...props
+  }) => {
   const [userData, setUserData] = useState<User | null>(null);
 
-  if (!userManager) {
-    const { authority, clientId, redirectUri, responseType, scope } = props;
-    userManager = new UserManager({
-      authority,
-      client_id: clientId,
-      redirect_uri: redirectUri,
-      silent_redirect_uri: redirectUri,
-      post_logout_redirect_uri: redirectUri,
-      response_type: responseType || 'code',
-      scope: scope || 'openid',
-      loadUserInfo: true,
-    });
-  }
+  const userManager = initUserManager(props);
 
   const signIn = async (): Promise<void> => {
     userManager && userManager.signinRedirect();
@@ -128,28 +73,20 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
 
   useEffect(() => {
     const getUser = async (): Promise<void> => {
-      const searchParams = new URLSearchParams(location.search);
-      const hashParams = new URLSearchParams(location.hash.replace('#', '?'));
-      if (
-        searchParams.get('code') ||
-        searchParams.get('id_token') ||
-        searchParams.get('session_state') ||
-        hashParams.get('code') ||
-        hashParams.get('id_token') ||
-        hashParams.get('session_state')
-      ) {
+      /**
+       * Check if the user is returning back from OIDC.
+       */
+      if (hasCodeInUrl(location)) {
         await userManager!.signinRedirectCallback();
         const user = await userManager!.getUser();
         setUserData(user);
         onSignIn && onSignIn(user);
         return;
       }
-
+      
       const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
-        if (onBeforeSignIn) {
-          onBeforeSignIn();
-        }
+        onBeforeSignIn && onBeforeSignIn();
         signIn();
       } else {
         setUserData(user);
@@ -163,7 +100,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
     signIn,
     signOut: async (options) => {
       if (options && options?.signoutRedirect) {
-        await userManager!.signoutRedirect()
+        await userManager!.signoutRedirect();
       } else {
         await userManager!.removeUser();
       }

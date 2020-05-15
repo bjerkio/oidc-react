@@ -1,4 +1,4 @@
-import { AuthContextProps } from './AuthContext';
+import { AuthContextProps } from './AuthContextInterface';
 import { useAuth } from './useAuth';
 import React from 'react';
 
