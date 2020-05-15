@@ -122,12 +122,6 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
     });
   }
 
-  /* istanbul ignore next */
-  if (!userManager) {
-    // This should never happen.
-    throw new Error('UserManager is missing.');
-  }
-
   const signIn = async (): Promise<void> => {
     userManager && userManager.signinRedirect();
   };
