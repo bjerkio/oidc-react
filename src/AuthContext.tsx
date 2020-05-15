@@ -4,7 +4,6 @@ import {
   Location,
   AuthProviderProps,
   AuthContextProps,
-  AuthProviderSignOutProps,
 } from './AuthContextInterface';
 
 export const AuthContext = React.createContext<AuthContextProps|null>(null);
@@ -65,20 +64,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
 
   const userManager = initUserManager(props);
 
-  const signIn = async (): Promise<void> => {
-    userManager && userManager.signinRedirect();
-  };
-
-  const signOut = async (options?: AuthProviderSignOutProps): Promise<void> => {
-    if (options?.signoutRedirect) {
-      if (typeof options.signoutRedirect === 'object') {
-        await userManager!.signoutRedirect(options.signoutRedirect);
-      } else {
-        await userManager!.signoutRedirect();
-      }
-    } else {
-      await userManager!.removeUser();
-    }
+  const signOutHooks = async (): Promise<void> => {
     setUserData(null);
     onSignOut && onSignOut();
   };
@@ -89,8 +75,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({
        * Check if the user is returning back from OIDC.
        */
       if (hasCodeInUrl(location)) {
-        await userManager!.signinRedirectCallback();
-        const user = await userManager!.getUser();
+        await userManager.signinRedirectCallback();
+        const user = await userManager.getUser();
         setUserData(user);
         onSignIn && onSignIn(user);
         return;
@@ -99,7 +85,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
         onBeforeSignIn && onBeforeSignIn();
-        signIn();
+        userManager.signinRedirect();
       } else {
         setUserData(user);
       }
@@ -111,8 +97,16 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   return (
     <AuthContext.Provider
       value={{
-        signIn,
-        signOut,
+        signIn: userManager.signinRedirect,
+        signOut: async (): Promise<void> => {
+          await userManager!.removeUser();
+          await signOutHooks();
+        },
+        signOutRedirect: async (args?: unknown): Promise<void> => {
+          await userManager!.signoutRedirect(args);
+          await signOutHooks();
+        },
+        userManager,
         userData,
       }}
     >

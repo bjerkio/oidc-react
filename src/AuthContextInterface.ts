@@ -77,8 +77,22 @@ export interface AuthProviderProps {
 }
 
 export interface AuthContextProps {
-  signIn: () => void;
-  signOut: (options?: AuthProviderSignOutProps) => void;
+  /**
+   * Alias for userManager.signInRedirect
+   */
+  signIn: (args?: unknown) => Promise<void>;
+  /**
+   * Alias for removeUser
+   */
+  signOut: () => Promise<void>;
+  /**
+   *
+   */
+  signOutRedirect: (args?: unknown) => Promise<void>;
+  /**
+   * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
+   */
+  userManager: UserManager | null;
   /**
    * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
    */
