@@ -34,13 +34,21 @@
 
 ### `Const` AuthProvider
 
-▸ **AuthProvider**(`props`: [AuthProviderProps](interfaces/authproviderprops.md) & object): *Element‹›*
+▸ **AuthProvider**(`__namedParameters`: object): *Element‹›*
 
 **Parameters:**
 
-Name | Type | Description |
+▪ **__namedParameters**: *object*
+
+Name | Type | Default |
 ------ | ------ | ------ |
-`props` | [AuthProviderProps](interfaces/authproviderprops.md) & object | AuthProviderProps  |
+`autoSignIn` | boolean | true |
+`children` | undefined &#124; null &#124; string &#124; number &#124; false &#124; true &#124; object &#124; ReactElement‹any, string &#124; function &#124; object› &#124; ReactNodeArray‹› &#124; ReactPortal‹› | - |
+`location` | [Location](interfaces/location.md) | window.location |
+`onBeforeSignIn` | undefined &#124; function | - |
+`onSignIn` | undefined &#124; function | - |
+`onSignOut` | undefined &#124; function | - |
+`props` | props | - |
 
 **Returns:** *Element‹›*
 

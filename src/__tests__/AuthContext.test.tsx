@@ -14,8 +14,10 @@ describe('AuthContext', () => {
         getUser: jest.fn(),
         signinRedirect: jest.fn(),
       } as any;
-      render(<AuthProvider userManager={u} />);
+      const onBeforeSignIn = jest.fn();
+      render(<AuthProvider userManager={u} onBeforeSignIn={onBeforeSignIn} />);
       await waitFor(() => expect(u.getUser).toHaveBeenCalled());
+      await waitFor(() => expect(onBeforeSignIn).toHaveBeenCalled());
       await waitFor(() => expect(u.signinRedirect).toHaveBeenCalled());
     });
   });
@@ -30,7 +32,7 @@ describe('AuthContext', () => {
         <AuthProvider userManager={u} autoSignIn={false}>
           <AuthContext.Consumer>
             {(value) => {
-              value.signIn();
+              value?.signIn();
               return <p>Bjerk</p>;
             }}
           </AuthContext.Consumer>
@@ -72,7 +74,7 @@ describe('AuthContext', () => {
         <AuthProvider userManager={userManager}>
           <AuthContext.Consumer>
             {(value) =>
-              value.userData && (
+              value?.userData && (
                 <span>Received: {value.userData.access_token}</span>
               )
             }
@@ -124,7 +126,7 @@ describe('AuthContext', () => {
       >
         <AuthContext.Consumer>
           {(value) => {
-            value.signOut();
+            value?.signOut();
             return <p>Bjerk</p>;
           }}
         </AuthContext.Consumer>
@@ -149,9 +151,7 @@ describe('AuthContext', () => {
       >
         <AuthContext.Consumer>
           {(value) => {
-            value.signOut({
-              signoutRedirect: true
-            });
+            value?.signOutRedirect();
             return <p>Bjerk</p>;
           }}
         </AuthContext.Consumer>
@@ -160,35 +160,35 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.signoutRedirect).toHaveBeenCalled());
   });
-    it('should end session and logout the user when signoutRedirect is an object', async () => {
-      const userManager = {
-        getUser: async () => ({
-          access_token: 'token',
-        }),
-        signoutRedirect: jest.fn(),
-      } as any;
-      const onSignOut = jest.fn();
-      render(
-        <AuthProvider
-          onSignOut={onSignOut}
-          userManager={userManager}
-          location={location}
-        >
-          <AuthContext.Consumer>
-            {(value) => {
-              value.signOut({
-                signoutRedirect: {
-                  state: 'thebranches'
-                },
-              });
-              return <p>Bjerk</p>;
-            }}
-          </AuthContext.Consumer>
-        </AuthProvider>,
-      );
-      await waitFor(() => expect(onSignOut).toHaveBeenCalled());
-      await waitFor(() =>
-        expect(userManager.signoutRedirect).toHaveBeenCalled(),
-      );
-    });
+  it('should end session and logout the user when signoutRedirect is an object', async () => {
+    const userManager = {
+      getUser: async () => ({
+        access_token: 'token',
+      }),
+      signoutRedirect: jest.fn(),
+    } as any;
+    const onSignOut = jest.fn();
+    render(
+      <AuthProvider
+        onSignOut={onSignOut}
+        userManager={userManager}
+        location={location}
+      >
+        <AuthContext.Consumer>
+          {(value) => {
+            value?.signOutRedirect({
+              state: 'thebranches',
+            });
+            return <p>Bjerk</p>;
+          }}
+        </AuthContext.Consumer>
+      </AuthProvider>,
+    );
+    await waitFor(() => expect(onSignOut).toHaveBeenCalled());
+    await waitFor(() =>
+      expect(userManager.signoutRedirect).toHaveBeenCalledWith({
+        state: 'thebranches',
+      }),
+    );
+  });
 });
