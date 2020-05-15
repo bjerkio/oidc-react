@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2020-05-15)
+
+
+### Features
+
+* add option to use signoutRedirect ([9ca3ada](https://github.com/bjerkio/oidc-react/commit/9ca3ada0e2ef1fdba81397ec2044928cc5844a87))
+
 # [1.0.0-alpha.5](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2020-04-21)
 
 
