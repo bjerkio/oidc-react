@@ -14,8 +14,10 @@ describe('AuthContext', () => {
         getUser: jest.fn(),
         signinRedirect: jest.fn(),
       } as any;
-      render(<AuthProvider userManager={u} />);
+      const onBeforeSignIn = jest.fn();
+      render(<AuthProvider userManager={u} onBeforeSignIn={onBeforeSignIn} />);
       await waitFor(() => expect(u.getUser).toHaveBeenCalled());
+      await waitFor(() => expect(onBeforeSignIn).toHaveBeenCalled());
       await waitFor(() => expect(u.signinRedirect).toHaveBeenCalled());
     });
   });
@@ -133,6 +135,7 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.removeUser).toHaveBeenCalled());
   });
+
   it('should end session and logout the user', async () => {
     const userManager = {
       getUser: async () => ({
@@ -160,4 +163,5 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.signoutRedirect).toHaveBeenCalled());
   });
+  
 });
