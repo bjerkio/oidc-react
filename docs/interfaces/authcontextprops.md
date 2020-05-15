@@ -12,7 +12,9 @@
 
 * [signIn](authcontextprops.md#signin)
 * [signOut](authcontextprops.md#signout)
+* [signOutRedirect](authcontextprops.md#signoutredirect)
 * [userData](authcontextprops.md#optional-userdata)
+* [userManager](authcontextprops.md#usermanager)
 
 ## Properties
 
@@ -20,9 +22,17 @@
 
 • **signIn**: *function*
 
+Alias for userManager.signInRedirect
+
 #### Type declaration:
 
-▸ (): *void*
+▸ (`args?`: unknown): *Promise‹void›*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`args?` | unknown |
 
 ___
 
@@ -30,15 +40,27 @@ ___
 
 • **signOut**: *function*
 
+Alias for removeUser
+
 #### Type declaration:
 
-▸ (`options?`: [AuthProviderSignOutProps](authprovidersignoutprops.md)): *void*
+▸ (): *Promise‹void›*
+
+___
+
+###  signOutRedirect
+
+• **signOutRedirect**: *function*
+
+#### Type declaration:
+
+▸ (`args?`: unknown): *Promise‹void›*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`options?` | [AuthProviderSignOutProps](authprovidersignoutprops.md) |
+`args?` | unknown |
 
 ___
 
@@ -47,3 +69,11 @@ ___
 • **userData**? : *User | null*
 
 See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
+
+___
+
+###  userManager
+
+• **userManager**: *UserManager | null*
+
+See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.

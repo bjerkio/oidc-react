@@ -25,10 +25,7 @@
 
 ### `Const` AuthContext
 
-• **AuthContext**: *Context‹[AuthContextProps](interfaces/authcontextprops.md)›* = React.createContext<AuthContextProps>({
-  signIn: /* istanbul ignore next */ () => {},
-  signOut: /* istanbul ignore next */ () => {},
-})
+• **AuthContext**: *Context‹null | [AuthContextProps](interfaces/authcontextprops.md)›* = React.createContext<AuthContextProps|null>(null)
 
 ## Functions
 
@@ -56,9 +53,9 @@ ___
 
 ### `Const` useAuth
 
-▸ **useAuth**(): *[AuthContextProps](interfaces/authcontextprops.md)*
+▸ **useAuth**(): *null | [AuthContextProps](interfaces/authcontextprops.md)*
 
-**Returns:** *[AuthContextProps](interfaces/authcontextprops.md)*
+**Returns:** *null | [AuthContextProps](interfaces/authcontextprops.md)*
 
 ___
 
