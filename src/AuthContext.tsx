@@ -99,7 +99,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   const context: AuthContextProps = {
     signIn,
     signOut: async (options) => {
-      if (options && options?.signoutRedirect) {
+      if (options?.signoutRedirect) {
         if (typeof options.signoutRedirect === 'object') {
           await userManager!.signoutRedirect(options.signoutRedirect);
         } else {
