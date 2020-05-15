@@ -100,7 +100,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     signIn,
     signOut: async (options) => {
       if (options && options?.signoutRedirect) {
-        await userManager!.signoutRedirect();
+        if (typeof options.signoutRedirect === 'object') {
+          await userManager!.signoutRedirect(options.signoutRedirect);
+        } else {
+          await userManager!.signoutRedirect();
+        }
       } else {
         await userManager!.removeUser();
       }

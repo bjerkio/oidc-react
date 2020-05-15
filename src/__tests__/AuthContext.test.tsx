@@ -135,8 +135,7 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.removeUser).toHaveBeenCalled());
   });
-
-  it('should end session and logout the user', async () => {
+  it('should end session and logout the user when signoutRedirect is true', async () => {
     const userManager = {
       getUser: async () => ({
         access_token: 'token',
@@ -163,5 +162,37 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.signoutRedirect).toHaveBeenCalled());
   });
-  
+    it('should end session and logout the user when signoutRedirect is an object', async () => {
+      const userManager = {
+        getUser: async () => ({
+          access_token: 'token',
+        }),
+        signoutRedirect: jest.fn(),
+      } as any;
+      const onSignOut = jest.fn();
+      render(
+        <AuthProvider
+          onSignOut={onSignOut}
+          userManager={userManager}
+          location={location}
+        >
+          <AuthContext.Consumer>
+            {(value) => {
+              value.signOut({
+                signoutRedirect: {
+                  state: 'thebranches'
+                },
+              });
+              return <p>Bjerk</p>;
+            }}
+          </AuthContext.Consumer>
+        </AuthProvider>,
+      );
+      await waitFor(() => expect(onSignOut).toHaveBeenCalled());
+      await waitFor(() =>
+        expect(userManager.signoutRedirect).toHaveBeenCalledWith({
+          state: 'thebranches'
+        }),
+      );
+    });
 });
