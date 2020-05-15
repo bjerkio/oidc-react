@@ -4,6 +4,7 @@ import {
   Location,
   AuthProviderProps,
   AuthContextProps,
+  AuthProviderSignOutProps,
 } from './AuthContextInterface';
 
 export const AuthContext = React.createContext<AuthContextProps>({
@@ -14,7 +15,7 @@ export const AuthContext = React.createContext<AuthContextProps>({
 /**
  * @private
  * @hidden
- * @param location 
+ * @param location
  */
 export const hasCodeInUrl = (location: Location): boolean => {
   const searchParams = new URLSearchParams(location.search);
@@ -22,18 +23,18 @@ export const hasCodeInUrl = (location: Location): boolean => {
 
   return Boolean(
     searchParams.get('code') ||
-    searchParams.get('id_token') ||
-    searchParams.get('session_state') ||
-    hashParams.get('code') ||
-    hashParams.get('id_token') ||
-    hashParams.get('session_state')
+      searchParams.get('id_token') ||
+      searchParams.get('session_state') ||
+      hashParams.get('code') ||
+      hashParams.get('id_token') ||
+      hashParams.get('session_state'),
   );
-}
+};
 
 /**
  * @private
  * @hidden
- * @param props 
+ * @param props
  */
 export const initUserManager = (props: AuthProviderProps): UserManager => {
   if (props.userManager) return props.userManager;
@@ -48,27 +49,41 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     scope: scope || 'openid',
     loadUserInfo: true,
   });
-}
+};
 
 /**
  *
  * @param props AuthProviderProps
  */
 export const AuthProvider: FC<AuthProviderProps> = ({
-    children,
-    autoSignIn = true,
-    onBeforeSignIn,
-    onSignIn,
-    onSignOut,
-    location = window.location,
-    ...props
-  }) => {
+  children,
+  autoSignIn = true,
+  onBeforeSignIn,
+  onSignIn,
+  onSignOut,
+  location = window.location,
+  ...props
+}) => {
   const [userData, setUserData] = useState<User | null>(null);
 
   const userManager = initUserManager(props);
 
   const signIn = async (): Promise<void> => {
     userManager && userManager.signinRedirect();
+  };
+
+  const signOut = async (options?: AuthProviderSignOutProps): Promise<void> => {
+    if (options?.signoutRedirect) {
+      if (typeof options.signoutRedirect === 'object') {
+        await userManager!.signoutRedirect(options.signoutRedirect);
+      } else {
+        await userManager!.signoutRedirect();
+      }
+    } else {
+      await userManager!.removeUser();
+    }
+    setUserData(null);
+    onSignOut && onSignOut();
   };
 
   useEffect(() => {
@@ -83,7 +98,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         onSignIn && onSignIn(user);
         return;
       }
-      
+
       const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
         onBeforeSignIn && onBeforeSignIn();
@@ -96,25 +111,15 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     getUser();
   }, [location]);
 
-  const context: AuthContextProps = {
-    signIn,
-    signOut: async (options) => {
-      if (options?.signoutRedirect) {
-        if (typeof options.signoutRedirect === 'object') {
-          await userManager!.signoutRedirect(options.signoutRedirect);
-        } else {
-          await userManager!.signoutRedirect();
-        }
-      } else {
-        await userManager!.removeUser();
-      }
-      setUserData(null);
-      onSignOut && onSignOut();
-    },
-    userData,
-  };
-
   return (
-    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        userData,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
