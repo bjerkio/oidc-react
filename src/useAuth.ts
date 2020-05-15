@@ -4,5 +4,5 @@ import { AuthContextProps } from './AuthContextInterface';
 import { AuthContext } from './AuthContext';
 
 export const useAuth = () => {
-  return useContext<AuthContextProps>(AuthContext);
+  return useContext<AuthContextProps|null>(AuthContext);
 };

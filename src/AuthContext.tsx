@@ -7,10 +7,7 @@ import {
   AuthProviderSignOutProps,
 } from './AuthContextInterface';
 
-export const AuthContext = React.createContext<AuthContextProps>({
-  signIn: /* istanbul ignore next */ () => {},
-  signOut: /* istanbul ignore next */ () => {},
-});
+export const AuthContext = React.createContext<AuthContextProps|null>(null);
 
 /**
  * @private
