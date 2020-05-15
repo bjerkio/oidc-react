@@ -8,6 +8,7 @@
 
 * [AuthContextProps](interfaces/authcontextprops.md)
 * [AuthProviderProps](interfaces/authproviderprops.md)
+* [AuthProviderSignOutProps](interfaces/authprovidersignoutprops.md)
 * [Location](interfaces/location.md)
 
 ### Variables
