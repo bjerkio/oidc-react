@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.7](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2020-05-15)
+
+
+### Bug Fixes
+
+* Useless conditional ([6cf9dda](https://github.com/bjerkio/oidc-react/commit/6cf9ddad48728b50c4f17ce7ade18f67ee1faccf))
+* Variable 'user' cannot be of type null ([0d8a0c3](https://github.com/bjerkio/oidc-react/commit/0d8a0c3110aec43b4e8c22b6385df8fcbd64147d))
+
+
+### Code Refactoring
+
+* Improve createContext setup ([6b715f5](https://github.com/bjerkio/oidc-react/commit/6b715f5ad8f78fdb1306cfc399b5f26a2bdc5a14))
+
+
+### Features
+
+* Add improved API layout ([1e3d66a](https://github.com/bjerkio/oidc-react/commit/1e3d66a1d336d6f0e6e6310e33b4061e9c50e46a)), closes [#36](https://github.com/bjerkio/oidc-react/issues/36)
+* add option to use signoutRedirect ([d2c4278](https://github.com/bjerkio/oidc-react/commit/d2c42782edd676ae68ccedf45dde18d696f32447))
+
+
+### BREAKING CHANGES
+
+* Typescript users might not expect the Context to be 'null'. Now you have to check
+it.
+
 # [1.0.0-alpha.6](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2020-05-15)
 
 
