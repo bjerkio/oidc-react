@@ -32,7 +32,13 @@ ___
 
 #### Type declaration:
 
-▸ (): *void*
+▸ (`options?`: [AuthProviderSignOutProps](authprovidersignoutprops.md)): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`options?` | [AuthProviderSignOutProps](authprovidersignoutprops.md) |
 
 ___
 

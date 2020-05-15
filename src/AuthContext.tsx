@@ -6,6 +6,25 @@ export interface Location {
   hash: string;
 }
 
+export interface AuthProviderSignOutProps {
+  /**
+   * Trigger a redirect of the current window to the end session endpoint
+   * 
+   * You can also provide an object. This object will be sent with the
+   * function.
+   * 
+   * @example
+   * ```javascript
+   * const config = {
+   *  signOutRedirect: {
+   *    state: 'abrakadabra',
+   *  },
+   * };
+   * ```
+   */
+  signoutRedirect?: boolean | unknown;
+}
+
 export interface AuthProviderProps {
   /**
    * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
@@ -56,12 +75,12 @@ export interface AuthProviderProps {
   /**
    * On sign out hook. Can be a async function.
    */
-  onSignOut?: () => Promise<void> | void;
+  onSignOut?: (options?: AuthProviderSignOutProps) => Promise<void> | void;
 }
 
 export interface AuthContextProps {
   signIn: () => void;
-  signOut: (providerLogout?: boolean) => void;
+  signOut: (options?: AuthProviderSignOutProps) => void;
   /**
    * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
    */
@@ -148,8 +167,12 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
 
   const context: AuthContextProps = {
     signIn,
-    signOut: async (providerLogout?: boolean) => {
-      providerLogout ? await userManager!.signoutRedirect() : await userManager!.removeUser();
+    signOut: async (options) => {
+      if (options && options?.signoutRedirect) {
+        await userManager!.signoutRedirect()
+      } else {
+        await userManager!.removeUser();
+      }
       setUserData(null);
       onSignOut && onSignOut();
     },

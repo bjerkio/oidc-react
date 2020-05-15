@@ -149,7 +149,9 @@ describe('AuthContext', () => {
       >
         <AuthContext.Consumer>
           {(value) => {
-            value.signOut(true);
+            value.signOut({
+              signoutRedirect: true
+            });
             return <p>Bjerk</p>;
           }}
         </AuthContext.Consumer>
