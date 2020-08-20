@@ -6,7 +6,7 @@ import {
   AuthContextProps,
 } from './AuthContextInterface';
 
-export const AuthContext = React.createContext<AuthContextProps|null>(null);
+export const AuthContext = React.createContext<AuthContextProps | null>(null);
 
 /**
  * @private
@@ -34,10 +34,18 @@ export const hasCodeInUrl = (location: Location): boolean => {
  */
 export const initUserManager = (props: AuthProviderProps): UserManager => {
   if (props.userManager) return props.userManager;
-  const { authority, clientId, redirectUri, responseType, scope } = props;
+  const {
+    authority,
+    clientId,
+    clientSecret,
+    redirectUri,
+    responseType,
+    scope,
+  } = props;
   return new UserManager({
     authority,
     client_id: clientId,
+    client_secret: clientSecret,
     redirect_uri: redirectUri,
     silent_redirect_uri: redirectUri,
     post_logout_redirect_uri: redirectUri,
