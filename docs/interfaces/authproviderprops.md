@@ -13,6 +13,7 @@
 * [authority](authproviderprops.md#optional-authority)
 * [autoSignIn](authproviderprops.md#optional-autosignin)
 * [clientId](authproviderprops.md#optional-clientid)
+* [clientSecret](authproviderprops.md#optional-clientsecret)
 * [location](authproviderprops.md#optional-location)
 * [onBeforeSignIn](authproviderprops.md#optional-onbeforesignin)
 * [onSignIn](authproviderprops.md#optional-onsignin)
@@ -45,6 +46,14 @@ ___
 • **clientId**? : *undefined | string*
 
 Your client application's identifier as registered with the OIDC/OAuth2 provider.
+
+___
+
+### `Optional` clientSecret
+
+• **clientSecret**? : *undefined | string*
+
+Client secret defined on the identity server
 
 ___
 
