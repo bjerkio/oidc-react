@@ -37,6 +37,10 @@ export interface AuthProviderProps {
    */
   clientId?: string;
   /**
+   * Client secret defined on the identity server
+   */
+  clientSecret?: string;
+  /**
    * The redirect URI of your client application to receive a response from the OIDC/OAuth2 provider.
    */
   redirectUri?: string;
