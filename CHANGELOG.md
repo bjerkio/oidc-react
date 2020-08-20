@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.8](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2020-08-20)
+
+
+### Features
+
+* add client_secret ([151a494](https://github.com/bjerkio/oidc-react/commit/151a494a0faf48483086ce75435ab033335c54ca))
+* re-export User and UserManager ([a2fdf39](https://github.com/bjerkio/oidc-react/commit/a2fdf39c88dadfe28e8f605ddfc5825c294a017b))
+
 # [1.0.0-alpha.7](https://github.com/bjerkio/oidc-react/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2020-05-15)
 
 
