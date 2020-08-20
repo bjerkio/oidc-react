@@ -4,114 +4,123 @@
 
 ## Hierarchy
 
-* **AuthProviderProps**
+- **AuthProviderProps**
 
 ## Index
 
 ### Properties
 
-* [authority](authproviderprops.md#optional-authority)
-* [autoSignIn](authproviderprops.md#optional-autosignin)
-* [clientId](authproviderprops.md#optional-clientid)
-* [location](authproviderprops.md#optional-location)
-* [onBeforeSignIn](authproviderprops.md#optional-onbeforesignin)
-* [onSignIn](authproviderprops.md#optional-onsignin)
-* [onSignOut](authproviderprops.md#optional-onsignout)
-* [redirectUri](authproviderprops.md#optional-redirecturi)
-* [responseType](authproviderprops.md#optional-responsetype)
-* [scope](authproviderprops.md#optional-scope)
-* [userManager](authproviderprops.md#optional-usermanager)
+- [authority](authproviderprops.md#optional-authority)
+- [autoSignIn](authproviderprops.md#optional-autosignin)
+- [clientId](authproviderprops.md#optional-clientid)
+- [clientSecret](authproviderprops.md#optional-clientsecret)
+- [location](authproviderprops.md#optional-location)
+- [onBeforeSignIn](authproviderprops.md#optional-onbeforesignin)
+- [onSignIn](authproviderprops.md#optional-onsignin)
+- [onSignOut](authproviderprops.md#optional-onsignout)
+- [redirectUri](authproviderprops.md#optional-redirecturi)
+- [responseType](authproviderprops.md#optional-responsetype)
+- [scope](authproviderprops.md#optional-scope)
+- [userManager](authproviderprops.md#optional-usermanager)
 
 ## Properties
 
 ### `Optional` authority
 
-• **authority**? : *undefined | string*
+• **authority**? : _undefined | string_
 
 The URL of the OIDC/OAuth2 provider.
 
-___
+---
 
 ### `Optional` autoSignIn
 
-• **autoSignIn**? : *undefined | false | true*
+• **autoSignIn**? : _undefined | false | true_
 
 defaults to true
 
-___
+---
 
 ### `Optional` clientId
 
-• **clientId**? : *undefined | string*
+• **clientId**? : _undefined | string_
 
 Your client application's identifier as registered with the OIDC/OAuth2 provider.
 
-___
+---
+
+### `Optional` clientSecret
+
+• **clientSecret**? : _undefined | string_
+
+Your client application's secret as registered with the OIDC/OAuth2 provider.
+
+---
 
 ### `Optional` location
 
-• **location**? : *[Location](location.md)*
+• **location**? : _[Location](location.md)_
 
 Defaults to `windows.location`.
 
-___
+---
 
 ### `Optional` onBeforeSignIn
 
-• **onBeforeSignIn**? : *undefined | function*
+• **onBeforeSignIn**? : _undefined | function_
 
 On before sign in hook. Can be use to store the current url for use after signing in.
 
 This only gets called if autoSignIn is true
 
-___
+---
 
 ### `Optional` onSignIn
 
-• **onSignIn**? : *undefined | function*
+• **onSignIn**? : _undefined | function_
 
 On sign out hook. Can be a async function.
 
 **`param`** User
 
-___
+---
 
 ### `Optional` onSignOut
 
-• **onSignOut**? : *undefined | function*
+• **onSignOut**? : _undefined | function_
 
 On sign out hook. Can be a async function.
 
-___
+---
 
 ### `Optional` redirectUri
 
-• **redirectUri**? : *undefined | string*
+• **redirectUri**? : _undefined | string_
 
 The redirect URI of your client application to receive a response from the OIDC/OAuth2 provider.
 
-___
+---
 
 ### `Optional` responseType
 
-• **responseType**? : *undefined | string*
+• **responseType**? : _undefined | string_
 
 Tells the authorization server which grant to execute
 
 Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
 
-___
+---
 
 ### `Optional` scope
 
-• **scope**? : *undefined | string*
+• **scope**? : _undefined | string_
 
 A space-delimited list of permissions that the application requires.
 
-___
+---
 
 ### `Optional` userManager
 
-• **userManager**? : *UserManager*
+• **userManager**? : _UserManager_
 
 See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
