@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/bjerkio/oidc-react/compare/v1.0.0...v1.0.1) (2020-08-21)
+
+
+### Bug Fixes
+
+* this._signinStart is not a function ([20b1e57](https://github.com/bjerkio/oidc-react/commit/20b1e57b1b8a15276a04498081560ccce03e0c73)), closes [#173](https://github.com/bjerkio/oidc-react/issues/173)
+
 # 1.0.0 (2020-08-20)
 
 
