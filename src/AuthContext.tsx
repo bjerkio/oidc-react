@@ -105,7 +105,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   return (
     <AuthContext.Provider
       value={{
-        signIn: async (args: any): Promise<void> => {
+        signIn: async (args: unknown): Promise<void> => {
           await userManager.signinRedirect(args);
         },
         signOut: async (): Promise<void> => {
