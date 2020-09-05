@@ -45,7 +45,7 @@
     "jest-cli": "^26.0.1",
     "ts-jest": "^25.3.1",
     "ts-node-dev": "^1.0.0-pre.40",
-    "typedoc": "^0.18.0",
+    "typedoc": "^0.19.1",
     "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.5.3"
   },
