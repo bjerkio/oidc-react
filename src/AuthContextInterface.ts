@@ -62,6 +62,12 @@ export interface AuthProviderProps {
    * defaults to true
    */
   autoSignIn?: boolean;
+  /**
+   * Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
+   *
+   * defaults to false
+   */
+  automaticSilentRenew?: boolean;
 
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.
