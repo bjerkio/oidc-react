@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/bjerkio/oidc-react/compare/v1.0.1...v1.1.0) (2020-09-26)
+
+
+### Features
+
+* add auto silent renew option ([6bb2df5](https://github.com/bjerkio/oidc-react/commit/6bb2df5e1c7c8b9f12fc220bcd51c1eac4890fe4))
+
 ## [1.0.1](https://github.com/bjerkio/oidc-react/compare/v1.0.0...v1.0.1) (2020-08-21)
 
 
