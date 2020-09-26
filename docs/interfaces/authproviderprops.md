@@ -12,6 +12,7 @@
 
 * [authority](authproviderprops.md#optional-authority)
 * [autoSignIn](authproviderprops.md#optional-autosignin)
+* [automaticSilentRenew](authproviderprops.md#optional-automaticsilentrenew)
 * [clientId](authproviderprops.md#optional-clientid)
 * [clientSecret](authproviderprops.md#optional-clientsecret)
 * [location](authproviderprops.md#optional-location)
@@ -38,6 +39,16 @@ ___
 • **autoSignIn**? : *undefined | false | true*
 
 defaults to true
+
+___
+
+### `Optional` automaticSilentRenew
+
+• **automaticSilentRenew**? : *undefined | false | true*
+
+Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
+
+defaults to false
 
 ___
 
