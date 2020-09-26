@@ -42,6 +42,7 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Semantic Release
+      id: semantic
       uses: cycjimmy/semantic-release-action@v2
       with:
         semantic_version: 17.0.7
@@ -51,3 +52,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Merge back to develop
+      if: steps.semantic.outputs.new_release_published == 'true'
+      uses: toysmoon/follow_branch@1.0.3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        target-branch: develop
+        following-branch: master
