@@ -15,7 +15,7 @@ Let's look at an example component.
 ```typescript
 import { AuthProvider } from 'oidc-react';
 
-export default () => {
+export default () => (
   <AuthProvider
     authority="http://oidc.io/oauth"
     clientId="my-client-id"
@@ -25,8 +25,7 @@ export default () => {
       <Text>Hello world</Text>
     </Layout>
   </AuthProvider>
-}
-};
+);
 ```
 
 _You can find the [properties under the API documentation](../docs/interfaces/authproviderprops.md)._
@@ -41,22 +40,21 @@ Let's look at another example for that!
 ```typescript
 import { AuthProvider } from 'oidc-react';
 
-export default App = () => {
+export default App = () => (
   <AuthProvider
     authority="http://oidc.io/oauth"
     clientId="my-client-id"
     redirectUri="http://myapp.com/"
-    onSignIn=(user => {
+    onSignIn={user => {
       // the `user` prop is actually the data the app received from `/userinfo` endpoint.
       history.go('/dashboard', user);
-    })
+    }}
   >
     <Layout>
       <Text>Hello world</Text>
     </Layout>
   </AuthProvider>
-}
-};
+);
 ```
 
 In this example our user is now redirected once again, this time to `/dashboard` of our app.
