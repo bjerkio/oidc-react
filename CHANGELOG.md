@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/bjerkio/oidc-react/compare/v1.1.0...v1.1.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* change callback method to allow other sign in method ([c497f49](https://github.com/bjerkio/oidc-react/commit/c497f49ddbca100ff5f52419ce07ac64c00d2656))
+
 # [1.1.0](https://github.com/bjerkio/oidc-react/compare/v1.0.1...v1.1.0) (2020-09-26)
 
 
