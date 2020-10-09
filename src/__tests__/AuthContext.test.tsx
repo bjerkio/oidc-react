@@ -68,7 +68,7 @@ describe('AuthContext', () => {
         getUser: async () => ({
           access_token: 'token',
         }),
-        signinRedirectCallback: jest.fn(),
+        signinCallback: jest.fn(),
       } as any;
       const { getByText } = render(
         <AuthProvider userManager={userManager}>
@@ -90,7 +90,7 @@ describe('AuthContext', () => {
   it('should login the user', async () => {
     const userManager = {
       getUser: jest.fn(),
-      signinRedirectCallback: jest.fn(),
+      signinCallback: jest.fn(),
     } as any;
     const location = {
       search: '?code=test-code',
@@ -106,7 +106,7 @@ describe('AuthContext', () => {
     );
     await waitFor(() => expect(onSignIn).toHaveBeenCalled());
     await waitFor(() =>
-      expect(userManager.signinRedirectCallback).toHaveBeenCalled(),
+      expect(userManager.signinCallback).toHaveBeenCalled(),
     );
   });
 

@@ -85,7 +85,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
        * Check if the user is returning back from OIDC.
        */
       if (hasCodeInUrl(location)) {
-        await userManager.signinRedirectCallback();
+        await userManager.signinCallback();
         const user = await userManager.getUser();
         setUserData(user);
         onSignIn && onSignIn(user);
