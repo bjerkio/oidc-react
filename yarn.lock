@@ -5984,9 +5984,9 @@ typedoc-default-themes@^0.11.4:
   integrity sha512-Y4Lf+qIb9NTydrexlazAM46SSLrmrQRqWiD52593g53SsmUFioAsMWt8m834J6qsp+7wHRjxCXSZeiiW5cMUdw==
 
 typedoc-plugin-markdown@^3.0.3:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-3.0.9.tgz#0a00ebee5c4a40f675e2991c7d62050ec7d26ab9"
-  integrity sha512-/BGlHz53QThamqw5BkpS9iLySc1jlZk5JaEeQP9srLmcdvDRxAsSrvF0AZPReJCrBuy8TXtgkEOLppTxbcwUEw==
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-3.0.10.tgz#4bd68464686af2e633afdcc950211bde2b5e107e"
+  integrity sha512-pM393xoX1Wbj05cI1TIbubAIaZ7B/EQ5QAwc49KuMEOk/SZbutY/j0bkiX2YnY4+3t8aZi3tS0ZX1djqTcvjmg==
   dependencies:
     handlebars "^4.7.6"
 
