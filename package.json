@@ -47,6 +47,9 @@
     "ts-node-dev": "^1.0.0-pre.40",
     "typedoc": "^0.19.2",
     "typedoc-plugin-markdown": "^3.0.3",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-router": "^5.1.2",
     "typescript": "^3.5.3"
   },
   "jest": {
@@ -69,10 +72,12 @@
     }
   },
   "homepage": "https://github.com/bjerkio/oidc-react#readme",
-  "dependencies": {
-    "oidc-client": "^1.9.1",
+  "peerDependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router": "^5.1.2"
+  },
+  "dependencies": {
+    "oidc-client": "^1.9.1"
   }
 }
