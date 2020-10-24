@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/bjerkio/oidc-react/compare/v1.1.1...v1.1.2) (2020-10-24)
+
+
+### Bug Fixes
+
+* Move react, react-dom to peerDependencies ([b4fd437](https://github.com/bjerkio/oidc-react/commit/b4fd437dfb81248766cb5be59b2bd684e95dcf7e)), closes [#301](https://github.com/bjerkio/oidc-react/issues/301)
+
 ## [1.1.1](https://github.com/bjerkio/oidc-react/compare/v1.1.0...v1.1.1) (2020-10-09)
 
 
