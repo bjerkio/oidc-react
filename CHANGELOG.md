@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/bjerkio/oidc-react/compare/v1.1.2...v1.1.3) (2020-10-24)
+
+
+### Bug Fixes
+
+* Remove react-router 🤷 ([527bcd3](https://github.com/bjerkio/oidc-react/commit/527bcd3a9d07fd3097924d022b13d31afb7d2dcf))
+
 ## [1.1.2](https://github.com/bjerkio/oidc-react/compare/v1.1.1...v1.1.2) (2020-10-24)
 
 
