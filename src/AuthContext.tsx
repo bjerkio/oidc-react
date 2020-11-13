@@ -67,9 +67,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   onBeforeSignIn,
   onSignIn,
   onSignOut,
-  location = window.location,
+  location = window && window.location,
   ...props
 }) => {
+  if (!location && typeof window === 'undefined') return <>{children}</>;
+
   const [userData, setUserData] = useState<User | null>(null);
 
   const userManager = initUserManager(props);
