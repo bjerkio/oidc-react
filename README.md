@@ -8,8 +8,7 @@
 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/bjerkio/oidc-react.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/bjerkio/oidc-react/context:javascript)
 [![codecov](https://codecov.io/gh/bjerkio/oidc-react/branch/master/graph/badge.svg)](https://codecov.io/gh/bjerkio/oidc-react)
-[![Maintainability](https://api.codeclimate.com/v1/badges/04b50822a61583ccdb5f/maintainability)](https://codeclimate.com/github/bjerkio/oidc-react/maintainability)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=bjerkio/oidc-react&identifier=253005089)](https://dependabot.com)
+[![Maintainability](https://api.codeclimate.com/v1/badges/69bf0921275f61ef6dd0/maintainability)](https://codeclimate.com/github/bjerkio/oidc-react/maintainability)
 
 ![oidc-react logo](assets/logo.jpg)
 
