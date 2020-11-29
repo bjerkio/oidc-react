@@ -5,12 +5,22 @@ import { UserManager } from 'oidc-client';
 import { AuthProvider, AuthContext } from '../AuthContext';
 import { render, act, waitFor } from '@testing-library/react';
 
-jest.mock('oidc-client');
-
 const events = {
   addUserLoaded: () => undefined,
   removeUserLoaded: () => undefined,
 }
+
+jest.mock('oidc-client', () => {
+  return {
+    UserManager: jest.fn().mockImplementation(() => {
+      return {
+        getUser: jest.fn(),
+        signinRedirect: jest.fn(),
+        events,
+      };
+    }),
+  };
+});
 
 describe('AuthContext', () => {
   it('should check for user and redirect', async () => {
