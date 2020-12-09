@@ -5742,9 +5742,9 @@ ts-jest@^25.3.1:
     yargs-parser "18.x"
 
 ts-node-dev@^1.0.0-pre.40:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.0.0.tgz#24a2270d225c29ce269de2a31f88b1b259fc84cb"
-  integrity sha512-leA/3TgGtnVU77fGngBwVZztqyDRXirytR7dMtMWZS5b2hGpLl+VDnB0F/gf3A+HEPSzS/KwxgXFP7/LtgX4MQ==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.1.0.tgz#e839855ed6450695ec25cafa234fdc967503064b"
+  integrity sha512-1h/2IOEbGsmzW0bjG33yj6Xndic9IsqmGbd9u9AwvUXXZm3SSImNh9zdZfkDJdV6SZBYEb+lAQrjLvtSfgEvNQ==
   dependencies:
     chokidar "^3.4.0"
     dateformat "~1.0.4-1.2.3"
