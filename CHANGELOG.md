@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/bjerkio/oidc-react/compare/v1.1.3...v1.1.4) (2020-12-19)
+
+
+### Bug Fixes
+
+* Including 'Log' in export ([#383](https://github.com/bjerkio/oidc-react/issues/383)) ([1f10c07](https://github.com/bjerkio/oidc-react/commit/1f10c075f90dcf0e2abb3d48ea768c38164f2f74))
+
 ## [1.1.3](https://github.com/bjerkio/oidc-react/compare/v1.1.2...v1.1.3) (2020-10-24)
 
 
