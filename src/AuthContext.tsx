@@ -114,7 +114,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     userManager.events.addUserLoaded(updateUserData);
 
     return () => userManager.events.removeUserLoaded(updateUserData);
-  }, [userManager])
+  }, [])
 
   return (
     <AuthContext.Provider
