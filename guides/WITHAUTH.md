@@ -7,7 +7,7 @@ OIDC React comes with a HOC withAuth! withAuth is a great way, much better then 
 withAuth returns a component wrapped in [authContext](../docs/interfaces/authcontextprops.md). Let's look at an example of use.
 
 ```typescript
-import { useAuth } from 'oidc-react';
+import { withAuth } from 'oidc-react';
 
 class Hello extends React.PureComponent<{}, {}> {
   render( = () => {
