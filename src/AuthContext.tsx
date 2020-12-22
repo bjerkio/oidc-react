@@ -104,6 +104,18 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     getUser();
   }, [location]);
 
+  useEffect(() => {
+    // for refreshing react state when new state is available in e.g. session storage
+    const updateUserData = async () => {
+      const user = await userManager.getUser();
+      setUserData(user);
+    }
+
+    userManager.events.addUserLoaded(updateUserData);
+
+    return () => userManager.events.removeUserLoaded(updateUserData);
+  }, [])
+
   return (
     <AuthContext.Provider
       value={{

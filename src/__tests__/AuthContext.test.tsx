@@ -5,7 +5,22 @@ import { UserManager } from 'oidc-client';
 import { AuthProvider, AuthContext } from '../AuthContext';
 import { render, act, waitFor } from '@testing-library/react';
 
-jest.mock('oidc-client');
+const events = {
+  addUserLoaded: () => undefined,
+  removeUserLoaded: () => undefined,
+}
+
+jest.mock('oidc-client', () => {
+  return {
+    UserManager: jest.fn().mockImplementation(() => {
+      return {
+        getUser: jest.fn(),
+        signinRedirect: jest.fn(),
+        events,
+      };
+    }),
+  };
+});
 
 describe('AuthContext', () => {
   it('should check for user and redirect', async () => {
@@ -13,6 +28,7 @@ describe('AuthContext', () => {
       const u = {
         getUser: jest.fn(),
         signinRedirect: jest.fn(),
+        events,
       } as any;
       const onBeforeSignIn = jest.fn();
       render(<AuthProvider userManager={u} onBeforeSignIn={onBeforeSignIn} />);
@@ -27,6 +43,7 @@ describe('AuthContext', () => {
       const u = {
         getUser: jest.fn(),
         signinRedirect: jest.fn(),
+        events,
       } as any;
       render(
         <AuthProvider userManager={u} autoSignIn={false}>
@@ -46,6 +63,7 @@ describe('AuthContext', () => {
     await act(async () => {
       const u = {
         getUser: jest.fn(),
+        events,
       } as any;
       render(<AuthProvider userManager={u} autoSignIn={false}></AuthProvider>);
       await waitFor(() => expect(u.getUser).toHaveBeenCalled());
@@ -69,6 +87,7 @@ describe('AuthContext', () => {
           access_token: 'token',
         }),
         signinCallback: jest.fn(),
+        events,
       } as any;
       const { getByText } = render(
         <AuthProvider userManager={userManager}>
@@ -91,6 +110,7 @@ describe('AuthContext', () => {
     const userManager = {
       getUser: jest.fn(),
       signinCallback: jest.fn(),
+      events,
     } as any;
     const location = {
       search: '?code=test-code',
@@ -116,6 +136,7 @@ describe('AuthContext', () => {
         access_token: 'token',
       }),
       removeUser: jest.fn(),
+      events,
     } as any;
     const onSignOut = jest.fn();
     render(
@@ -141,6 +162,7 @@ describe('AuthContext', () => {
         access_token: 'token',
       }),
       signoutRedirect: jest.fn(),
+      events,
     } as any;
     const onSignOut = jest.fn();
     render(
@@ -166,6 +188,7 @@ describe('AuthContext', () => {
         access_token: 'token',
       }),
       signoutRedirect: jest.fn(),
+      events,
     } as any;
     const onSignOut = jest.fn();
     render(
