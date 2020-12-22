@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/bjerkio/oidc-react/compare/v1.1.4...v1.1.5) (2020-12-22)
+
+
+### Bug Fixes
+
+* Load new state from session/local storage when available after a silent renew ([#363](https://github.com/bjerkio/oidc-react/issues/363)) ([319d0e3](https://github.com/bjerkio/oidc-react/commit/319d0e34d3f890a4838f436af6b4cb3859a0ad85))
+
 ## [1.1.4](https://github.com/bjerkio/oidc-react/compare/v1.1.3...v1.1.4) (2020-12-19)
 
 
