@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/bjerkio/oidc-react/compare/v1.1.5...v1.1.6) (2021-02-03)
+
+
+### Bug Fixes
+
+* Remove `getUser` in callback handler ([#461](https://github.com/bjerkio/oidc-react/issues/461)) ([7abb83d](https://github.com/bjerkio/oidc-react/commit/7abb83d97135aed1370c3a86582a1a689fa676f5)), closes [#447](https://github.com/bjerkio/oidc-react/issues/447)
+
 ## [1.1.5](https://github.com/bjerkio/oidc-react/compare/v1.1.4...v1.1.5) (2020-12-22)
 
 
