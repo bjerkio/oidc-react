@@ -68,6 +68,12 @@ export interface AuthProviderProps {
    * defaults to false
    */
   automaticSilentRenew?: boolean;
+  /**
+   *  Flag to control if additional identity data is loaded from the user info endpoint in order to populate the user's profile
+   *
+   * defaults to true
+   */
+  loadUserInfo?:boolean;
 
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.

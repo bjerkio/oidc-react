@@ -42,6 +42,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     responseType,
     scope,
     automaticSilentRenew,
+    loadUserInfo
   } = props;
   return new UserManager({
     authority,
@@ -52,7 +53,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     post_logout_redirect_uri: redirectUri,
     response_type: responseType || 'code',
     scope: scope || 'openid',
-    loadUserInfo: true,
+    loadUserInfo: loadUserInfo || true,
     automaticSilentRenew,
   });
 };
