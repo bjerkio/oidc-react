@@ -122,6 +122,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         signIn: async (args: unknown): Promise<void> => {
           await userManager.signinRedirect(args);
         },
+        signInPopup: async (): Promise<void> =>{
+          const userFromPopup = await userManager.signinPopup()
+          setUserData(userFromPopup)
+          onSignIn && onSignIn(userFromPopup);
+        },
         signOut: async (): Promise<void> => {
           await userManager!.removeUser();
           await signOutHooks();

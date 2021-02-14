@@ -93,10 +93,15 @@ export interface AuthProviderProps {
 }
 
 export interface AuthContextProps {
+  
   /**
    * Alias for userManager.signInRedirect
    */
   signIn: (args?: unknown) => Promise<void>;
+  /**
+   * Alias for userManager.signinPopup
+   */
+  signInPopup: () => Promise<void>
   /**
    * Alias for removeUser
    */
