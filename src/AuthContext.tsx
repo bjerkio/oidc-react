@@ -42,7 +42,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     responseType,
     scope,
     automaticSilentRenew,
-    loadUserInfo
+    loadUserInfo,
   } = props;
   return new UserManager({
     authority,
@@ -53,7 +53,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     post_logout_redirect_uri: redirectUri,
     response_type: responseType || 'code',
     scope: scope || 'openid',
-    loadUserInfo: loadUserInfo || true,
+    loadUserInfo: loadUserInfo != undefined? loadUserInfo : true,
     automaticSilentRenew,
   });
 };
@@ -79,13 +79,12 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     setUserData(null);
     onSignOut && onSignOut();
   };
-  const signInPopupHooks = async(): Promise<void> =>{
-    const userFromPopup = await userManager.signinPopup()
-    setUserData(userFromPopup)
+  const signInPopupHooks = async (): Promise<void> => {
+    const userFromPopup = await userManager.signinPopup();
+    setUserData(userFromPopup);
     onSignIn && onSignIn(userFromPopup);
-    await userManager.signinPopupCallback()
-    
-  }
+    await userManager.signinPopupCallback();
+  };
 
   useEffect(() => {
     const getUser = async (): Promise<void> => {
@@ -116,12 +115,12 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     const updateUserData = async () => {
       const user = await userManager.getUser();
       setUserData(user);
-    }
+    };
 
     userManager.events.addUserLoaded(updateUserData);
 
     return () => userManager.events.removeUserLoaded(updateUserData);
-  }, [])
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -129,8 +128,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         signIn: async (args: unknown): Promise<void> => {
           await userManager.signinRedirect(args);
         },
-        signInPopup: async (): Promise<void> =>{
-          await signInPopupHooks()
+        signInPopup: async (): Promise<void> => {
+          await signInPopupHooks();
         },
         signOut: async (): Promise<void> => {
           await userManager!.removeUser();
