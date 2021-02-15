@@ -79,6 +79,13 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     setUserData(null);
     onSignOut && onSignOut();
   };
+  const signInPopupHooks = async(): Promise<void> =>{
+    const userFromPopup = await userManager.signinPopup()
+    setUserData(userFromPopup)
+    onSignIn && onSignIn(userFromPopup);
+    await userManager.signinPopupCallback()
+    
+  }
 
   useEffect(() => {
     const getUser = async (): Promise<void> => {
@@ -123,9 +130,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
           await userManager.signinRedirect(args);
         },
         signInPopup: async (): Promise<void> =>{
-          const userFromPopup = await userManager.signinPopup()
-          setUserData(userFromPopup)
-          onSignIn && onSignIn(userFromPopup);
+          await signInPopupHooks()
         },
         signOut: async (): Promise<void> => {
           await userManager!.removeUser();
