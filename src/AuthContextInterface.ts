@@ -37,7 +37,7 @@ export interface AuthProviderProps {
    */
   clientId?: string;
   /**
-   * Client secret defined on the identity server
+   * Client secret defined on the identity server.
    */
   clientSecret?: string;
   /**
@@ -45,7 +45,7 @@ export interface AuthProviderProps {
    */
   redirectUri?: string;
   /**
-   * Tells the authorization server which grant to execute
+   * Tells the authorization server which grant to execute.
    *
    * Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
    */
@@ -69,12 +69,28 @@ export interface AuthProviderProps {
    */
   automaticSilentRenew?: boolean;
   /**
-   *  Flag to control if additional identity data is loaded from the user info endpoint in order to populate the user's profile
+   *  Flag to control if additional identity data is loaded from the user info endpoint in order to populate the user's profile.
    *
    * defaults to true
    */
   loadUserInfo?:boolean;
-
+  /**
+   *  The features parameter to window.open for the popup signin window
+   *
+   * defaults to 'location=no,toolbar=no,width=500,height=500,left=100,top=100'
+   */
+  popupWindowFeatures?: string;
+  /**
+   *  The URL for the page containing the call to signinPopupCallback to handle the callback from the OIDC/OAuth2
+   *
+   */
+  popupRedirectUri?: string;
+  /**
+   *  The target parameter to window.open for the popup signin window.
+   *
+   * defaults to '_blank'
+   */
+  popupWindowTarget?:string;
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.
    *

@@ -43,6 +43,9 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     scope,
     automaticSilentRenew,
     loadUserInfo,
+    popupWindowFeatures,
+    popupRedirectUri,
+    popupWindowTarget
   } = props;
   return new UserManager({
     authority,
@@ -54,6 +57,9 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     response_type: responseType || 'code',
     scope: scope || 'openid',
     loadUserInfo: loadUserInfo != undefined? loadUserInfo : true,
+    popupWindowFeatures: popupWindowFeatures,
+    popup_redirect_uri: popupRedirectUri,
+    popupWindowTarget: popupWindowTarget,
     automaticSilentRenew,
   });
 };
