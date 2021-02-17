@@ -4495,9 +4495,9 @@ object.values@^1.1.1:
     has "^1.0.3"
 
 oidc-client@^1.9.1:
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/oidc-client/-/oidc-client-1.11.4.tgz#d65ea0ab03ea5a3fffd95369423d940cffcfa68d"
-  integrity sha512-71mEPaDr7g2Ji6t+e1fKLNKJL/XEuDXmXakDUJ9hVpmsLyQKY9kfbjeuDDAN6cP7Rhty3814he/aStqNLBREKA==
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/oidc-client/-/oidc-client-1.11.5.tgz#020aa193d68a3e1f87a24fcbf50073b738de92bb"
+  integrity sha512-LcKrKC8Av0m/KD/4EFmo9Sg8fSQ+WFJWBrmtWd+tZkNn3WT/sQG3REmPANE9tzzhbjW6VkTNy4xhAXCfPApAOg==
   dependencies:
     acorn "^7.4.1"
     base64-js "^1.5.1"
