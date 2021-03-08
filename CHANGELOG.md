@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/bjerkio/oidc-react/compare/v1.1.6...v1.2.0) (2021-03-08)
+
+
+### Features
+
+* Add signInPopup method ([#479](https://github.com/bjerkio/oidc-react/issues/479)) ([a50c196](https://github.com/bjerkio/oidc-react/commit/a50c196bba92cc95698eb10d7e5b68eb7b0959b1))
+
 ## [1.1.6](https://github.com/bjerkio/oidc-react/compare/v1.1.5...v1.1.6) (2021-02-03)
 
 
