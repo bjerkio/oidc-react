@@ -42,6 +42,10 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     responseType,
     scope,
     automaticSilentRenew,
+    loadUserInfo,
+    popupWindowFeatures,
+    popupRedirectUri,
+    popupWindowTarget
   } = props;
   return new UserManager({
     authority,
@@ -52,7 +56,10 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     post_logout_redirect_uri: redirectUri,
     response_type: responseType || 'code',
     scope: scope || 'openid',
-    loadUserInfo: true,
+    loadUserInfo: loadUserInfo != undefined? loadUserInfo : true,
+    popupWindowFeatures: popupWindowFeatures,
+    popup_redirect_uri: popupRedirectUri,
+    popupWindowTarget: popupWindowTarget,
     automaticSilentRenew,
   });
 };
@@ -77,6 +84,12 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   const signOutHooks = async (): Promise<void> => {
     setUserData(null);
     onSignOut && onSignOut();
+  };
+  const signInPopupHooks = async (): Promise<void> => {
+    const userFromPopup = await userManager.signinPopup();
+    setUserData(userFromPopup);
+    onSignIn && onSignIn(userFromPopup);
+    await userManager.signinPopupCallback();
   };
 
   useEffect(() => {
@@ -108,18 +121,21 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     const updateUserData = async () => {
       const user = await userManager.getUser();
       setUserData(user);
-    }
+    };
 
     userManager.events.addUserLoaded(updateUserData);
 
     return () => userManager.events.removeUserLoaded(updateUserData);
-  }, [])
+  }, []);
 
   return (
     <AuthContext.Provider
       value={{
         signIn: async (args: unknown): Promise<void> => {
           await userManager.signinRedirect(args);
+        },
+        signInPopup: async (): Promise<void> => {
+          await signInPopupHooks();
         },
         signOut: async (): Promise<void> => {
           await userManager!.removeUser();

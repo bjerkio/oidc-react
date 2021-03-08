@@ -59,6 +59,28 @@ describe('AuthContext', () => {
       await waitFor(() => expect(u.signinRedirect).toHaveBeenCalled());
     });
   });
+  it('should open Popup when asked', async () => {
+    await act(async () => {
+      const u = {
+        getUser: jest.fn(),
+        signinPopupCallback: jest.fn(),
+        signinPopup: jest.fn(),
+        events,
+      } as any;
+      render(
+        <AuthProvider userManager={u} autoSignIn={false}>
+          <AuthContext.Consumer>
+            {(value) => {
+              value?.signInPopup();
+              return <p>Bjerk</p>;
+            }}
+          </AuthContext.Consumer>
+        </AuthProvider>,
+      );
+      await waitFor(() => expect(u.signinPopupCallback).toHaveBeenCalled());
+      await waitFor(() => expect(u.signinPopup).toHaveBeenCalled());
+    });
+  });
   it('should not redirect when asked', async () => {
     await act(async () => {
       const u = {
