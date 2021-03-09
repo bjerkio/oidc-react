@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useRef } from 'react';
 import { UserManager, User } from 'oidc-client';
 import {
   Location,
@@ -45,7 +45,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     loadUserInfo,
     popupWindowFeatures,
     popupRedirectUri,
-    popupWindowTarget
+    popupWindowTarget,
   } = props;
   return new UserManager({
     authority,
@@ -56,7 +56,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     post_logout_redirect_uri: redirectUri,
     response_type: responseType || 'code',
     scope: scope || 'openid',
-    loadUserInfo: loadUserInfo != undefined? loadUserInfo : true,
+    loadUserInfo: loadUserInfo != undefined ? loadUserInfo : true,
     popupWindowFeatures: popupWindowFeatures,
     popup_redirect_uri: popupRedirectUri,
     popupWindowTarget: popupWindowTarget,
@@ -92,6 +92,13 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     await userManager.signinPopupCallback();
   };
 
+  const isMountedRef = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   useEffect(() => {
     const getUser = async (): Promise<void> => {
       /**
@@ -109,7 +116,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         onBeforeSignIn && onBeforeSignIn();
         userManager.signinRedirect();
       } else {
-        setUserData(user);
+        isMountedRef.current && setUserData(user);
       }
       return;
     };
@@ -120,7 +127,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     // for refreshing react state when new state is available in e.g. session storage
     const updateUserData = async () => {
       const user = await userManager.getUser();
-      setUserData(user);
+      isMountedRef.current && setUserData(user);
     };
 
     userManager.events.addUserLoaded(updateUserData);
