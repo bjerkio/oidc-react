@@ -45,6 +45,10 @@ export interface AuthProviderProps {
    */
   redirectUri?: string;
   /**
+   * The post-logout redirect URI of your client application which your OIDC/OAuth2 provider can redirect to after completing logout.
+   */
+  postLogoutRedirectUri?: string;
+  /**
    * Tells the authorization server which grant to execute.
    *
    * Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
