@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/bjerkio/oidc-react/compare/v1.2.0...v1.2.1) (2021-03-09)
+
+
+### Bug Fixes
+
+* state update on an unmounted component ([#522](https://github.com/bjerkio/oidc-react/issues/522)) ([0e873f4](https://github.com/bjerkio/oidc-react/commit/0e873f4e6ac7d14cc39f4cb5196b2a79b866da93))
+
 # [1.2.0](https://github.com/bjerkio/oidc-react/compare/v1.1.6...v1.2.0) (2021-03-08)
 
 
