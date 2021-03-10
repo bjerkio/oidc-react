@@ -126,6 +126,31 @@ describe('AuthContext', () => {
       expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1'})
     ));
   });
+  it('should use silent redirect URI when given', async () => {
+    render(
+      <AuthProvider
+        authority="http://127.0.0.1"
+        clientId="client-id-test"
+        redirectUri="http://127.0.0.1"
+        silentRedirectUri="https://localhost"
+      />,
+    );
+    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
+      expect.objectContaining({ silent_redirect_uri: 'https://localhost'})
+    ));
+  });
+  it('should fall back to redirectUri when silent redirect URI is not given', async () => {
+    render(
+      <AuthProvider
+        authority="http://127.0.0.1"
+        clientId="client-id-test"
+        redirectUri="http://127.0.0.1"
+      />,
+    );
+    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
+      expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1'})
+    ));
+  });
 
   it('should get userData', async () => {
     await act(async () => {
