@@ -153,6 +153,33 @@ describe('AuthContext', () => {
     });
   });
 
+  it('should refresh userData when new data is available', async () => {
+    const userManager = {
+      getUser: async () => ({
+        access_token: 'token',
+      }),
+      signinCallback: jest.fn(),
+      events: {
+        addUserLoaded: (fn: () => void) => fn(),
+        removeUserLoaded: () => undefined,
+      },
+    } as any;
+    const { getByText } = render(
+      <AuthProvider userManager={userManager}>
+        <AuthContext.Consumer>
+          {(value) =>
+            value?.userData && (
+              <span>Received: {value.userData.access_token}</span>
+            )
+          }
+        </AuthContext.Consumer>
+      </AuthProvider>,
+    );
+    await waitFor(() => {
+      expect(getByText(/^Received:/).textContent).toBe('Received: token');
+    });
+  });
+
   it('should login the user', async () => {
     const userManager = {
       getUser: jest.fn(),
