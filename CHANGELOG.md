@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/bjerkio/oidc-react/compare/v1.2.1...v1.3.0) (2021-03-11)
+
+
+### Features
+
+* upgrade to oidc-client 1.11.5 ([#527](https://github.com/bjerkio/oidc-react/issues/527)) ([3943c94](https://github.com/bjerkio/oidc-react/commit/3943c942237cfc6bbe8346ef1543a9a0fcf202f9))
+
 ## [1.2.1](https://github.com/bjerkio/oidc-react/compare/v1.2.0...v1.2.1) (2021-03-09)
 
 
