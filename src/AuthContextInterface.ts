@@ -45,6 +45,10 @@ export interface AuthProviderProps {
    */
   redirectUri?: string;
   /**
+   * The redirect URI of your client application to receive a response from the OIDC/OAuth2 provider when completing a background sign-in refresh.
+   */
+  silentRedirectUri?: string;
+  /**
    * The post-logout redirect URI of your client application which your OIDC/OAuth2 provider can redirect to after completing logout.
    */
   postLogoutRedirectUri?: string;
