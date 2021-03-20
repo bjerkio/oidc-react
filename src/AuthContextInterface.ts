@@ -1,4 +1,4 @@
-import { UserManager, User } from 'oidc-client';
+import { UserManager, User, OidcClientSettings } from 'oidc-client';
 export interface Location {
   search: string;
   hash: string;
@@ -23,7 +23,7 @@ export interface AuthProviderSignOutProps {
   signoutRedirect?: boolean | unknown;
 }
 
-export interface AuthProviderProps {
+interface UserManagerProps {
   /**
    * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
    */
@@ -81,7 +81,7 @@ export interface AuthProviderProps {
    *
    * defaults to true
    */
-  loadUserInfo?:boolean;
+  loadUserInfo?: boolean;
   /**
    *  The features parameter to window.open for the popup signin window
    *
@@ -98,7 +98,7 @@ export interface AuthProviderProps {
    *
    * defaults to '_blank'
    */
-  popupWindowTarget?:string;
+  popupWindowTarget?: string;
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.
    *
@@ -116,8 +116,9 @@ export interface AuthProviderProps {
   onSignOut?: (options?: AuthProviderSignOutProps) => Promise<void> | void;
 }
 
+export type AuthProviderProps = OidcClientSettings & UserManagerProps
+
 export interface AuthContextProps {
-  
   /**
    * Alias for userManager.signInRedirect
    */
@@ -125,7 +126,7 @@ export interface AuthContextProps {
   /**
    * Alias for userManager.signinPopup
    */
-  signInPopup: () => Promise<void>
+  signInPopup: () => Promise<void>;
   /**
    * Alias for removeUser
    */

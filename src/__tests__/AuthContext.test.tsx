@@ -8,7 +8,7 @@ import { render, act, waitFor } from '@testing-library/react';
 const events = {
   addUserLoaded: () => undefined,
   removeUserLoaded: () => undefined,
-}
+};
 
 jest.mock('oidc-client', () => {
   return {
@@ -110,9 +110,13 @@ describe('AuthContext', () => {
         postLogoutRedirectUri="https://localhost"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ post_logout_redirect_uri: 'https://localhost'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          post_logout_redirect_uri: 'https://localhost',
+        }),
+      ),
+    );
   });
   it('should fall back to redirectUri when post-logout redirect URI is not given', async () => {
     render(
@@ -122,9 +126,13 @@ describe('AuthContext', () => {
         redirectUri="http://127.0.0.1"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          post_logout_redirect_uri: 'http://127.0.0.1',
+        }),
+      ),
+    );
   });
   it('should use silent redirect URI when given', async () => {
     render(
@@ -135,9 +143,11 @@ describe('AuthContext', () => {
         silentRedirectUri="https://localhost"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ silent_redirect_uri: 'https://localhost'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({ silent_redirect_uri: 'https://localhost' }),
+      ),
+    );
   });
   it('should fall back to redirectUri when silent redirect URI is not given', async () => {
     render(
@@ -147,9 +157,53 @@ describe('AuthContext', () => {
         redirectUri="http://127.0.0.1"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1' }),
+      ),
+    );
+  });
+
+  it('should use extraQueryParams props when is given', async () => {
+    const extraQueryParams = {
+      code_challenge_method: 'S256',
+      code_challenge: 'adsasdlas-pldflsdi3njern32j_jdmfkdsakn2u3-df23moj2m',
+    };
+    render(
+      <AuthProvider
+        authority="http://127.0.0.1"
+        clientId="client-id-test"
+        redirectUri="http://127.0.0.1"
+        extraQueryParams={extraQueryParams}
+      />,
+    );
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({ extraQueryParams: { ...extraQueryParams } }),
+      ),
+    );
+  });
+
+  it('should use metadata props when is given', async () => {
+    const metadata = {
+      issuer: `http://127.0.0.1`,
+      authorization_endpoint: `http://127.0.0.1/authorize`,
+      token_endpoint: `http://127.0.0.1}/access_token`,
+      userinfo_endpoint: `http://127.0.0.1/userinfo`,
+    };
+    render(
+      <AuthProvider
+        authority="http://127.0.0.1"
+        clientId="client-id-test"
+        redirectUri="http://127.0.0.1"
+        metadata={metadata}
+      />,
+    );
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({ metadata: { ...metadata } }),
+      ),
+    );
   });
 
   it('should get userData', async () => {
@@ -224,9 +278,7 @@ describe('AuthContext', () => {
       />,
     );
     await waitFor(() => expect(onSignIn).toHaveBeenCalled());
-    await waitFor(() =>
-      expect(userManager.signinCallback).toHaveBeenCalled(),
-    );
+    await waitFor(() => expect(userManager.signinCallback).toHaveBeenCalled());
   });
 
   it('should logout the user', async () => {
