@@ -8,7 +8,7 @@ import { render, act, waitFor } from '@testing-library/react';
 const events = {
   addUserLoaded: () => undefined,
   removeUserLoaded: () => undefined,
-}
+};
 
 jest.mock('oidc-client', () => {
   return {
@@ -110,9 +110,13 @@ describe('AuthContext', () => {
         postLogoutRedirectUri="https://localhost"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ post_logout_redirect_uri: 'https://localhost'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          post_logout_redirect_uri: 'https://localhost',
+        }),
+      ),
+    );
   });
   it('should fall back to redirectUri when post-logout redirect URI is not given', async () => {
     render(
@@ -122,9 +126,13 @@ describe('AuthContext', () => {
         redirectUri="http://127.0.0.1"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          post_logout_redirect_uri: 'http://127.0.0.1',
+        }),
+      ),
+    );
   });
   it('should use silent redirect URI when given', async () => {
     render(
@@ -135,9 +143,11 @@ describe('AuthContext', () => {
         silentRedirectUri="https://localhost"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ silent_redirect_uri: 'https://localhost'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({ silent_redirect_uri: 'https://localhost' }),
+      ),
+    );
   });
   it('should fall back to redirectUri when silent redirect URI is not given', async () => {
     render(
@@ -147,9 +157,11 @@ describe('AuthContext', () => {
         redirectUri="http://127.0.0.1"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1'})
-    ));
+    await waitFor(() =>
+      expect(UserManager).toHaveBeenLastCalledWith(
+        expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1' }),
+      ),
+    );
   });
 
   it('should get userData', async () => {
@@ -224,8 +236,33 @@ describe('AuthContext', () => {
       />,
     );
     await waitFor(() => expect(onSignIn).toHaveBeenCalled());
+    await waitFor(() => expect(userManager.signinCallback).toHaveBeenCalled());
+  });
+
+  it('should handle authentication error when onSignInError callback is passed', async () => {
+    const userManager = {
+      getUser: jest.fn(),
+      signinCallback: jest.fn(),
+      events,
+    } as any;
+    const location = {
+      search: '?error=invalid_request',
+      hash: '',
+    };
+    const onSignIn = jest.fn();
+    const onSignInError = jest.fn();
+    render(
+      <AuthProvider
+        onSignIn={onSignIn}
+        onSignInError={onSignInError}
+        userManager={userManager}
+        location={location}
+      />,
+    );
+    await waitFor(() => expect(onSignInError).toHaveBeenCalled());
+    await waitFor(() => expect(onSignIn).not.toHaveBeenCalled());
     await waitFor(() =>
-      expect(userManager.signinCallback).toHaveBeenCalled(),
+      expect(userManager.signinCallback).not.toHaveBeenCalled(),
     );
   });
 

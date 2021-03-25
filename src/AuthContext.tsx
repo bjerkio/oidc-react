@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import { UserManager, User } from 'oidc-client';
 import {
   Location,
+  Error,
   AuthProviderProps,
   AuthContextProps,
 } from './AuthContextInterface';
@@ -25,6 +26,27 @@ export const hasCodeInUrl = (location: Location): boolean => {
       hashParams.get('id_token') ||
       hashParams.get('session_state'),
   );
+};
+
+export const errorInUrl = (location: Location): Error | null => {
+  const searchParams = new URLSearchParams(location.search);
+  const hashParams = new URLSearchParams(location.hash.replace('#', '?'));
+
+  const errorCode = searchParams.get('error') || hashParams.get('error');
+  const errorDescription =
+    searchParams.get('error_description') ||
+    hashParams.get('error_description');
+  const errorUri = searchParams.get('error_uri') || hashParams.get('error_uri');
+  const state = searchParams.get('state') || hashParams.get('state');
+
+  const error: Error = {
+    errorCode,
+    errorDescription,
+    errorUri,
+    state,
+  };
+
+  return errorCode ? error : null;
 };
 
 /**
@@ -75,6 +97,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   autoSignIn = true,
   onBeforeSignIn,
   onSignIn,
+  onSignInError,
   onSignOut,
   location = window.location,
   ...props
@@ -110,6 +133,12 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         const user = await userManager.signinCallback();
         setUserData(user);
         onSignIn && onSignIn(user);
+        return;
+      }
+
+      const error = errorInUrl(location);
+      if (error) {
+        onSignInError && onSignInError(error);
         return;
       }
 
