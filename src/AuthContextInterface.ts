@@ -4,6 +4,13 @@ export interface Location {
   hash: string;
 }
 
+export interface Error {
+  errorCode: string | null;
+  errorDescription: string | null;
+  errorUri: string | null;
+  state: string | null;
+}
+
 export interface AuthProviderSignOutProps {
   /**
    * Trigger a redirect of the current window to the end session endpoint
@@ -81,7 +88,7 @@ export interface AuthProviderProps {
    *
    * defaults to true
    */
-  loadUserInfo?:boolean;
+  loadUserInfo?: boolean;
   /**
    *  The features parameter to window.open for the popup signin window
    *
@@ -98,7 +105,7 @@ export interface AuthProviderProps {
    *
    * defaults to '_blank'
    */
-  popupWindowTarget?:string;
+  popupWindowTarget?: string;
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.
    *
@@ -106,10 +113,15 @@ export interface AuthProviderProps {
    */
   onBeforeSignIn?: () => void;
   /**
-   * On sign out hook. Can be a async function.
+   * On sign in hook. Can be a async function.
    * @param userData User
    */
   onSignIn?: (userData: User | null) => Promise<void> | void;
+  /**
+   * On sign in error hook. Can be a async function.
+   * @param userData User
+   */
+  onSignInError?: (error: Error | null) => Promise<void> | void;
   /**
    * On sign out hook. Can be a async function.
    */
@@ -117,7 +129,6 @@ export interface AuthProviderProps {
 }
 
 export interface AuthContextProps {
-  
   /**
    * Alias for userManager.signInRedirect
    */
@@ -125,7 +136,7 @@ export interface AuthContextProps {
   /**
    * Alias for userManager.signinPopup
    */
-  signInPopup: () => Promise<void>
+  signInPopup: () => Promise<void>;
   /**
    * Alias for removeUser
    */
