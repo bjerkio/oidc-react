@@ -71,8 +71,8 @@
   },
   "homepage": "https://github.com/bjerkio/oidc-react#readme",
   "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "dependencies": {
     "oidc-client": "^1.11.5"
