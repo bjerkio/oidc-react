@@ -80,8 +80,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   ...props
 }) => {
   const [userData, setUserData] = useState<User | null>(null);
-
-  const userManager = initUserManager(props);
+  const [userManager] = useState<UserManager>(initUserManager(props));
 
   const signOutHooks = async (): Promise<void> => {
     setUserData(null);
@@ -123,7 +122,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       return;
     };
     getUser();
-  }, [location]);
+  }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
   useEffect(() => {
     // for refreshing react state when new state is available in e.g. session storage
@@ -135,7 +134,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     userManager.events.addUserLoaded(updateUserData);
 
     return () => userManager.events.removeUserLoaded(updateUserData);
-  }, []);
+  }, [userManager]);
 
   return (
     <AuthContext.Provider

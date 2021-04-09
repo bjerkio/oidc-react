@@ -137,7 +137,7 @@ export interface AuthContextProps {
   /**
    * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
    */
-  userManager: UserManager | null;
+  userManager: UserManager;
   /**
    * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
    */
