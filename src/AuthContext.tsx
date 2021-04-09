@@ -6,7 +6,7 @@ import {
   AuthContextProps,
 } from './AuthContextInterface';
 
-export const AuthContext = React.createContext<AuthContextProps | null>(null);
+export const AuthContext = React.createContext<AuthContextProps | undefined>(undefined);
 
 /**
  * @private
