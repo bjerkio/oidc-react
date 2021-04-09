@@ -137,6 +137,17 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     return () => userManager.events.removeUserLoaded(updateUserData);
   }, []);
 
+  useEffect(() => {
+    // for userManager event UserUnloaded (e.g. removeUser)
+    const handleUserUnloaded = () => {
+      isMountedRef.current && setUserData(null);
+    };
+
+    userManager.events.addUserUnloaded(handleUserUnloaded);
+
+    return () => userManager.events.removeUserUnloaded(handleUserUnloaded);
+  }, [userManager]);
+  
   return (
     <AuthContext.Provider
       value={{

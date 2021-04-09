@@ -8,6 +8,8 @@ import { render, act, waitFor } from '@testing-library/react';
 const events = {
   addUserLoaded: () => undefined,
   removeUserLoaded: () => undefined,
+  addUserUnloaded: () => undefined,
+  removeUserUnloaded: () => undefined,
 }
 
 jest.mock('oidc-client', () => {
