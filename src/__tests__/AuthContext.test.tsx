@@ -187,8 +187,8 @@ describe('AuthContext', () => {
       }),
       signinCallback: jest.fn(),
       events: {
+        ...events,
         addUserLoaded: (fn: () => void) => fn(),
-        removeUserLoaded: () => undefined,
       },
     } as any;
     const { getByText } = render(

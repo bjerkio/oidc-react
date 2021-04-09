@@ -126,15 +126,15 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   }, [location]);
 
   useEffect(() => {
-    // for refreshing react state when new state is available in e.g. session storage
-    const updateUserData = async () => {
+    // for userManager event UserLoaded (e.g. initial load, silent renew)
+    const handleUserLoaded = async () => {
       const user = await userManager.getUser();
       isMountedRef.current && setUserData(user);
     };
 
-    userManager.events.addUserLoaded(updateUserData);
+    userManager.events.addUserLoaded(handleUserLoaded);
 
-    return () => userManager.events.removeUserLoaded(updateUserData);
+    return () => userManager.events.removeUserLoaded(handleUserLoaded);
   }, []);
 
   useEffect(() => {
