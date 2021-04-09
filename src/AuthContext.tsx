@@ -79,6 +79,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   location = window.location,
   ...props
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState<User | null>(null);
 
   const userManager = initUserManager(props);
@@ -109,6 +110,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       if (hasCodeInUrl(location)) {
         const user = await userManager.signinCallback();
         setUserData(user);
+        setIsLoading(false);
         onSignIn && onSignIn(user);
         return;
       }
@@ -117,8 +119,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       if ((!user || user.expired) && autoSignIn) {
         onBeforeSignIn && onBeforeSignIn();
         userManager.signinRedirect();
-      } else {
-        isMountedRef.current && setUserData(user);
+      } else if (isMountedRef.current) {
+        setUserData(user);
+        setIsLoading(false);
       }
       return;
     };
@@ -156,6 +159,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         },
         userManager,
         userData,
+        isLoading,
       }}
     >
       {children}

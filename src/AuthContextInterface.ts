@@ -117,7 +117,6 @@ export interface AuthProviderProps {
 }
 
 export interface AuthContextProps {
-  
   /**
    * Alias for userManager.signInRedirect
    */
@@ -142,4 +141,8 @@ export interface AuthContextProps {
    * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
    */
   userData?: User | null;
+  /**
+   * Auth state: True until the library has been initialized.
+   */
+  isLoading: boolean;
 }
