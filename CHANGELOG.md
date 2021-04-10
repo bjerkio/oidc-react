@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/bjerkio/oidc-react/compare/v1.4.0...v1.5.0) (2021-04-10)
+
+
+### Features
+
+* `isLoading` state ([#577](https://github.com/bjerkio/oidc-react/issues/577)) ([b24e9ff](https://github.com/bjerkio/oidc-react/commit/b24e9ff5434b7ddf59000890637fbca36cf8e8ec))
+
 # [1.4.0](https://github.com/bjerkio/oidc-react/compare/v1.3.0...v1.4.0) (2021-03-15)
 
 
