@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/bjerkio/oidc-react/compare/v1.5.0...v1.5.1) (2021-04-11)
+
+
+### Bug Fixes
+
+* AuthContext cannot be null ([#576](https://github.com/bjerkio/oidc-react/issues/576)) ([61bd0fa](https://github.com/bjerkio/oidc-react/commit/61bd0fa65dbd682437aee3aae13258b8f4668f69))
+
 # [1.5.0](https://github.com/bjerkio/oidc-react/compare/v1.4.0...v1.5.0) (2021-04-10)
 
 
