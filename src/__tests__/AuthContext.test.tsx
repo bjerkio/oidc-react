@@ -2,13 +2,18 @@
 /* eslint @typescript-eslint/explicit-function-return-type: 0 */
 import React from 'react';
 import { UserManager } from 'oidc-client';
-import { AuthProvider, AuthContext } from '../AuthContext';
 import { render, act, waitFor } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
+import { AuthProvider, AuthContext } from '../AuthContext';
+import { useAuth } from '../useAuth';
+import { createWrapper } from './helpers'
 
 const events = {
   addUserLoaded: () => undefined,
   removeUserLoaded: () => undefined,
-}
+};
+
+const userMock = { id_token: '__test_user__' } as any;
 
 jest.mock('oidc-client', () => {
   return {
@@ -39,48 +44,52 @@ describe('AuthContext', () => {
   });
 
   it('should redirect when asked', async () => {
-    await act(async () => {
-      const u = {
-        getUser: jest.fn(),
-        signinRedirect: jest.fn(),
-        events,
-      } as any;
-      render(
-        <AuthProvider userManager={u} autoSignIn={false}>
-          <AuthContext.Consumer>
-            {(value) => {
-              value?.signIn();
-              return <p>Bjerk</p>;
-            }}
-          </AuthContext.Consumer>
-        </AuthProvider>,
-      );
-      await waitFor(() => expect(u.getUser).toHaveBeenCalled());
-      await waitFor(() => expect(u.signinRedirect).toHaveBeenCalled());
+    const userManagerMock = {
+      getUser: jest.fn().mockResolvedValue(null),
+      signinRedirect: jest.fn(),
+      events,
+    } as any;
+    const wrapper = createWrapper({ userManager: userManagerMock, autoSignIn: false });
+    const { waitForNextUpdate, result } = renderHook(() => useAuth(), {
+      wrapper,
     });
+    await waitForNextUpdate();
+    expect(result.current.userData).toBeNull();
+
+    act(() => {
+      result.current.signIn();
+    });
+
+    expect(userManagerMock.getUser).toHaveBeenCalled();
+    expect(userManagerMock.signinRedirect).toHaveBeenCalled();
   });
+
   it('should open Popup when asked', async () => {
-    await act(async () => {
-      const u = {
-        getUser: jest.fn(),
-        signinPopupCallback: jest.fn(),
-        signinPopup: jest.fn(),
-        events,
-      } as any;
-      render(
-        <AuthProvider userManager={u} autoSignIn={false}>
-          <AuthContext.Consumer>
-            {(value) => {
-              value?.signInPopup();
-              return <p>Bjerk</p>;
-            }}
-          </AuthContext.Consumer>
-        </AuthProvider>,
-      );
-      await waitFor(() => expect(u.signinPopupCallback).toHaveBeenCalled());
-      await waitFor(() => expect(u.signinPopup).toHaveBeenCalled());
+    const userManagerMock = {
+      getUser: jest.fn().mockResolvedValue(null),
+      signinPopupCallback: jest.fn(),
+      signinPopup: jest.fn().mockResolvedValue(userMock),
+      events,
+    } as any;
+    const wrapper = createWrapper({ userManager: userManagerMock, autoSignIn: false });
+    const { waitForNextUpdate, result } = renderHook(() => useAuth(), {
+      wrapper,
     });
+    await waitForNextUpdate();
+    expect(result.current.userData).toBeNull();
+
+    act(() => {
+      result.current.signInPopup();
+    });
+
+    expect(result.current.isLoading).toBe(true);
+    await waitForNextUpdate();
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.userData).toBe(userMock);
+    expect(userManagerMock.signinPopup).toHaveBeenCalled();
+    expect(userManagerMock.signinPopupCallback).toHaveBeenCalled();
   });
+
   it('should not redirect when asked', async () => {
     await act(async () => {
       const u = {
@@ -91,6 +100,7 @@ describe('AuthContext', () => {
       await waitFor(() => expect(u.getUser).toHaveBeenCalled());
     });
   });
+
   it('should generate a UserManager', async () => {
     render(
       <AuthProvider
@@ -101,6 +111,7 @@ describe('AuthContext', () => {
     );
     await waitFor(() => expect(UserManager).toHaveBeenCalled());
   });
+
   it('should use post-logout redirect URI when given', async () => {
     render(
       <AuthProvider
@@ -114,6 +125,7 @@ describe('AuthContext', () => {
       expect.objectContaining({ post_logout_redirect_uri: 'https://localhost'})
     ));
   });
+
   it('should fall back to redirectUri when post-logout redirect URI is not given', async () => {
     render(
       <AuthProvider
@@ -126,6 +138,7 @@ describe('AuthContext', () => {
       expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1'})
     ));
   });
+
   it('should use silent redirect URI when given', async () => {
     render(
       <AuthProvider
@@ -139,6 +152,7 @@ describe('AuthContext', () => {
       expect.objectContaining({ silent_redirect_uri: 'https://localhost'})
     ));
   });
+
   it('should fall back to redirectUri when silent redirect URI is not given', async () => {
     render(
       <AuthProvider
@@ -230,87 +244,68 @@ describe('AuthContext', () => {
   });
 
   it('should logout the user', async () => {
-    const userManager = {
-      getUser: async () => ({
-        access_token: 'token',
-      }),
+    const userManagerMock = {
+      getUser: jest.fn().mockResolvedValue(userMock),
       removeUser: jest.fn(),
       events,
     } as any;
     const onSignOut = jest.fn();
-    render(
-      <AuthProvider
-        onSignOut={onSignOut}
-        userManager={userManager}
-        location={location}
-      >
-        <AuthContext.Consumer>
-          {(value) => {
-            value?.signOut();
-            return <p>Bjerk</p>;
-          }}
-        </AuthContext.Consumer>
-      </AuthProvider>,
-    );
-    await waitFor(() => expect(onSignOut).toHaveBeenCalled());
-    await waitFor(() => expect(userManager.removeUser).toHaveBeenCalled());
+    const wrapper = createWrapper({ userManager: userManagerMock, onSignOut });
+    const { waitForNextUpdate, result } = renderHook(() => useAuth(), {
+      wrapper,
+    });
+    await waitForNextUpdate();
+
+    act(() => {
+      result.current.signOut();
+    });
+
+    await waitForNextUpdate();
+    expect(onSignOut).toHaveBeenCalled();
+    expect(userManagerMock.removeUser).toHaveBeenCalled();
   });
+
   it('should end session and logout the user when signoutRedirect is true', async () => {
-    const userManager = {
-      getUser: async () => ({
-        access_token: 'token',
-      }),
+    const userManagerMock = {
+      getUser: jest.fn().mockResolvedValue(userMock),
       signoutRedirect: jest.fn(),
       events,
     } as any;
     const onSignOut = jest.fn();
-    render(
-      <AuthProvider
-        onSignOut={onSignOut}
-        userManager={userManager}
-        location={location}
-      >
-        <AuthContext.Consumer>
-          {(value) => {
-            value?.signOutRedirect();
-            return <p>Bjerk</p>;
-          }}
-        </AuthContext.Consumer>
-      </AuthProvider>,
-    );
-    await waitFor(() => expect(onSignOut).toHaveBeenCalled());
-    await waitFor(() => expect(userManager.signoutRedirect).toHaveBeenCalled());
+    const wrapper = createWrapper({ userManager: userManagerMock, onSignOut });
+    const { waitForNextUpdate, result } = renderHook(() => useAuth(), {
+      wrapper,
+    });
+    await waitForNextUpdate();
+
+    act(() => {
+      result.current.signOutRedirect();
+    });
+
+    await waitForNextUpdate();
+    expect(onSignOut).toHaveBeenCalled();
+    expect(userManagerMock.signoutRedirect).toHaveBeenCalled();
   });
+
   it('should end session and logout the user when signoutRedirect is an object', async () => {
-    const userManager = {
-      getUser: async () => ({
-        access_token: 'token',
-      }),
+    const userManagerMock = {
+      getUser: jest.fn().mockResolvedValue(userMock),
       signoutRedirect: jest.fn(),
       events,
     } as any;
     const onSignOut = jest.fn();
-    render(
-      <AuthProvider
-        onSignOut={onSignOut}
-        userManager={userManager}
-        location={location}
-      >
-        <AuthContext.Consumer>
-          {(value) => {
-            value?.signOutRedirect({
-              state: 'thebranches',
-            });
-            return <p>Bjerk</p>;
-          }}
-        </AuthContext.Consumer>
-      </AuthProvider>,
-    );
-    await waitFor(() => expect(onSignOut).toHaveBeenCalled());
-    await waitFor(() =>
-      expect(userManager.signoutRedirect).toHaveBeenCalledWith({
-        state: 'thebranches',
-      }),
-    );
+    const wrapper = createWrapper({ userManager: userManagerMock, onSignOut });
+    const { waitForNextUpdate, result } = renderHook(() => useAuth(), {
+      wrapper,
+    });
+    await waitForNextUpdate();
+
+    act(() => {
+      result.current.signOutRedirect({ state: 'thebranches' });
+    });
+
+    await waitForNextUpdate();
+    expect(onSignOut).toHaveBeenCalled();
+    expect(userManagerMock.signoutRedirect).toHaveBeenCalledWith({ state: 'thebranches' });
   });
 });

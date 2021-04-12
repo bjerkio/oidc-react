@@ -116,7 +116,21 @@ export interface AuthProviderProps {
   onSignOut?: (options?: AuthProviderSignOutProps) => Promise<void> | void;
 }
 
-export interface AuthContextProps {
+/**
+ * The auth state which, when combined with the auth methods, make up the return object of the `useAuth` hook.
+ */
+export interface AuthState {
+  /**
+   * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
+   */
+  userData?: User | null;
+  /**
+   * Auth state: True until the library has been initialized.
+   */
+  isLoading: boolean;
+}
+
+export interface AuthContextProps extends AuthState {
   /**
    * Alias for userManager.signInRedirect
    */
@@ -137,12 +151,4 @@ export interface AuthContextProps {
    * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
    */
   userManager: UserManager;
-  /**
-   * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
-   */
-  userData?: User | null;
-  /**
-   * Auth state: True until the library has been initialized.
-   */
-  isLoading: boolean;
 }

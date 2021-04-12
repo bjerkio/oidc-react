@@ -1,10 +1,12 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
-import { UserManager, User } from 'oidc-client';
+import React, { FC, useState, useReducer, useEffect } from 'react';
+import { UserManager } from 'oidc-client';
 import {
   Location,
   AuthProviderProps,
+  AuthState,
   AuthContextProps,
 } from './AuthContextInterface';
+import { reducer } from './reducer';
 
 export const AuthContext = React.createContext<AuthContextProps | undefined>(undefined);
 
@@ -56,12 +58,19 @@ const initUserManager = (props: AuthProviderProps): UserManager => {
     post_logout_redirect_uri: postLogoutRedirectUri || redirectUri,
     response_type: responseType || 'code',
     scope: scope || 'openid',
-    loadUserInfo: loadUserInfo != undefined ? loadUserInfo : true,
+    loadUserInfo: loadUserInfo !== undefined ? loadUserInfo : true,
     popupWindowFeatures: popupWindowFeatures,
     popup_redirect_uri: popupRedirectUri,
     popupWindowTarget: popupWindowTarget,
     automaticSilentRenew,
   });
+};
+
+/**
+ * The initial auth state.
+ */
+const initialAuthState: AuthState = {
+  isLoading: true,
 };
 
 /**
@@ -77,27 +86,20 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   location = window.location,
   ...props
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [userData, setUserData] = useState<User | null>(null);
   const [userManager] = useState<UserManager>(initUserManager(props));
+  const [state, dispatch] = useReducer(reducer, initialAuthState);
 
   const signOutHooks = async (): Promise<void> => {
-    setUserData(null);
+    dispatch({ type: 'SIGNOUT' });
     onSignOut && onSignOut();
   };
   const signInPopupHooks = async (): Promise<void> => {
-    const userFromPopup = await userManager.signinPopup();
-    setUserData(userFromPopup);
-    onSignIn && onSignIn(userFromPopup);
+    dispatch({ type: 'LOGIN_POPUP_STARTED' });
+    const user = await userManager.signinPopup();
+    onSignIn && onSignIn(user);
     await userManager.signinPopupCallback();
+    dispatch({ type: 'LOGIN_POPUP_COMPLETE', user });
   };
-
-  const isMountedRef = useRef(true);
-  useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
 
   useEffect(() => {
     const getUser = async (): Promise<void> => {
@@ -106,8 +108,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
        */
       if (hasCodeInUrl(location)) {
         const user = await userManager.signinCallback();
-        setUserData(user);
-        setIsLoading(false);
+        dispatch({ type: 'INITIALISED', user });
         onSignIn && onSignIn(user);
         return;
       }
@@ -116,9 +117,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       if ((!user || user.expired) && autoSignIn) {
         onBeforeSignIn && onBeforeSignIn();
         userManager.signinRedirect();
-      } else if (isMountedRef.current) {
-        setUserData(user);
-        setIsLoading(false);
+      } else {
+        dispatch({ type: 'INITIALISED', user });
       }
       return;
     };
@@ -126,20 +126,22 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
   useEffect(() => {
-    // for refreshing react state when new state is available in e.g. session storage
-    const updateUserData = async () => {
+    // for userManager event UserLoaded (e.g. initial load, silent renew)
+    const handleUserLoaded = async () => {
       const user = await userManager.getUser();
-      isMountedRef.current && setUserData(user);
+      dispatch({ type: 'USER_LOADED', user });
     };
 
-    userManager.events.addUserLoaded(updateUserData);
+    userManager.events.addUserLoaded(handleUserLoaded);
 
-    return () => userManager.events.removeUserLoaded(updateUserData);
+    return () => userManager.events.removeUserLoaded(handleUserLoaded );
   }, [userManager]);
 
   return (
     <AuthContext.Provider
       value={{
+        ...state,
+        userManager,
         signIn: async (args: unknown): Promise<void> => {
           await userManager.signinRedirect(args);
         },
@@ -154,9 +156,6 @@ export const AuthProvider: FC<AuthProviderProps> = ({
           await userManager!.signoutRedirect(args);
           await signOutHooks();
         },
-        userManager,
-        userData,
-        isLoading,
       }}
     >
       {children}
