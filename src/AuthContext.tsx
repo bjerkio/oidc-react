@@ -28,11 +28,9 @@ export const hasCodeInUrl = (location: Location): boolean => {
 };
 
 /**
- * @private
- * @hidden
- * @param props
+ * Create a new UserManager or make use of passed in.
  */
-export const initUserManager = (props: AuthProviderProps): UserManager => {
+const initUserManager = (props: AuthProviderProps): UserManager => {
   if (props.userManager) return props.userManager;
   const {
     authority,
