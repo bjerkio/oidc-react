@@ -1,6 +1,6 @@
+import React from 'react';
 import { AuthContextProps } from './AuthContextInterface';
 import { useAuth } from './useAuth';
-import React from 'react';
 
 /**
  * A public higher-order component to access the imperative API
