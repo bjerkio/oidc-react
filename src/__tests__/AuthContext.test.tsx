@@ -211,10 +211,10 @@ describe('AuthContext', () => {
       signinCallback: jest.fn(),
       events,
     } as any;
-    const location = {
-      search: '?code=test-code',
+    const location: Location = {
+      search: '?code=test-code&state=test-state',
       hash: '',
-    };
+    } as any;
     const onSignIn = jest.fn();
     render(
       <AuthProvider

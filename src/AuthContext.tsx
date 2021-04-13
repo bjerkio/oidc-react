@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import { UserManager, User } from 'oidc-client';
 import {
-  Location,
   AuthProviderProps,
   AuthContextProps,
 } from './AuthContextInterface';
@@ -9,21 +8,18 @@ import {
 export const AuthContext = React.createContext<AuthContextProps | undefined>(undefined);
 
 /**
- * @private
- * @hidden
+ *
  * @param location
  */
-export const hasCodeInUrl = (location: Location): boolean => {
+export const hasAuthParams = (location: Location): boolean => {
   const searchParams = new URLSearchParams(location.search);
   const hashParams = new URLSearchParams(location.hash.replace('#', '?'));
 
   return Boolean(
-    searchParams.get('code') ||
-      searchParams.get('id_token') ||
-      searchParams.get('session_state') ||
-      hashParams.get('code') ||
-      hashParams.get('id_token') ||
-      hashParams.get('session_state'),
+    (searchParams.get('code') && searchParams.get('state')) ||
+    searchParams.get('error') ||
+    (hashParams.get('code') && hashParams.get('state')) ||
+    hashParams.get('error')
   );
 };
 
@@ -76,6 +72,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   onBeforeSignIn,
   onSignIn,
   onSignOut,
+  skipSigninCallback,
   location = window.location,
   ...props
 }) => {
@@ -106,7 +103,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       /**
        * Check if the user is returning back from OIDC.
        */
-      if (hasCodeInUrl(location)) {
+      if (hasAuthParams(location) && !skipSigninCallback) {
         const user = await userManager.signinCallback();
         setUserData(user);
         setIsLoading(false);

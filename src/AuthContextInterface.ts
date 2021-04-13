@@ -1,8 +1,4 @@
 import { UserManager, User } from 'oidc-client';
-export interface Location {
-  search: string;
-  hash: string;
-}
 
 export interface AuthProviderSignOutProps {
   /**
@@ -99,6 +95,18 @@ export interface AuthProviderProps {
    * defaults to '_blank'
    */
   popupWindowTarget?:string;
+  /**
+   * By default, if the page url has code/state params, the SDK will treat them as Auth's and attempt to exchange the
+   * code for a token. In some cases the code might be for something else (another OAuth SDK perhaps). In these
+   * instances you can instruct the client to ignore them eg
+   *
+   * ```jsx
+   * <AuthProvider
+   *   skipSigninCallback={window.location.pathname === '/stripe-oauth-callback'}
+   * >
+   * ```
+   */
+  skipSigninCallback?: boolean;
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.
    *
