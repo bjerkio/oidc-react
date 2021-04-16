@@ -36,7 +36,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - if: ${{ steps.release.outputs.release_created }}
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.5
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
