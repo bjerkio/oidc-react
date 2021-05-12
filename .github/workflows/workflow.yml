@@ -21,7 +21,7 @@ jobs:
           release-type: node
 
       - if: ${{ steps.release.outputs.release_created }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
 
       - if: ${{ steps.release.outputs.release_created }}
         name: Use Node.js ${{ matrix.node-version }}
