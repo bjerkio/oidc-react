@@ -114,6 +114,10 @@ export interface AuthProviderProps {
    * On sign out hook. Can be a async function.
    */
   onSignOut?: (options?: AuthProviderSignOutProps) => Promise<void> | void;
+  /**
+   * An object containing additional query string parameters to be including in the authorization request
+   */
+  extraQueryParams?: Record<string, any>;
 }
 
 export interface AuthContextProps {
