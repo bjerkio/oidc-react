@@ -3,6 +3,9 @@
   "version": "1.5.1",
   "private": false,
   "description": "",
+  "repository": "github:bjerkio/oidc-react",
+  "license": "MIT",
+  "author": "",
   "main": "build/src/index.js",
   "files": [
     "/build"
@@ -15,14 +18,27 @@
     "lint": "eslint . --ext .ts,.tsx",
     "generate-docs": "typedoc --out docs src"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bjerkio/oidc-react.git"
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    },
+    "preset": "ts-jest",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__fixtures__/",
+      "<rootDir>/build"
+    ]
   },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bjerkio/oidc-react/issues"
+  "dependencies": {
+    "oidc-client": "^1.11.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.4.0",
@@ -50,31 +66,8 @@
     "typedoc-plugin-markdown": "^3.0.3",
     "typescript": "^3.5.3"
   },
-  "jest": {
-    "preset": "ts-jest",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/__fixtures__/",
-      "<rootDir>/build"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": -10
-      }
-    }
-  },
-  "homepage": "https://github.com/bjerkio/oidc-react#readme",
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0"
-  },
-  "dependencies": {
-    "oidc-client": "^1.11.5"
   }
 }
