@@ -6,7 +6,16 @@ import {
   AuthContextProps,
 } from './AuthContextInterface';
 
-export const AuthContext = React.createContext<AuthContextProps | undefined>(undefined);
+export const defaultAuthContext: AuthContextProps = {
+  signIn: () => Promise.reject(new Error('AuthContext not loaded yet.')),
+  signInPopup: () => Promise.reject(new Error('AuthContext not loaded yet.')),
+  signOut: () => Promise.reject(new Error('AuthContext not loaded yet.')),
+  signOutRedirect: () => Promise.reject(new Error('AuthContext not loaded yet.')),
+  userManager: {} as UserManager,
+  userData: null,
+  isLoading: true,
+}
+export const AuthContext = React.createContext<AuthContextProps>(defaultAuthContext);
 
 /**
  * @private
