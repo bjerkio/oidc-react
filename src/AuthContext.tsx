@@ -48,9 +48,11 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     popupWindowFeatures,
     popupRedirectUri,
     popupWindowTarget,
+    metadata,
   } = props;
   return new UserManager({
     authority,
+    metadata: metadata,
     client_id: clientId,
     client_secret: clientSecret,
     redirect_uri: redirectUri,

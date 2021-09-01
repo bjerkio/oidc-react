@@ -1,4 +1,4 @@
-import { UserManager, User } from 'oidc-client';
+import { UserManager, User, OidcMetadata } from 'oidc-client';
 export interface Location {
   search: string;
   hash: string;
@@ -32,6 +32,10 @@ export interface AuthProviderProps {
    * The URL of the OIDC/OAuth2 provider.
    */
   authority?: string;
+  /**
+   * Manually set metadata if CORS is not configured on the OIDC/OAuth2 provider.
+   */
+  metadata?: OidcMetadata;
   /**
    * Your client application's identifier as registered with the OIDC/OAuth2 provider.
    */
