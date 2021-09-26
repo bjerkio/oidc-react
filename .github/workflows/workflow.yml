@@ -20,37 +20,26 @@ jobs:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
           release-type: node
 
-      - if: ${{ steps.release.outputs.release_created }}
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2.2.0
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
+          cache: yarn
 
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - run: yarn install
 
-      - if: ${{ steps.release.outputs.release_created }}
-        uses: actions/cache@v2.1.6
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - if: ${{ steps.release.outputs.release_created }}
-        run: yarn install
-
-      - if: ${{ steps.release.outputs.release_created }}
-        run: yarn run build
+      - run: yarn run build
 
       - if: ${{ steps.release.outputs.release_created }}
         run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Bundlewatch
+        run: yarn run bundlewatch
+        env:
+          BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BJERKBOT_GITHUB_TOKEN }}"
+          CI_BRANCH_BASE: main
