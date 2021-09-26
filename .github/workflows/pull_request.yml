@@ -26,7 +26,7 @@ jobs:
     - run: npx codecov
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    - uses: carlesnunez/check-my-bundlephobia@v1
+    - uses: carlesnunez/check-my-bundlephobia@v1.8.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         strict: true
