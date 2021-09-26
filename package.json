@@ -16,7 +16,8 @@
     "test": "jest --coverage src --passWithNoTests",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint . --ext .ts,.tsx",
-    "generate-docs": "typedoc --out docs src"
+    "generate-docs": "typedoc --out docs src",
+    "bundlewatch": "bundlewatch --config .bundlewatch.config.json"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
@@ -49,6 +50,8 @@
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
+    "bundlesize": "^0.18.1",
+    "bundlewatch": "^0.3.2",
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^8.1.0",

@@ -26,9 +26,8 @@ jobs:
     - run: npx codecov
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    - uses: carlesnunez/check-my-bundlephobia@v1.8.0
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        strict: true
-        threshold: 300000
-        ignore-dev-dependencies: true
+    - name: Run bundlewatch
+      run: yarn run bundlewatch
+      env:
+        BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BJERKBOT_GITHUB_TOKEN }}"
+        CI_BRANCH_BASE: main

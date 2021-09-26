@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "./build/src/*.js"
+    }
+  ],
+  "ci": {
+    "trackBranches": ["main"]
+  }
+}
