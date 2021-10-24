@@ -63,6 +63,12 @@ export interface AuthProviderProps {
    */
   autoSignIn?: boolean;
   /**
+   * will be return after signIn
+   * @example
+   * {state: yourData}
+   */
+  args?: unknown;
+  /**
    * Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
    *
    * defaults to false

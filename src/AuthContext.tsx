@@ -68,6 +68,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   onSignIn,
   onSignOut,
   location = window.location,
+  args,
   ...props
 }) => {
   const [userData, setUserData] = useState<User | null>(null);
@@ -95,7 +96,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
         onBeforeSignIn && onBeforeSignIn();
-        userManager.signinRedirect();
+        userManager.signinRedirect(args);
       } else {
         setUserData(user);
       }
@@ -109,12 +110,12 @@ export const AuthProvider: FC<AuthProviderProps> = ({
     const updateUserData = async () => {
       const user = await userManager.getUser();
       setUserData(user);
-    }
+    };
 
     userManager.events.addUserLoaded(updateUserData);
 
     return () => userManager.events.removeUserLoaded(updateUserData);
-  }, [])
+  }, []);
 
   return (
     <AuthContext.Provider
