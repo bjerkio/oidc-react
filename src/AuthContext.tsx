@@ -77,6 +77,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   onSignIn,
   onSignOut,
   location = window.location,
+  args,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -117,7 +118,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
       const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
         onBeforeSignIn && onBeforeSignIn();
-        userManager.signinRedirect();
+        userManager.signinRedirect(args);
       } else if (isMountedRef.current) {
         setUserData(user);
         setIsLoading(false);

@@ -71,6 +71,15 @@ export interface AuthProviderProps {
    */
   autoSignIn?: boolean;
   /**
+   * @example
+   * agrs ={{state:'yourData'}}
+   * onSignIn={(user)=>{
+   *  console.log(user.state)// 'yourData'
+   * }}
+   * autoSignIn={true}
+   */
+  args?: unknown;
+  /**
    * Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
    *
    * defaults to false
@@ -81,7 +90,7 @@ export interface AuthProviderProps {
    *
    * defaults to true
    */
-  loadUserInfo?:boolean;
+  loadUserInfo?: boolean;
   /**
    *  The features parameter to window.open for the popup signin window
    *
@@ -98,7 +107,7 @@ export interface AuthProviderProps {
    *
    * defaults to '_blank'
    */
-  popupWindowTarget?:string;
+  popupWindowTarget?: string;
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.
    *
@@ -124,7 +133,7 @@ export interface AuthContextProps {
   /**
    * Alias for userManager.signinPopup
    */
-  signInPopup: () => Promise<void>
+  signInPopup: () => Promise<void>;
   /**
    * Alias for removeUser
    */
