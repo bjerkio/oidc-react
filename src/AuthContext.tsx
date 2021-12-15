@@ -81,7 +81,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState<User | null>(null);
-  const [userManager] = useState<UserManager>(initUserManager(props));
+  const [userManager] = useState<UserManager>(() => initUserManager(props));
 
   const signOutHooks = async (): Promise<void> => {
     setUserData(null);
