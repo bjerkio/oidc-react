@@ -19,6 +19,7 @@ jobs:
         with:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
           release-type: node
+          package-name: oidc-react
 
       - uses: actions/checkout@v2
 
@@ -41,5 +42,5 @@ jobs:
       - name: Bundlewatch
         run: yarn run bundlewatch
         env:
-          BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BJERKBOT_GITHUB_TOKEN }}"
+          BUNDLEWATCH_GITHUB_TOKEN: '${{ secrets.BJERKBOT_GITHUB_TOKEN }}'
           CI_BRANCH_BASE: main
