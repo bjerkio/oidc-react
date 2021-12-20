@@ -14,14 +14,14 @@ jobs:
         node-version: [14.x]
 
     steps:
+      - uses: actions/checkout@v2
+
       - uses: GoogleCloudPlatform/release-please-action@v2.33.0
         id: release
         with:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
           release-type: node
           package-name: oidc-react
-
-      - uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2.2.0
