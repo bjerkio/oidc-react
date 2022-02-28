@@ -24,7 +24,7 @@ jobs:
           package-name: oidc-react
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.2.0
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
