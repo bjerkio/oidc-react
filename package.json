@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.4.0",
-    "@testing-library/react": "^11.0.4",
+    "@testing-library/react": "^12.1.4",
     "@types/faker": "^5.1.0",
     "@types/jest": "^26.0.10",
     "@types/node": "^14.14.41",
