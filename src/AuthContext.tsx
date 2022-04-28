@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
+import React, { FC, useState, useEffect, useRef, PropsWithChildren } from 'react';
 import { UserManager, User } from 'oidc-client';
 import {
   Location,
@@ -70,7 +70,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
  *
  * @param props AuthProviderProps
  */
-export const AuthProvider: FC<AuthProviderProps> = ({
+export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   children,
   autoSignIn = true,
   onBeforeSignIn,
