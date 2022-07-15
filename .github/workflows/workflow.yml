@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: GoogleCloudPlatform/release-please-action@v2.33.0
+      - uses: GoogleCloudPlatform/release-please-action@v3.2.8
         id: release
         with:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
