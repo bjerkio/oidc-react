@@ -11,12 +11,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [lts/-2, lts/-1, lts/*]
+        node-version: [lts/-2, lts/-1, lts/*, current]
 
     steps:
       - uses: actions/checkout@v3
 
-      
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3.4.1
         with:
@@ -26,6 +25,8 @@ jobs:
       - run: node --version
 
       - run: yarn install
+
+      - run: yarn test
 
       - run: yarn run build
 
@@ -63,5 +64,3 @@ jobs:
         run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-
