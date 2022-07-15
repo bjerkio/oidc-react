@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useRef, PropsWithChildren } from 'react';
-import { UserManager, User } from 'oidc-client';
+import { UserManager, User } from 'oidc-client-ts';
 import {
   Location,
   AuthProviderProps,
@@ -50,10 +50,10 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     popupWindowTarget,
   } = props;
   return new UserManager({
-    authority,
-    client_id: clientId,
+    authority: authority || '',
+    client_id: clientId || '',
     client_secret: clientSecret,
-    redirect_uri: redirectUri,
+    redirect_uri: redirectUri || '',
     silent_redirect_uri: silentRedirectUri || redirectUri,
     post_logout_redirect_uri: postLogoutRedirectUri || redirectUri,
     response_type: responseType || 'code',
@@ -107,7 +107,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
        * Check if the user is returning back from OIDC.
        */
       if (hasCodeInUrl(location)) {
-        const user = await userManager.signinCallback();
+        const user: any = await userManager.signinCallback();
         setUserData(user);
         setIsLoading(false);
         onSignIn && onSignIn(user);
@@ -142,7 +142,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   return (
     <AuthContext.Provider
       value={{
-        signIn: async (args: unknown): Promise<void> => {
+        signIn: async (args: any): Promise<void> => {
           await userManager.signinRedirect(args);
         },
         signInPopup: async (): Promise<void> => {
@@ -152,7 +152,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
           await userManager!.removeUser();
           await signOutHooks();
         },
-        signOutRedirect: async (args?: unknown): Promise<void> => {
+        signOutRedirect: async (args?: any): Promise<void> => {
           await userManager!.signoutRedirect(args);
           await signOutHooks();
         },
