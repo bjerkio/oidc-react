@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 /* eslint @typescript-eslint/explicit-function-return-type: 0 */
 import React from 'react';
-import { UserManager } from 'oidc-client';
+import { UserManager } from 'oidc-client-ts';
 import { AuthProvider, AuthContext } from '../AuthContext';
 import { render, act, waitFor } from '@testing-library/react';
 
@@ -10,7 +10,7 @@ const events = {
   removeUserLoaded: () => undefined,
 }
 
-jest.mock('oidc-client', () => {
+jest.mock('oidc-client-ts', () => {
   return {
     UserManager: jest.fn().mockImplementation(() => {
       return {

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/bjerkio/oidc-react/compare/v1.5.1...v1.6.0) (2022-07-15)
+
+### Features
+
+* Change dependency from no longer maintained [oidc-client-js](https://github.com/IdentityModel/oidc-client-js) to its official successor [oidc-client-ts](https://github.com/authts/oidc-client-ts)
+
+
 ## [1.5.1](https://github.com/bjerkio/oidc-react/compare/v1.5.0...v1.5.1) (2021-04-11)
 
 

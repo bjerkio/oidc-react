@@ -8,7 +8,7 @@ $ npm install oidc-react
 
 ## Setting up `AuthProvider`
 
-AuthProvider is a [Context](https://reactjs.org/docs/context.html) and holds most of the functionality of this package. In order to make it work with your very own OIDC server, you'll have to either setup your own [`UserManager`](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) or use the shortcut. In this guide, we'll use our shortcuts.
+AuthProvider is a [Context](https://reactjs.org/docs/context.html) and holds most of the functionality of this package. In order to make it work with your very own OIDC server, you'll have to either setup your own [`UserManager`](https://authts.github.io/oidc-client-ts/classes/UserManager.html) or use the shortcut. In this guide, we'll use our shortcuts.
 
 Let's look at an example component.
 

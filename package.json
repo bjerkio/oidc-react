@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "oidc-client": "^1.11.5"
+    "oidc-client-ts": "^2.0.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.4.0",
