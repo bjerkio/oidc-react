@@ -114,7 +114,7 @@ ___
 
 • `Optional` **userData**: *null* \| [*User*](../classes/index.user.md)
 
-See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
+See [User](https://authts.github.io/oidc-client-ts/classes/User.html) for more details.
 
 Defined in: [src/AuthContextInterface.ts:143](https://github.com/pamapa/oidc-react/blob/5ae1406/src/AuthContextInterface.ts#L143)
 
@@ -124,6 +124,6 @@ ___
 
 • **userManager**: *null* \| [*UserManager*](../classes/index.usermanager.md)
 
-See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
+See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.html) for more details.
 
 Defined in: [src/AuthContextInterface.ts:139](https://github.com/pamapa/oidc-react/blob/5ae1406/src/AuthContextInterface.ts#L139)

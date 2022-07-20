@@ -1,4 +1,4 @@
-import { UserManager, User } from 'oidc-client';
+import {UserManager, User, PopupWindowFeatures} from 'oidc-client-ts';
 export interface Location {
   search: string;
   hash: string;
@@ -25,7 +25,7 @@ export interface AuthProviderSignOutProps {
 
 export interface AuthProviderProps {
   /**
-   * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
+   * See [UserManager](https://github.com/authts/oidc-client-ts) for more details.
    */
   userManager?: UserManager;
   /**
@@ -87,7 +87,7 @@ export interface AuthProviderProps {
    *
    * defaults to 'location=no,toolbar=no,width=500,height=500,left=100,top=100'
    */
-  popupWindowFeatures?: string;
+  popupWindowFeatures?: PopupWindowFeatures;
   /**
    *  The URL for the page containing the call to signinPopupCallback to handle the callback from the OIDC/OAuth2
    *
@@ -134,11 +134,11 @@ export interface AuthContextProps {
    */
   signOutRedirect: (args?: unknown) => Promise<void>;
   /**
-   * See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
+   * See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.html) for more details.
    */
   userManager: UserManager;
   /**
-   * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
+   * See [User](https://authts.github.io/oidc-client-ts/classes/User.html) for more details.
    */
   userData?: User | null;
   /**

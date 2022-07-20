@@ -264,6 +264,6 @@ ___
 
 • `Optional` **userManager**: [*UserManager*](../classes/index.usermanager.md)
 
-See [UserManager](https://github.com/IdentityModel/oidc-client-js/wiki#usermanager) for more details.
+See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.html) for more details.
 
 Defined in: [src/AuthContextInterface.ts:30](https://github.com/pamapa/oidc-react/blob/5ae1406/src/AuthContextInterface.ts#L30)
