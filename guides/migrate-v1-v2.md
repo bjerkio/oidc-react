@@ -7,6 +7,9 @@ The largest change is migrating from `oidc-client-js` to `oidc-client-ts`. For c
 You can find more documentation on `oidc-client-ts` here:
 https://github.com/authts/oidc-client-ts
 
+They have written a migration guide, you can find that here:
+https://github.com/authts/oidc-client-ts/blob/main/docs/migration.md
+
 Other than that, we have also started supporting
 React 18. 🚀
 
