@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/bjerkio/oidc-react/compare/v1.5.1...v2.0.0) (2022-07-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace oidc-client-js with oidc-client-ts (#860)
+* migrate to react 18 (#827)
+
+### Features
+
+* create ES5 output for IE11 compatibility. ([#696](https://github.com/bjerkio/oidc-react/issues/696)) ([4d9712c](https://github.com/bjerkio/oidc-react/commit/4d9712c1882384cc89311c16a56bc6b091a53b0c))
+* migrate to react 18 ([#827](https://github.com/bjerkio/oidc-react/issues/827)) ([28e998a](https://github.com/bjerkio/oidc-react/commit/28e998a1c56c8fd32ef15143ae4d31993f8d22d5))
+
+
+### Bug Fixes
+
+* initUserManager in AuthContext called every render call ([#764](https://github.com/bjerkio/oidc-react/issues/764)) ([2cef6c7](https://github.com/bjerkio/oidc-react/commit/2cef6c748be19f278ba49900025f92dbd392885e))
+* move release-please to after checkout ([9b70ccf](https://github.com/bjerkio/oidc-react/commit/9b70ccf581e8844d63717a17797790a0c0419443))
+
+
+### Code Refactoring
+
+* replace oidc-client-js with oidc-client-ts ([#860](https://github.com/bjerkio/oidc-react/issues/860)) ([a07bb70](https://github.com/bjerkio/oidc-react/commit/a07bb705d4cd6d4074a055f46b83b2b4053fed1b))
+
 ## [1.6.0](https://github.com/bjerkio/oidc-react/compare/v1.5.1...v1.6.0) (2022-07-15)
 
 ### Features
