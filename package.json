@@ -44,7 +44,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.4.0",
     "@testing-library/react": "^11.0.4",
-    "@types/faker": "^5.1.0",
+    "@types/faker": "^6.6.9",
     "@types/jest": "^26.0.10",
     "@types/node": "^17.0.29",
     "@types/react": "^18.0.8",
@@ -58,7 +58,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jest": "^24.0.2",
     "eslint-plugin-react": "^7.19.0",
-    "faker": "^5.0.0",
+    "faker": "^6.6.6",
     "jest": "^25.3.0",
     "jest-cli": "^26.0.1",
     "react": "^18.1.0",
