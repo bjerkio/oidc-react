@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/bjerkio/oidc-react/compare/v2.0.0...v2.0.1) (2022-08-02)
+
+
+### Bug Fixes
+
+* Add React 17 to peer dependencies ([#874](https://github.com/bjerkio/oidc-react/issues/874)) ([54fd6e0](https://github.com/bjerkio/oidc-react/commit/54fd6e0ea21b773e26e9e5fb0a42610de54097e5))
+
 ## [2.0.0](https://github.com/bjerkio/oidc-react/compare/v1.5.1...v2.0.0) (2022-07-25)
 
 
