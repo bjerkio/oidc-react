@@ -103,6 +103,9 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
 
   useEffect(() => {
     const getUser = async (): Promise<void> => {
+      // Store current isMounted since this could change while awaiting async operations below
+      const isMounted = isMountedRef.current;
+
       /**
        * Check if the user is returning back from OIDC.
        */
@@ -118,7 +121,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       if ((!user || user.expired) && autoSignIn) {
         onBeforeSignIn && onBeforeSignIn();
         userManager.signinRedirect();
-      } else if (isMountedRef.current) {
+      } else if (isMounted) {
         setUserData(user);
         setIsLoading(false);
       }
