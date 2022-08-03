@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef, PropsWithChildren } from 'react';
+import React, { FC, useState, useEffect, useRef, PropsWithChildren, useMemo, useCallback } from 'react';
 import { UserManager, User } from 'oidc-client-ts';
 import {
   Location,
@@ -58,7 +58,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     post_logout_redirect_uri: postLogoutRedirectUri || redirectUri,
     response_type: responseType || 'code',
     scope: scope || 'openid',
-    loadUserInfo: loadUserInfo != undefined ? loadUserInfo : true,
+    loadUserInfo: loadUserInfo !== undefined ? loadUserInfo : true,
     popupWindowFeatures: popupWindowFeatures,
     popup_redirect_uri: popupRedirectUri,
     popupWindowTarget: popupWindowTarget,
@@ -83,17 +83,18 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   const [userData, setUserData] = useState<User | null>(null);
   const [userManager] = useState<UserManager>(() => initUserManager(props)); 
 
-  const signOutHooks = async (): Promise<void> => {
+  const signOutHooks = useCallback(async (): Promise<void> => {
     setUserData(null);
     onSignOut && onSignOut();
-  };
-  const signInPopupHooks = async (): Promise<void> => {
+  }, [onSignOut]);
+
+  const signInPopupHooks = useCallback(async (): Promise<void> => {
     const userFromPopup = await userManager.signinPopup();
     setUserData(userFromPopup);
     onSignIn && onSignIn(userFromPopup);
     await userManager.signinPopupCallback();
-  };
-
+  }, [userManager, onSignIn]);
+  
   const isMountedRef = useRef(true);
   useEffect(() => {
     return () => {
@@ -139,28 +140,30 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     return () => userManager.events.removeUserLoaded(updateUserData);
   }, [userManager]);
 
+  const value = useMemo<AuthContextProps>(() => {
+    return {
+      signIn: async (args: any): Promise<void> => {
+        await userManager.signinRedirect(args);
+      },
+      signInPopup: async (): Promise<void> => {
+        await signInPopupHooks();
+      },
+      signOut: async (): Promise<void> => {
+        await userManager!.removeUser();
+        await signOutHooks();
+      },
+      signOutRedirect: async (args?: any): Promise<void> => {
+        await userManager!.signoutRedirect(args);
+        await signOutHooks();
+      },
+      userManager,
+      userData,
+      isLoading,
+    };
+  }, [userManager, isLoading, userData,  signInPopupHooks, signOutHooks]);
+
   return (
-    <AuthContext.Provider
-      value={{
-        signIn: async (args: any): Promise<void> => {
-          await userManager.signinRedirect(args);
-        },
-        signInPopup: async (): Promise<void> => {
-          await signInPopupHooks();
-        },
-        signOut: async (): Promise<void> => {
-          await userManager!.removeUser();
-          await signOutHooks();
-        },
-        signOutRedirect: async (args?: any): Promise<void> => {
-          await userManager!.signoutRedirect(args);
-          await signOutHooks();
-        },
-        userManager,
-        userData,
-        isLoading,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
