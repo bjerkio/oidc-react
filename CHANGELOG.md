@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/bjerkio/oidc-react/compare/v2.0.1...v2.0.2) (2022-08-03)
+
+
+### Bug Fixes
+
+* alway userData=null - isLoading=true ([#877](https://github.com/bjerkio/oidc-react/issues/877)) ([d2d78ce](https://github.com/bjerkio/oidc-react/commit/d2d78ce29fced9598bf9928fd4561fb83c9d9834))
+
 ## [2.0.1](https://github.com/bjerkio/oidc-react/compare/v2.0.0...v2.0.1) (2022-08-02)
 
 
