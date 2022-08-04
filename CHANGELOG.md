@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/bjerkio/oidc-react/compare/v2.0.2...v2.0.3) (2022-08-04)
+
+
+### Bug Fixes
+
+* use memoized context value ([#880](https://github.com/bjerkio/oidc-react/issues/880)) ([3342a8d](https://github.com/bjerkio/oidc-react/commit/3342a8d29a7b42d4428bd01a409ca079619e9549))
+
 ## [2.0.2](https://github.com/bjerkio/oidc-react/compare/v2.0.1...v2.0.2) (2022-08-03)
 
 
