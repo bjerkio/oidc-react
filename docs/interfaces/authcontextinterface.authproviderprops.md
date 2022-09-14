@@ -56,7 +56,7 @@ ___
 
 Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
 
-defaults to false
+defaults to true
 
 Defined in: [src/AuthContextInterface.ts:78](https://github.com/pamapa/oidc-react/blob/5ae1406/src/AuthContextInterface.ts#L78)
 
