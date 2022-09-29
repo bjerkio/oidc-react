@@ -104,7 +104,7 @@ export interface AuthProviderProps {
    *
    * This only gets called if autoSignIn is true
    */
-  onBeforeSignIn?: () => void;
+  onBeforeSignIn?: () => string;
   /**
    * On sign out hook. Can be a async function.
    * @param userData User
