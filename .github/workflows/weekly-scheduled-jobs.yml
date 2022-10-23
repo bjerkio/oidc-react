@@ -19,7 +19,7 @@ jobs:
       - run: yarn install
 
       - name: Run typegen
-        run: yarn run generate:docs
+        run: yarn run generate-docs
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
