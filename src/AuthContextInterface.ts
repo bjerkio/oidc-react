@@ -33,6 +33,10 @@ export interface AuthProviderProps {
    */
   authority?: string;
   /**
+   * Extra query params passed to the authorization url.
+   */
+  extraQueryParams?: Record<string, string>
+  /**
    * Your client application's identifier as registered with the OIDC/OAuth2 provider.
    */
   clientId?: string;
