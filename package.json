@@ -60,7 +60,7 @@
     "eslint-plugin-react": "^7.19.0",
     "faker": "^6.6.6",
     "jest": "^25.3.0",
-    "jest-cli": "^26.0.1",
+    "jest-cli": "^29.3.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "ts-jest": "^25.3.1",
