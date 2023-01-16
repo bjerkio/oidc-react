@@ -150,6 +150,24 @@ Defined in: [src/AuthContextInterface.ts:112](https://github.com/pamapa/oidc-rea
 
 ___
 
+### onSignInError
+
+• `Optional` **onSignInError**: (error) => *void*
+
+On Sign In Error. Can be use to handle errors when sign in fails.
+
+#### Type declaration:
+
+▸ (error): *void*
+
+**Returns:** *void*
+
+Defined in: [src/AuthContextInterface.ts:125](https://github.com/pamapa/oidc-react/blob/5ae1406/src/AuthContextInterface.ts#L125)
+
+Defined in: [src/AuthContextInterface.ts:125](https://github.com/pamapa/oidc-react/blob/5ae1406/src/AuthContextInterface.ts#L125)
+
+___
+
 ### onSignOut
 
 • `Optional` **onSignOut**: (`options?`: [*AuthProviderSignOutProps*](authcontextinterface.authprovidersignoutprops.md)) => *void* \| *Promise*<void\>

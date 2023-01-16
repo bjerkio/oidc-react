@@ -79,6 +79,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   onSignIn,
   onSignOut,
   location = window.location,
+  onSignInError,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -113,7 +114,11 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
        * Check if the user is returning back from OIDC.
        */
       if (hasCodeInUrl(location)) {
-        const user: any = await userManager.signinCallback();
+        const user: any = await userManager.signinCallback().catch(error => {
+          if (onSignInError) {
+            onSignInError(error)
+          }
+        });
         setUserData(user);
         setIsLoading(false);
         onSignIn && onSignIn(user);
@@ -131,7 +136,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       return;
     };
     getUser();
-  }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
+  }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn, onSignInError]);
 
   useEffect(() => {
     // for refreshing react state when new state is available in e.g. session storage
