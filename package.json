@@ -65,8 +65,8 @@
     "react-dom": "^18.1.0",
     "ts-jest": "^25.3.1",
     "ts-node-dev": "^1.0.0-pre.40",
-    "typedoc": "^0.23.17",
-    "typedoc-plugin-markdown": "^3.0.3",
+    "typedoc": "0.23.24",
+    "typedoc-plugin-markdown": "3.14.0",
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
