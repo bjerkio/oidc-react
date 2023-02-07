@@ -50,7 +50,6 @@
     "@types/react": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
-    "bundlesize": "^0.18.1",
     "bundlewatch": "^0.3.2",
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.1.0",
