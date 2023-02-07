@@ -27,19 +27,15 @@ oidc-react
 
 • `Const` **AuthContext**: `Context`<`undefined` \| [`AuthContextProps`](interfaces/AuthContextProps.md)\>
 
-[AuthContext](README.md#authcontext)
-
 #### Defined in
 
-[src/AuthContext.tsx:12](https://github.com/jamesdh/oidc-react/blob/9b4c378/src/AuthContext.tsx#L12)
+[src/AuthContext.tsx:9](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContext.tsx#L9)
 
 ## Functions
 
 ### AuthProvider
 
 ▸ **AuthProvider**(`props`, `context?`): ``null`` \| `ReactElement`<`any`, `any`\>
-
-@
 
 #### Parameters
 
@@ -68,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/useAuth.ts:6](https://github.com/jamesdh/oidc-react/blob/9b4c378/src/useAuth.ts#L6)
+[src/useAuth.ts:6](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/useAuth.ts#L6)
 
 ___
 
@@ -96,4 +92,4 @@ A public higher-order component to access the imperative API
 
 #### Defined in
 
-[src/withAuth.tsx:8](https://github.com/jamesdh/oidc-react/blob/9b4c378/src/withAuth.tsx#L8)
+[src/withAuth.tsx:8](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/withAuth.tsx#L8)
