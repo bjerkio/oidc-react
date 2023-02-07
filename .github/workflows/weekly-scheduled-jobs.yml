@@ -1,5 +1,6 @@
 name: Weekly jobs
 on:
+  workflow_dispatch:
   schedule:
     # Runs every Monday at 12
     - cron: '0 12 * * 1'
