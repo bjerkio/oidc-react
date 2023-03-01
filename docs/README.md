@@ -29,7 +29,7 @@ oidc-react
 
 #### Defined in
 
-[src/AuthContext.tsx:9](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContext.tsx#L9)
+[src/AuthContext.tsx:22](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContext.tsx#L22)
 
 ## Functions
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/useAuth.ts:6](https://github.com/bjerkio/oidc-react/blob/6414730/src/useAuth.ts#L6)
+[src/useAuth.ts:6](https://github.com/bjerkio/oidc-react/blob/main/src/useAuth.ts#L6)
 
 ___
 
@@ -92,4 +92,4 @@ A public higher-order component to access the imperative API
 
 #### Defined in
 
-[src/withAuth.tsx:8](https://github.com/bjerkio/oidc-react/blob/6414730/src/withAuth.tsx#L8)
+[src/withAuth.tsx:8](https://github.com/bjerkio/oidc-react/blob/main/src/withAuth.tsx#L8)
