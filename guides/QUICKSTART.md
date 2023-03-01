@@ -45,7 +45,7 @@ export default App = () => (
     authority="http://oidc.io/oauth"
     clientId="my-client-id"
     redirectUri="http://myapp.com/"
-    onSignIn={user => {
+    onSignIn={(user) => {
       // the `user` prop is actually the data the app received from `/userinfo` endpoint.
       history.go('/dashboard', user);
     }}

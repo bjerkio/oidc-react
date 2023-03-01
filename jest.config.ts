@@ -1,25 +1,23 @@
-import type {Config} from 'jest';
+import type { Config } from 'jest';
 
 const config: Config = {
-  coveragePathIgnorePatterns: [
-    "/node_modules/"
-  ],
+  coveragePathIgnorePatterns: ['/node_modules/'],
   coverageThreshold: {
     global: {
       branches: 80,
       functions: 80,
       lines: 80,
-      statements: -10
-    }
+      statements: -10,
+    },
   },
-  preset: "ts-jest",
+  preset: 'ts-jest',
   testPathIgnorePatterns: [
-    "/node_modules/",
-    "/__fixtures__/",
-    "<rootDir>/build"
+    '/node_modules/',
+    '/__fixtures__/',
+    '<rootDir>/build',
   ],
-  testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
 
 export default config;

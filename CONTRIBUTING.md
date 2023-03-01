@@ -8,8 +8,8 @@ propose changes to this document in a pull request.
 
 ## Issues and Pull Requests
 
-* If you're not sure about adding something, [open an issue](https://github.com/bjerkio/oidc-react/issues/new) to discuss it.
-* Feel free to open a Pull Request early so that a discussion can be had as changes are developed.
+- If you're not sure about adding something, [open an issue](https://github.com/bjerkio/oidc-react/issues/new) to discuss it.
+- Feel free to open a Pull Request early so that a discussion can be had as changes are developed.
 
 ## Commit Messages and Pull Request Titles
 
@@ -22,7 +22,7 @@ If you are still working on your pull request, prepend `WIP:` to indicate that i
 
 ### Pull Request Title
 
-Same as commit messages, prepend the type of change being made (refactor, fix, chore, feat, etc.) 
+Same as commit messages, prepend the type of change being made (refactor, fix, chore, feat, etc.)
 Example: `docs: add linux setup instructions`
 
 ## Documentation

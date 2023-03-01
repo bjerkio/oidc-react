@@ -8,7 +8,7 @@ import { render, act, waitFor } from '@testing-library/react';
 const events = {
   addUserLoaded: () => undefined,
   removeUserLoaded: () => undefined,
-}
+};
 
 jest.mock('oidc-client-ts', () => {
   return {
@@ -59,7 +59,7 @@ describe('AuthContext', () => {
     expect(u.getUser).toHaveBeenCalled();
     expect(u.signinRedirect).toHaveBeenCalled();
   });
-  
+
   it('should open Popup when asked', async () => {
     const u = {
       getUser: jest.fn(),
@@ -82,7 +82,7 @@ describe('AuthContext', () => {
     expect(u.signinPopupCallback).toHaveBeenCalled();
     expect(u.signinPopup).toHaveBeenCalled();
   });
-  
+
   it('should not redirect when asked', async () => {
     const u = {
       getUser: jest.fn(),
@@ -93,7 +93,7 @@ describe('AuthContext', () => {
     });
     expect(u.getUser).toHaveBeenCalled();
   });
-  
+
   it('should generate a UserManager', async () => {
     render(
       <AuthProvider
@@ -104,7 +104,7 @@ describe('AuthContext', () => {
     );
     expect(UserManager).toHaveBeenCalled();
   });
-  
+
   it('should use post-logout redirect URI when given', async () => {
     render(
       <AuthProvider
@@ -115,10 +115,12 @@ describe('AuthContext', () => {
       />,
     );
     expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ post_logout_redirect_uri: 'https://localhost'})
+      expect.objectContaining({
+        post_logout_redirect_uri: 'https://localhost',
+      }),
     );
   });
-  
+
   it('should fall back to redirectUri when post-logout redirect URI is not given', async () => {
     render(
       <AuthProvider
@@ -128,10 +130,10 @@ describe('AuthContext', () => {
       />,
     );
     expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1'})
+      expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1' }),
     );
   });
-  
+
   it('should use silent redirect URI when given', async () => {
     render(
       <AuthProvider
@@ -142,10 +144,10 @@ describe('AuthContext', () => {
       />,
     );
     expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ silent_redirect_uri: 'https://localhost'})
+      expect.objectContaining({ silent_redirect_uri: 'https://localhost' }),
     );
   });
-  
+
   it('should fall back to redirectUri when silent redirect URI is not given', async () => {
     render(
       <AuthProvider
@@ -155,7 +157,7 @@ describe('AuthContext', () => {
       />,
     );
     expect(UserManager).toHaveBeenLastCalledWith(
-      expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1'})
+      expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1' }),
     );
   });
 
@@ -230,9 +232,7 @@ describe('AuthContext', () => {
       />,
     );
     await waitFor(() => expect(onSignIn).toHaveBeenCalled());
-    await waitFor(() =>
-      expect(userManager.signinCallback).toHaveBeenCalled(),
-    );
+    await waitFor(() => expect(userManager.signinCallback).toHaveBeenCalled());
   });
 
   it('should logout the user', async () => {
@@ -261,7 +261,7 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.removeUser).toHaveBeenCalled());
   });
-  
+
   it('should end session and logout the user when signoutRedirect is true', async () => {
     const userManager = {
       getUser: async () => ({
@@ -288,7 +288,7 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.signoutRedirect).toHaveBeenCalled());
   });
-  
+
   it('should end session and logout the user when signoutRedirect is an object', async () => {
     const userManager = {
       getUser: async () => ({

@@ -9,11 +9,7 @@
     "project": "tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "jest"
-  ],
+  "plugins": ["@typescript-eslint", "react", "jest"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",

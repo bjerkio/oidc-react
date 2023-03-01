@@ -30,7 +30,7 @@
     "examples/*.ts",
     "examples/*.tsx",
     "examples/**/*.ts",
-    "examples/**/*.tsx",
+    "examples/**/*.tsx"
   ],
   "exclude": ["node_modules"]
 }
