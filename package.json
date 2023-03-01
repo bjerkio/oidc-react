@@ -15,6 +15,8 @@
     "build": "tsc -p tsconfig.release.json",
     "test": "jest --coverage src --passWithNoTests",
     "test:watch": "npm run test -- --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts,.tsx",
     "generate-docs": "typedoc --out docs src",
     "bundlewatch": "bundlewatch --config .bundlewatch.config.json"
@@ -43,6 +45,7 @@
     "jest-cli": "29.4.3",
     "jest-environment-jsdom": "29.4.3",
     "jest-fail-on-console": "3.0.2",
+    "prettier": "2.8.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "ts-jest": "29.0.5",

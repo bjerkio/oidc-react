@@ -26,6 +26,8 @@ jobs:
 
     - run: yarn run build
 
+    - run: yarn run format:check
+
     - run: yarn test
       env:
         CI: true
