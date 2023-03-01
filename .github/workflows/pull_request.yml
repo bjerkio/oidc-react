@@ -3,7 +3,6 @@ on: [pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -12,30 +11,30 @@ jobs:
         node-version: [lts/-2, lts/-1, lts/*, current]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: yarn
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
 
-    - run: yarn install
+      - run: yarn install
 
-    - run: yarn run lint
+      - run: yarn run lint
 
-    - run: yarn run build
+      - run: yarn run build
 
-    - run: yarn run format:check
+      - run: yarn run format:check
 
-    - run: yarn test
-      env:
-        CI: true
+      - run: yarn test
+        env:
+          CI: true
 
-    - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v3
 
-    - name: Run bundlewatch
-      run: yarn run bundlewatch
-      env:
-        BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BJERKBOT_GITHUB_TOKEN }}"
-        CI_BRANCH_BASE: main
+      - name: Run bundlewatch
+        run: yarn run bundlewatch
+        env:
+          BUNDLEWATCH_GITHUB_TOKEN: '${{ secrets.BJERKBOT_GITHUB_TOKEN }}'
+          CI_BRANCH_BASE: main

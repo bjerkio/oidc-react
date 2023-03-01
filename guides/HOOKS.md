@@ -12,10 +12,8 @@ import { useAuth } from 'oidc-react';
 export default () => {
   const auth = useAuth();
 
-  return (
-    <p>Hello {auth.profile.name}!</p>
-  );
-}
+  return <p>Hello {auth.profile.name}!</p>;
+};
 ```
 
 The example above uses `id_token` object (`profile`) and displays the name of the user.

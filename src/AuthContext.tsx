@@ -1,12 +1,27 @@
-import React, { FC, useState, useEffect, useRef, PropsWithChildren, useMemo, useCallback } from 'react';
-import { UserManager, User, SigninRedirectArgs, SignoutRedirectArgs } from 'oidc-client-ts';
+import React, {
+  FC,
+  useState,
+  useEffect,
+  useRef,
+  PropsWithChildren,
+  useMemo,
+  useCallback,
+} from 'react';
+import {
+  UserManager,
+  User,
+  SigninRedirectArgs,
+  SignoutRedirectArgs,
+} from 'oidc-client-ts';
 import {
   Location,
   AuthProviderProps,
   AuthContextProps,
 } from './AuthContextInterface';
 
-export const AuthContext = React.createContext<AuthContextProps | undefined>(undefined);
+export const AuthContext = React.createContext<AuthContextProps | undefined>(
+  undefined,
+);
 
 /**
  * @private
@@ -48,7 +63,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     popupWindowFeatures,
     popupRedirectUri,
     popupWindowTarget,
-    extraQueryParams
+    extraQueryParams,
   } = props;
   return new UserManager({
     authority: authority || '',
@@ -64,7 +79,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     popup_redirect_uri: popupRedirectUri,
     popupWindowTarget: popupWindowTarget,
     automaticSilentRenew,
-    extraQueryParams
+    extraQueryParams,
   });
 };
 
@@ -83,7 +98,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState<User | null>(null);
-  const [userManager] = useState<UserManager>(() => initUserManager(props)); 
+  const [userManager] = useState<UserManager>(() => initUserManager(props));
 
   const signOutHooks = useCallback(async (): Promise<void> => {
     setUserData(null);
@@ -96,7 +111,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     onSignIn && onSignIn(userFromPopup);
     await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
-  
+
   const isMountedRef = useRef(true);
   useEffect(() => {
     return () => {
@@ -113,7 +128,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
        * Check if the user is returning back from OIDC.
        */
       if (hasCodeInUrl(location)) {
-        const user = await userManager.signinCallback() || null;
+        const user = (await userManager.signinCallback()) || null;
         setUserData(user);
         setIsLoading(false);
         onSignIn && onSignIn(user);
@@ -123,7 +138,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
-        userManager.signinRedirect({state});
+        userManager.signinRedirect({ state });
       } else if (isMounted) {
         setUserData(user);
         setIsLoading(false);
@@ -163,11 +178,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       userData,
       isLoading,
     };
-  }, [userManager, isLoading, userData,  signInPopupHooks, signOutHooks]);
+  }, [userManager, isLoading, userData, signInPopupHooks, signOutHooks]);
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
