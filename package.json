@@ -18,7 +18,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts,.tsx",
-    "generate-docs": "typedoc --out docs src",
+    "generate-docs": "typedoc --gitRevision branch --out docs src",
     "bundlewatch": "bundlewatch --config .bundlewatch.config.json"
   },
   "dependencies": {
