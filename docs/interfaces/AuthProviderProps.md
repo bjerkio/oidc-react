@@ -37,7 +37,7 @@ The URL of the OIDC/OAuth2 provider.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:34](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L34)
+[src/AuthContextInterface.ts:34](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L34)
 
 ___
 
@@ -49,7 +49,7 @@ defaults to true
 
 #### Defined in
 
-[src/AuthContextInterface.ts:76](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L76)
+[src/AuthContextInterface.ts:76](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L76)
 
 ___
 
@@ -63,7 +63,7 @@ defaults to false
 
 #### Defined in
 
-[src/AuthContextInterface.ts:82](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L82)
+[src/AuthContextInterface.ts:82](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L82)
 
 ___
 
@@ -75,7 +75,7 @@ Your client application's identifier as registered with the OIDC/OAuth2 provider
 
 #### Defined in
 
-[src/AuthContextInterface.ts:42](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L42)
+[src/AuthContextInterface.ts:42](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L42)
 
 ___
 
@@ -87,7 +87,7 @@ Client secret defined on the identity server.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:46](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L46)
+[src/AuthContextInterface.ts:46](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L46)
 
 ___
 
@@ -99,7 +99,7 @@ Extra query params passed to the authorization url.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:38](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L38)
+[src/AuthContextInterface.ts:38](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L38)
 
 ___
 
@@ -113,7 +113,7 @@ defaults to true
 
 #### Defined in
 
-[src/AuthContextInterface.ts:88](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L88)
+[src/AuthContextInterface.ts:88](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L88)
 
 ___
 
@@ -125,7 +125,7 @@ Defaults to `windows.location`.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:72](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L72)
+[src/AuthContextInterface.ts:72](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L72)
 
 ___
 
@@ -147,7 +147,7 @@ This only gets called if autoSignIn is true
 
 #### Defined in
 
-[src/AuthContextInterface.ts:111](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L111)
+[src/AuthContextInterface.ts:111](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L111)
 
 ___
 
@@ -173,7 +173,7 @@ On sign out hook. Can be a async function.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:116](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L116)
+[src/AuthContextInterface.ts:116](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L116)
 
 ___
 
@@ -199,7 +199,7 @@ On sign out hook. Can be a async function.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:120](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L120)
+[src/AuthContextInterface.ts:120](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L120)
 
 ___
 
@@ -211,7 +211,7 @@ The URL for the page containing the call to signinPopupCallback to handle the ca
 
 #### Defined in
 
-[src/AuthContextInterface.ts:99](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L99)
+[src/AuthContextInterface.ts:99](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L99)
 
 ___
 
@@ -225,7 +225,7 @@ defaults to 'location=no,toolbar=no,width=500,height=500,left=100,top=100'
 
 #### Defined in
 
-[src/AuthContextInterface.ts:94](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L94)
+[src/AuthContextInterface.ts:94](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L94)
 
 ___
 
@@ -239,7 +239,7 @@ defaults to '_blank'
 
 #### Defined in
 
-[src/AuthContextInterface.ts:105](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L105)
+[src/AuthContextInterface.ts:105](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L105)
 
 ___
 
@@ -251,7 +251,7 @@ The post-logout redirect URI of your client application which your OIDC/OAuth2 p
 
 #### Defined in
 
-[src/AuthContextInterface.ts:58](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L58)
+[src/AuthContextInterface.ts:58](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L58)
 
 ___
 
@@ -263,7 +263,7 @@ The redirect URI of your client application to receive a response from the OIDC/
 
 #### Defined in
 
-[src/AuthContextInterface.ts:50](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L50)
+[src/AuthContextInterface.ts:50](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L50)
 
 ___
 
@@ -277,7 +277,7 @@ Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
 
 #### Defined in
 
-[src/AuthContextInterface.ts:64](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L64)
+[src/AuthContextInterface.ts:64](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L64)
 
 ___
 
@@ -289,7 +289,7 @@ A space-delimited list of permissions that the application requires.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:68](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L68)
+[src/AuthContextInterface.ts:68](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L68)
 
 ___
 
@@ -301,7 +301,7 @@ The redirect URI of your client application to receive a response from the OIDC/
 
 #### Defined in
 
-[src/AuthContextInterface.ts:54](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L54)
+[src/AuthContextInterface.ts:54](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L54)
 
 ___
 
@@ -313,4 +313,4 @@ See [UserManager](https://github.com/authts/oidc-client-ts) for more details.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:30](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L30)
+[src/AuthContextInterface.ts:30](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L30)

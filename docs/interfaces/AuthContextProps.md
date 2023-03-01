@@ -24,13 +24,13 @@ Auth state: True until the library has been initialized.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:151](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L151)
+[src/AuthContextInterface.ts:151](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L151)
 
 ___
 
 ### signIn
 
-• **signIn**: (`args?`: `unknown`) => `Promise`<`void`\>
+• **signIn**: (`args?`: `SigninRedirectArgs`) => `Promise`<`void`\>
 
 #### Type declaration
 
@@ -42,7 +42,7 @@ Alias for userManager.signInRedirect
 
 | Name | Type |
 | :------ | :------ |
-| `args?` | `unknown` |
+| `args?` | `SigninRedirectArgs` |
 
 ##### Returns
 
@@ -50,7 +50,7 @@ Alias for userManager.signInRedirect
 
 #### Defined in
 
-[src/AuthContextInterface.ts:127](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L127)
+[src/AuthContextInterface.ts:127](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L127)
 
 ___
 
@@ -70,7 +70,7 @@ Alias for userManager.signinPopup
 
 #### Defined in
 
-[src/AuthContextInterface.ts:131](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L131)
+[src/AuthContextInterface.ts:131](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L131)
 
 ___
 
@@ -90,13 +90,13 @@ Alias for removeUser
 
 #### Defined in
 
-[src/AuthContextInterface.ts:135](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L135)
+[src/AuthContextInterface.ts:135](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L135)
 
 ___
 
 ### signOutRedirect
 
-• **signOutRedirect**: (`args?`: `unknown`) => `Promise`<`void`\>
+• **signOutRedirect**: (`args?`: `SignoutRedirectArgs`) => `Promise`<`void`\>
 
 #### Type declaration
 
@@ -106,7 +106,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `args?` | `unknown` |
+| `args?` | `SignoutRedirectArgs` |
 
 ##### Returns
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[src/AuthContextInterface.ts:139](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L139)
+[src/AuthContextInterface.ts:139](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L139)
 
 ___
 
@@ -126,7 +126,7 @@ See [User](https://authts.github.io/oidc-client-ts/classes/User.html) for more d
 
 #### Defined in
 
-[src/AuthContextInterface.ts:147](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L147)
+[src/AuthContextInterface.ts:147](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L147)
 
 ___
 
@@ -138,4 +138,4 @@ See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.ht
 
 #### Defined in
 
-[src/AuthContextInterface.ts:143](https://github.com/bjerkio/oidc-react/blob/abcb6a5/src/AuthContextInterface.ts#L143)
+[src/AuthContextInterface.ts:143](https://github.com/bjerkio/oidc-react/blob/6414730/src/AuthContextInterface.ts#L143)
