@@ -24,27 +24,27 @@ jest.mock('oidc-client-ts', () => {
 
 describe('AuthContext', () => {
   it('should check for user and redirect', async () => {
+    const u = {
+      getUser: jest.fn(),
+      signinRedirect: jest.fn(),
+      events,
+    } as any;
+    const onBeforeSignIn = jest.fn();
     await act(async () => {
-      const u = {
-        getUser: jest.fn(),
-        signinRedirect: jest.fn(),
-        events,
-      } as any;
-      const onBeforeSignIn = jest.fn();
       render(<AuthProvider userManager={u} onBeforeSignIn={onBeforeSignIn} />);
-      await waitFor(() => expect(u.getUser).toHaveBeenCalled());
-      await waitFor(() => expect(onBeforeSignIn).toHaveBeenCalled());
-      await waitFor(() => expect(u.signinRedirect).toHaveBeenCalled());
     });
+    expect(u.getUser).toHaveBeenCalled();
+    expect(onBeforeSignIn).toHaveBeenCalled();
+    expect(u.signinRedirect).toHaveBeenCalled();
   });
 
   it('should redirect when asked', async () => {
+    const u = {
+      getUser: jest.fn(),
+      signinRedirect: jest.fn(),
+      events,
+    } as any;
     await act(async () => {
-      const u = {
-        getUser: jest.fn(),
-        signinRedirect: jest.fn(),
-        events,
-      } as any;
       render(
         <AuthProvider userManager={u} autoSignIn={false}>
           <AuthContext.Consumer>
@@ -55,18 +55,19 @@ describe('AuthContext', () => {
           </AuthContext.Consumer>
         </AuthProvider>,
       );
-      await waitFor(() => expect(u.getUser).toHaveBeenCalled());
-      await waitFor(() => expect(u.signinRedirect).toHaveBeenCalled());
     });
+    expect(u.getUser).toHaveBeenCalled();
+    expect(u.signinRedirect).toHaveBeenCalled();
   });
+  
   it('should open Popup when asked', async () => {
+    const u = {
+      getUser: jest.fn(),
+      signinPopupCallback: jest.fn(),
+      signinPopup: jest.fn(),
+      events,
+    } as any;
     await act(async () => {
-      const u = {
-        getUser: jest.fn(),
-        signinPopupCallback: jest.fn(),
-        signinPopup: jest.fn(),
-        events,
-      } as any;
       render(
         <AuthProvider userManager={u} autoSignIn={false}>
           <AuthContext.Consumer>
@@ -77,20 +78,22 @@ describe('AuthContext', () => {
           </AuthContext.Consumer>
         </AuthProvider>,
       );
-      await waitFor(() => expect(u.signinPopupCallback).toHaveBeenCalled());
-      await waitFor(() => expect(u.signinPopup).toHaveBeenCalled());
     });
+    expect(u.signinPopupCallback).toHaveBeenCalled();
+    expect(u.signinPopup).toHaveBeenCalled();
   });
+  
   it('should not redirect when asked', async () => {
+    const u = {
+      getUser: jest.fn(),
+      events,
+    } as any;
     await act(async () => {
-      const u = {
-        getUser: jest.fn(),
-        events,
-      } as any;
       render(<AuthProvider userManager={u} autoSignIn={false}></AuthProvider>);
-      await waitFor(() => expect(u.getUser).toHaveBeenCalled());
     });
+    expect(u.getUser).toHaveBeenCalled();
   });
+  
   it('should generate a UserManager', async () => {
     render(
       <AuthProvider
@@ -99,8 +102,9 @@ describe('AuthContext', () => {
         redirectUri="http://127.0.0.1"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenCalled());
+    expect(UserManager).toHaveBeenCalled();
   });
+  
   it('should use post-logout redirect URI when given', async () => {
     render(
       <AuthProvider
@@ -110,10 +114,11 @@ describe('AuthContext', () => {
         postLogoutRedirectUri="https://localhost"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
+    expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({ post_logout_redirect_uri: 'https://localhost'})
-    ));
+    );
   });
+  
   it('should fall back to redirectUri when post-logout redirect URI is not given', async () => {
     render(
       <AuthProvider
@@ -122,10 +127,11 @@ describe('AuthContext', () => {
         redirectUri="http://127.0.0.1"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
+    expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1'})
-    ));
+    );
   });
+  
   it('should use silent redirect URI when given', async () => {
     render(
       <AuthProvider
@@ -135,10 +141,11 @@ describe('AuthContext', () => {
         silentRedirectUri="https://localhost"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
+    expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({ silent_redirect_uri: 'https://localhost'})
-    ));
+    );
   });
+  
   it('should fall back to redirectUri when silent redirect URI is not given', async () => {
     render(
       <AuthProvider
@@ -147,21 +154,22 @@ describe('AuthContext', () => {
         redirectUri="http://127.0.0.1"
       />,
     );
-    await waitFor(() => expect(UserManager).toHaveBeenLastCalledWith(
+    expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1'})
-    ));
+    );
   });
 
   it('should get userData', async () => {
+    const userManager = {
+      getUser: async () => ({
+        access_token: 'token',
+      }),
+      signinCallback: jest.fn(),
+      events,
+    } as any;
+    let result: any;
     await act(async () => {
-      const userManager = {
-        getUser: async () => ({
-          access_token: 'token',
-        }),
-        signinCallback: jest.fn(),
-        events,
-      } as any;
-      const { getByText } = render(
+      result = render(
         <AuthProvider userManager={userManager}>
           <AuthContext.Consumer>
             {(value) =>
@@ -172,10 +180,8 @@ describe('AuthContext', () => {
           </AuthContext.Consumer>
         </AuthProvider>,
       );
-      await waitFor(() =>
-        expect(getByText(/^Received:/).textContent).toBe('Received: token'),
-      );
     });
+    expect(result.getByText(/^Received:/).textContent).toBe('Received: token');
   });
 
   it('should refresh userData when new data is available', async () => {
@@ -255,6 +261,7 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.removeUser).toHaveBeenCalled());
   });
+  
   it('should end session and logout the user when signoutRedirect is true', async () => {
     const userManager = {
       getUser: async () => ({
@@ -281,6 +288,7 @@ describe('AuthContext', () => {
     await waitFor(() => expect(onSignOut).toHaveBeenCalled());
     await waitFor(() => expect(userManager.signoutRedirect).toHaveBeenCalled());
   });
+  
   it('should end session and logout the user when signoutRedirect is an object', async () => {
     const userManager = {
       getUser: async () => ({

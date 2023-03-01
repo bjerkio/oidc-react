@@ -1,4 +1,4 @@
-import {UserManager, User, PopupWindowFeatures} from 'oidc-client-ts';
+import {UserManager, User, PopupWindowFeatures, SigninRedirectArgs, SignoutRedirectArgs} from 'oidc-client-ts';
 export interface Location {
   search: string;
   hash: string;
@@ -124,7 +124,7 @@ export interface AuthContextProps {
   /**
    * Alias for userManager.signInRedirect
    */
-  signIn: (args?: unknown) => Promise<void>;
+  signIn: (args?: SigninRedirectArgs) => Promise<void>;
   /**
    * Alias for userManager.signinPopup
    */
@@ -136,7 +136,7 @@ export interface AuthContextProps {
   /**
    *
    */
-  signOutRedirect: (args?: unknown) => Promise<void>;
+  signOutRedirect: (args?: SignoutRedirectArgs) => Promise<void>;
   /**
    * See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.html) for more details.
    */
