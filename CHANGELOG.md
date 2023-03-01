@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/bjerkio/oidc-react/compare/v2.1.0...v3.0.0) (2023-03-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* `signIn` and `signOutRedirect` now has it's own types.
+
+### Features
+
+* add sourcemap and comments ([#947](https://github.com/bjerkio/oidc-react/issues/947)) ([a605296](https://github.com/bjerkio/oidc-react/commit/a605296a7ebffe9952850593b22670475f4701f9))
+* pin and update all dependencies ([#948](https://github.com/bjerkio/oidc-react/issues/948)) ([caf90a7](https://github.com/bjerkio/oidc-react/commit/caf90a789c1864b01648578c874ca85b818cdf0a))
+* update + pin a key dependencies in use ([#945](https://github.com/bjerkio/oidc-react/issues/945)) ([9e69e80](https://github.com/bjerkio/oidc-react/commit/9e69e80a5fc1e2596ed2b176f95d3ae8b3ac655b))
+
+
+### Bug Fixes
+
+* remove bundlesize dependency ([#936](https://github.com/bjerkio/oidc-react/issues/936)) ([e9f8d8a](https://github.com/bjerkio/oidc-react/commit/e9f8d8a596eb695c875956bd00c3c379fb4e4898))
+* validation environment  ([#945](https://github.com/bjerkio/oidc-react/issues/945)) ([9e69e80](https://github.com/bjerkio/oidc-react/commit/9e69e80a5fc1e2596ed2b176f95d3ae8b3ac655b))
+
+
+### Code Refactoring
+
+* add types ([#945](https://github.com/bjerkio/oidc-react/issues/945)) ([9e69e80](https://github.com/bjerkio/oidc-react/commit/9e69e80a5fc1e2596ed2b176f95d3ae8b3ac655b))
+
 ## [2.1.0](https://github.com/bjerkio/oidc-react/compare/v2.0.3...v2.1.0) (2022-10-23)
 
 
