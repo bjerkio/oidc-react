@@ -14,7 +14,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react",
-    "rootDir": "."
+    "rootDir": ".",
+    "sourceMap": true
   },
   "include": [
     "*.ts",
