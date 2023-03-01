@@ -105,7 +105,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   }, []);
 
   useEffect(() => {
-    const getUser = async (): Promise<void> => {
+    (async () => {
       // Store current isMounted since this could change while awaiting async operations below
       const isMounted = isMountedRef.current;
 
@@ -128,9 +128,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         setUserData(user);
         setIsLoading(false);
       }
-      return;
-    };
-    getUser();
+    })();
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
   useEffect(() => {
