@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useRef, PropsWithChildren, useMemo, useCallback } from 'react';
-import { UserManager, User } from 'oidc-client-ts';
+import { UserManager, User, SigninRedirectArgs, SignoutRedirectArgs } from 'oidc-client-ts';
 import {
   Location,
   AuthProviderProps,
@@ -113,15 +113,14 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
        * Check if the user is returning back from OIDC.
        */
       if (hasCodeInUrl(location)) {
-        const user: any = await userManager.signinCallback();
+        const user = await userManager.signinCallback() || null;
         setUserData(user);
         setIsLoading(false);
         onSignIn && onSignIn(user);
         return;
       }
 
-      const user = await userManager!.getUser();
-      if ((!user || user.expired) && autoSignIn) {
+      const user = await userManager!.getUser();      if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
         userManager.signinRedirect({state});
       } else if (isMounted) {
@@ -147,7 +146,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
 
   const value = useMemo<AuthContextProps>(() => {
     return {
-      signIn: async (args: any): Promise<void> => {
+      signIn: async (args?: SigninRedirectArgs): Promise<void> => {
         await userManager.signinRedirect(args);
       },
       signInPopup: async (): Promise<void> => {
@@ -157,7 +156,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         await userManager!.removeUser();
         await signOutHooks();
       },
-      signOutRedirect: async (args?: any): Promise<void> => {
+      signOutRedirect: async (args?: SignoutRedirectArgs): Promise<void> => {
         await userManager!.signoutRedirect(args);
         await signOutHooks();
       },
