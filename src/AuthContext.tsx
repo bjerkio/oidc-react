@@ -120,7 +120,8 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         return;
       }
 
-      const user = await userManager!.getUser();      if ((!user || user.expired) && autoSignIn) {
+      const user = await userManager!.getUser();
+      if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
         userManager.signinRedirect({state});
       } else if (isMounted) {
