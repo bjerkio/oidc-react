@@ -30,7 +30,7 @@
     "@types/faker": "6.6.9",
     "@types/jest": "29.4.0",
     "@types/node": "18.14.2",
-    "@types/react": "^18.0.8",
+    "@types/react": "18.0.28",
     "@typescript-eslint/eslint-plugin": "5.54.0",
     "@typescript-eslint/parser": "5.54.0",
     "bundlewatch": "0.3.3",
