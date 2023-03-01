@@ -1,5 +1,7 @@
 CHANGELOG.md
 docs/*
+dist/*
+build/*
 
 # Logs
 logs
