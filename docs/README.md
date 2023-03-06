@@ -50,7 +50,7 @@ oidc-react
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:520
+node_modules/@types/react/index.d.ts:521
 
 ___
 
