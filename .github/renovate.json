@@ -1,0 +1,62 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":semanticPrefixFixDepsChoreOthers",
+    ":ignoreModulesAndTests",
+    ":autodetectPinVersions",
+    ":dependencyDashboardApproval",
+    ":prHourlyLimit2",
+    ":prConcurrentLimit10",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)",
+    ":semanticCommitScope(deps-dev)",
+    "workarounds:all"
+  ],
+  "dependencyDashboard": false,
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["pin"],
+      "groupName": "pin dependencies",
+      "groupSlug": "yarn-unpinned"
+    },
+    {
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "excludePackageNames": ["oidc-client-ts"],
+      "groupName": "minor dependency updates",
+      "groupSlug": "minor-deps"
+    },
+    {
+      "matchDatasources": ["npm"],
+      "matchPackageNames": [
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "React minor dependency updates",
+      "groupSlug": "react-minor-deps"
+    },
+    {
+      "matchDatasources": ["npm"],
+      "matchPackageNames": [
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
+      "matchUpdateTypes": ["major"],
+      "groupName": "React major dependency updates",
+      "groupSlug": "react-major-deps"
+    },
+    {
+      "matchPackageNames": ["oidc-client-ts"],
+      "matchUpdateTypes": ["minor", "patch", "major"],
+      "groupName": "oidc-client-ts dependency update",
+      "groupSlug": "oidc-client-ts-dep",
+      "semanticCommitScope": "deps"
+    }
+  ]
+}

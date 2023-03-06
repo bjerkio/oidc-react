@@ -115,3 +115,6 @@ dist
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# GitHub Actions
+.github/renovate.json
