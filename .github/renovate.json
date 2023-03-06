@@ -1,12 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    "config:js-app",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":ignoreModulesAndTests",
+    ":autodetectPinVersions",
+    ":dependencyDashboardApproval",
+    ":prHourlyLimit2",
+    ":prConcurrentLimit10",
     ":semanticCommits",
     ":semanticCommitTypeAll(chore)",
-    ":semanticCommitScope(deps-dev)"
+    ":semanticCommitScope(deps-dev)",
+    "workarounds:all"
   ],
+  "dependencyDashboard": false,
   "packageRules": [
     {
       "matchDatasources": ["npm"],
