@@ -12,6 +12,7 @@ import {
   User,
   SigninRedirectArgs,
   SignoutRedirectArgs,
+  UserLoadedCallback,
 } from 'oidc-client-ts';
 import {
   Location,
@@ -145,18 +146,17 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     })();
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
+  /**
+   * Registers a UserLoadedCallback to update the userData state on a userLoaded event 
+   */
   useEffect(() => {
-    // for refreshing react state when new state is available in e.g. session storage
-    const updateUserData = async () => {
-      const user = await userManager.getUser();
+    const updateUserData: UserLoadedCallback = (user: User): void => {
       isMountedRef.current && setUserData(user);
     };
-
     userManager.events.addUserLoaded(updateUserData);
-
     return () => userManager.events.removeUserLoaded(updateUserData);
   }, [userManager]);
-
+  
   const value = useMemo<AuthContextProps>(() => {
     return {
       signIn: async (args?: SigninRedirectArgs): Promise<void> => {
