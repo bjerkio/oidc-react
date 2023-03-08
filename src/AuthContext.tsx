@@ -12,6 +12,7 @@ import {
   User,
   SigninRedirectArgs,
   SignoutRedirectArgs,
+  UserLoadedCallback,
 } from 'oidc-client-ts';
 import {
   Location,
@@ -123,11 +124,11 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     (async () => {
       // Store current isMounted since this could change while awaiting async operations below
       const isMounted = isMountedRef.current;
-
+      const user = await userManager!.getUser();
       /**
        * Check if the user is returning back from OIDC.
        */
-      if (hasCodeInUrl(location)) {
+      if (!user && hasCodeInUrl(location)) {
         const user = (await userManager.signinCallback()) || null;
         setUserData(user);
         setIsLoading(false);
@@ -135,7 +136,6 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         return;
       }
 
-      const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
         userManager.signinRedirect({ state });
@@ -146,15 +146,14 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     })();
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
+  /**
+   * Registers a UserLoadedCallback to update the userData state on a userLoaded event
+   */
   useEffect(() => {
-    // for refreshing react state when new state is available in e.g. session storage
-    const updateUserData = async () => {
-      const user = await userManager.getUser();
+    const updateUserData: UserLoadedCallback = (user: User): void => {
       isMountedRef.current && setUserData(user);
     };
-
     userManager.events.addUserLoaded(updateUserData);
-
     return () => userManager.events.removeUserLoaded(updateUserData);
   }, [userManager]);
 
