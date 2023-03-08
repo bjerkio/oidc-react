@@ -147,7 +147,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
   /**
-   * Registers a UserLoadedCallback to update the userData state on a userLoaded event 
+   * Registers a UserLoadedCallback to update the userData state on a userLoaded event
    */
   useEffect(() => {
     const updateUserData: UserLoadedCallback = (user: User): void => {
@@ -156,7 +156,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     userManager.events.addUserLoaded(updateUserData);
     return () => userManager.events.removeUserLoaded(updateUserData);
   }, [userManager]);
-  
+
   const value = useMemo<AuthContextProps>(() => {
     return {
       signIn: async (args?: SigninRedirectArgs): Promise<void> => {
