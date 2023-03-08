@@ -100,6 +100,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState<User | null>(null);
   const [userManager] = useState<UserManager>(() => initUserManager(props));
+  const isMountedRef = useRef<boolean>(false);
 
   const signOutHooks = useCallback(async (): Promise<void> => {
     setUserData(null);
@@ -113,17 +114,10 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
 
-  const isMountedRef = useRef(true);
+  
   useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
-
-  useEffect(() => {
+    isMountedRef.current = true;
     (async () => {
-      // Store current isMounted since this could change while awaiting async operations below
-      const isMounted = isMountedRef.current;
       const user = await userManager!.getUser();
       /**
        * Check if the user is returning back from OIDC.
@@ -139,11 +133,14 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
         userManager.signinRedirect({ state });
-      } else if (isMounted) {
+      } else if (isMountedRef.current) {
         setUserData(user);
         setIsLoading(false);
       }
     })();
+    return () => {
+      isMountedRef.current = false;
+    }
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
   /**
@@ -151,7 +148,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
    */
   useEffect(() => {
     const updateUserData: UserLoadedCallback = (user: User): void => {
-      isMountedRef.current && setUserData(user);
+      setUserData(user);
     };
     userManager.events.addUserLoaded(updateUserData);
     return () => userManager.events.removeUserLoaded(updateUserData);
