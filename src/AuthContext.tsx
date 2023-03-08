@@ -123,11 +123,11 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     (async () => {
       // Store current isMounted since this could change while awaiting async operations below
       const isMounted = isMountedRef.current;
-
+      const user = await userManager!.getUser();
       /**
        * Check if the user is returning back from OIDC.
        */
-      if (hasCodeInUrl(location)) {
+      if (!user && hasCodeInUrl(location)) {
         const user = (await userManager.signinCallback()) || null;
         setUserData(user);
         setIsLoading(false);
@@ -135,7 +135,6 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         return;
       }
 
-      const user = await userManager!.getUser();
       if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
         userManager.signinRedirect({ state });
