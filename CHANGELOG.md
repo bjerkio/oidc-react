@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/bjerkio/oidc-react/compare/v3.0.0...v3.0.1) (2023-03-08)
+
+
+### Bug Fixes
+
+* avoid reinitiating partial authentication flow when user is already authenticated  ([#962](https://github.com/bjerkio/oidc-react/issues/962)) ([7c88d80](https://github.com/bjerkio/oidc-react/commit/7c88d800d2dd64f8b032787076709fc98cf8486d))
+
 ## [3.0.0](https://github.com/bjerkio/oidc-react/compare/v2.1.0...v3.0.0) (2023-03-01)
 
 
