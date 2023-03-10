@@ -77,8 +77,8 @@ export interface AuthProviderProps {
    */
   location?: Location;
   /**
-   * Flag to control automatic redirection to the OIDC/OAuth2 provider when not signed in. 
-   * 
+   * Flag to control automatic redirection to the OIDC/OAuth2 provider when not signed in.
+   *
    * Defaults to true.
    */
   autoSignIn?: boolean;
@@ -87,8 +87,8 @@ export interface AuthProviderProps {
    */
   autoSignInArgs?: SigninRedirectArgs;
   /**
-   * Flag to control automatic sign out redirection to the OIDC/OAuth2 provider when silent renewal fails. 
-   * 
+   * Flag to control automatic sign out redirection to the OIDC/OAuth2 provider when silent renewal fails.
+   *
    * Defaults to true.
    */
   autoSignOut?: boolean;
@@ -112,7 +112,8 @@ export interface AuthProviderProps {
    *  The features parameter to window.open for the popup signin window
    *
    * defaults to 'location=no,toolbar=no,width=500,height=500,left=100,top=100'
-   */  popupWindowFeatures?: PopupWindowFeatures;
+   */
+  popupWindowFeatures?: PopupWindowFeatures;
   /**
    *  The URL for the page containing the call to signinPopupCallback to handle the callback from the OIDC/OAuth2
    *

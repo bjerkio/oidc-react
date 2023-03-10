@@ -115,7 +115,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     onSignIn && onSignIn(userFromPopup);
     await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
-  
+
   useEffect(() => {
     isMountedRef.current = true;
     (async () => {
@@ -141,7 +141,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     })();
     return () => {
       isMountedRef.current = false;
-    }
+    };
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
   /**
@@ -151,8 +151,10 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     const updateUserData: UserLoadedCallback = (user: User): void => {
       setUserData(user);
     };
-    const onSilentRenewError: SilentRenewErrorCallback = async (error: Error): Promise<void> => {
-      if(autoSignOut) {
+    const onSilentRenewError: SilentRenewErrorCallback = async (
+      error: Error,
+    ): Promise<void> => {
+      if (autoSignOut) {
         await signOutHooks();
         await userManager.signoutRedirect(autoSignOutArgs);
       }
@@ -162,7 +164,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     return () => {
       userManager.events.removeUserLoaded(updateUserData);
       userManager.events.removeSilentRenewError(onSilentRenewError);
-    }
+    };
   }, [userManager]);
 
   const value = useMemo<AuthContextProps>(() => {

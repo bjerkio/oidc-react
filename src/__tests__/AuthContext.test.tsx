@@ -1,9 +1,9 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 /* eslint @typescript-eslint/explicit-function-return-type: 0 */
 import React from 'react';
-import {SilentRenewErrorCallback, UserManager} from 'oidc-client-ts';
+import { SilentRenewErrorCallback, UserManager } from 'oidc-client-ts';
 import { AuthProvider, AuthContext } from '../AuthContext';
-import {render, act, waitFor, RenderResult} from '@testing-library/react';
+import { render, act, waitFor, RenderResult } from '@testing-library/react';
 
 const events = {
   addUserLoaded: () => undefined,
@@ -333,17 +333,17 @@ describe('AuthContext', () => {
       signoutRedirect: jest.fn(),
       events: {
         ...events,
-        addSilentRenewError: jest.fn(callback => callbacks.push(callback)),
-        removeSilentRenewError: jest.fn(callback => callbacks.splice(callbacks.indexOf(callback), 1))
-      }
+        addSilentRenewError: jest.fn((callback) => callbacks.push(callback)),
+        removeSilentRenewError: jest.fn((callback) =>
+          callbacks.splice(callbacks.indexOf(callback), 1),
+        ),
+      },
     } as any;
 
     // when: the AuthProvider is mounted
     let result: RenderResult;
-    await act(async() => {
-      result = render(
-        <AuthProvider userManager={u} />,
-      );
+    await act(async () => {
+      result = render(<AuthProvider userManager={u} />);
     });
 
     // then: the silentRenewError callback should be registered
@@ -351,9 +351,9 @@ describe('AuthContext', () => {
     expect(callbacks).toHaveLength(1);
 
     // when: the registered silentRenewError callback is called
-    await act(async() => {
+    await act(async () => {
       callbacks[0](new Error('test'));
-    })
+    });
 
     // then: the callback should trigger a signout redirect
     expect(u.signoutRedirect).toHaveBeenCalledTimes(1);
