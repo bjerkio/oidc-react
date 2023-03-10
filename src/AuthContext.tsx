@@ -91,6 +91,7 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
 export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   children,
   autoSignIn = true,
+  autoSignInArgs,
   onBeforeSignIn,
   onSignIn,
   onSignOut,
@@ -113,7 +114,6 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     onSignIn && onSignIn(userFromPopup);
     await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
-
   
   useEffect(() => {
     isMountedRef.current = true;
@@ -132,7 +132,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
 
       if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
-        userManager.signinRedirect({ state });
+        await userManager.signinRedirect({ ...autoSignInArgs, state });
       } else if (isMountedRef.current) {
         setUserData(user);
         setIsLoading(false);

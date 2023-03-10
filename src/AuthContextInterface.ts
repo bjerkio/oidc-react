@@ -77,9 +77,15 @@ export interface AuthProviderProps {
    */
   location?: Location;
   /**
-   * defaults to true
+   * Flag to control automatic redirection to the OIDC/OAuth2 provider when not signed in. 
+   * 
+   * Defaults to true.
    */
   autoSignIn?: boolean;
+  /**
+   * Optional sign in arguments to be used when `autoSignIn` is enabled.
+   */
+  autoSignInArgs?: SigninRedirectArgs;
   /**
    * Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
    *
@@ -103,16 +109,14 @@ export interface AuthProviderProps {
    */
   popupRedirectUri?: string;
   /**
-   *  The target parameter to window.open for the popup signin window.
-   *
+   *  The target parameter to window.open for the popup signin window.   *
    * defaults to '_blank'
    */
   popupWindowTarget?: string;
   /**
    * On before sign in hook. Can be use to store the current url for use after signing in.
    *
-   * This only gets called if autoSignIn is true
-   */
+   * This only gets called if autoSignIn is true   */
   onBeforeSignIn?: () => string;
   /**
    * On sign out hook. Can be a async function.
