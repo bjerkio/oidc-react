@@ -87,6 +87,16 @@ export interface AuthProviderProps {
    */
   autoSignInArgs?: SigninRedirectArgs;
   /**
+   * Flag to control automatic sign out redirection to the OIDC/OAuth2 provider when silent renewal fails. 
+   * 
+   * Defaults to true.
+   */
+  autoSignOut?: boolean;
+  /**
+   * Optional sign out arguments to be used when `autoSignOut` is enabled.
+   */
+  autoSignOutArgs?: SignoutRedirectArgs;
+  /**
    * Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
    *
    * Defaults to true.
@@ -95,7 +105,7 @@ export interface AuthProviderProps {
   /**
    *  Flag to control if additional identity data is loaded from the user info endpoint in order to populate the user's profile.
    *
-   * defaults to true
+   * Defaults to true.
    */
   loadUserInfo?: boolean;
   /**
