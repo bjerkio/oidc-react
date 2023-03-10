@@ -83,7 +83,7 @@ export interface AuthProviderProps {
   /**
    * Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
    *
-   * defaults to false
+   * Defaults to true.
    */
   automaticSilentRenew?: boolean;
   /**
@@ -96,8 +96,7 @@ export interface AuthProviderProps {
    *  The features parameter to window.open for the popup signin window
    *
    * defaults to 'location=no,toolbar=no,width=500,height=500,left=100,top=100'
-   */
-  popupWindowFeatures?: PopupWindowFeatures;
+   */  popupWindowFeatures?: PopupWindowFeatures;
   /**
    *  The URL for the page containing the call to signinPopupCallback to handle the callback from the OIDC/OAuth2
    *
