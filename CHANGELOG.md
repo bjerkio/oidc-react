@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/bjerkio/oidc-react/compare/v3.0.1...v3.0.2) (2023-03-12)
+
+
+### Bug Fixes
+
+* handle token refresh failure ([#968](https://github.com/bjerkio/oidc-react/issues/968)) ([751732b](https://github.com/bjerkio/oidc-react/commit/751732b636b1911ff07bb86e34fff80ff5f39933))
+
 ## [3.0.1](https://github.com/bjerkio/oidc-react/compare/v3.0.0...v3.0.1) (2023-03-08)
 
 
