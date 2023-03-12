@@ -1,13 +1,15 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 /* eslint @typescript-eslint/explicit-function-return-type: 0 */
 import React from 'react';
-import { UserManager } from 'oidc-client-ts';
+import { SilentRenewErrorCallback, UserManager } from 'oidc-client-ts';
 import { AuthProvider, AuthContext } from '../AuthContext';
-import { render, act, waitFor } from '@testing-library/react';
+import { render, act, waitFor, RenderResult } from '@testing-library/react';
 
 const events = {
   addUserLoaded: () => undefined,
   removeUserLoaded: () => undefined,
+  addSilentRenewError: () => undefined,
+  removeSilentRenewError: () => undefined,
 };
 
 jest.mock('oidc-client-ts', () => {
@@ -192,10 +194,8 @@ describe('AuthContext', () => {
         access_token: 'token',
       }),
       signinCallback: jest.fn(),
-      events: {
-        addUserLoaded: (fn: () => void) => fn(),
-        removeUserLoaded: () => undefined,
-      },
+      signoutRedirect: jest.fn(),
+      events,
     } as any;
     const { getByText } = render(
       <AuthProvider userManager={userManager}>
@@ -320,5 +320,51 @@ describe('AuthContext', () => {
         state: 'thebranches',
       }),
     );
+  });
+
+  it('should sign out redirect on silent renew failure', async () => {
+    // given: a signed in UserManager that stashes silentRenewError callbacks
+    const callbacks: SilentRenewErrorCallback[] = [];
+    const u = {
+      getUser: async () => ({
+        access_token: 'token',
+      }),
+      signinCallback: jest.fn(),
+      signoutRedirect: jest.fn(),
+      events: {
+        ...events,
+        addSilentRenewError: jest.fn((callback) => callbacks.push(callback)),
+        removeSilentRenewError: jest.fn((callback) =>
+          callbacks.splice(callbacks.indexOf(callback), 1),
+        ),
+      },
+    } as any;
+
+    // when: the AuthProvider is mounted
+    let result: RenderResult;
+    await act(async () => {
+      result = render(<AuthProvider userManager={u} />);
+    });
+
+    // then: the silentRenewError callback should be registered
+    expect(u.events.addSilentRenewError).toHaveBeenCalledTimes(1);
+    expect(callbacks).toHaveLength(1);
+
+    // when: the registered silentRenewError callback is called
+    await act(async () => {
+      callbacks[0](new Error('test'));
+    });
+
+    // then: the callback should trigger a signout redirect
+    expect(u.signoutRedirect).toHaveBeenCalledTimes(1);
+
+    // when: the AuthProvider is unmounted
+    act(() => {
+      result.unmount();
+    });
+
+    // then: the callback should be unregistered
+    expect(u.events.removeSilentRenewError).toHaveBeenCalledTimes(1);
+    expect(callbacks).toHaveLength(0);
   });
 });

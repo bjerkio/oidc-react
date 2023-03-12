@@ -13,6 +13,7 @@ import {
   SigninRedirectArgs,
   SignoutRedirectArgs,
   UserLoadedCallback,
+  SilentRenewErrorCallback,
 } from 'oidc-client-ts';
 import {
   Location,
@@ -42,7 +43,6 @@ export const hasCodeInUrl = (location: Location): boolean => {
       hashParams.get('session_state'),
   );
 };
-
 /**
  * @private
  * @hidden
@@ -91,6 +91,9 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
 export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   children,
   autoSignIn = true,
+  autoSignInArgs,
+  autoSignOut = true,
+  autoSignOutArgs,
   onBeforeSignIn,
   onSignIn,
   onSignOut,
@@ -100,12 +103,12 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState<User | null>(null);
   const [userManager] = useState<UserManager>(() => initUserManager(props));
+  const isMountedRef = useRef<boolean>(false);
 
   const signOutHooks = useCallback(async (): Promise<void> => {
     setUserData(null);
     onSignOut && onSignOut();
   }, [onSignOut]);
-
   const signInPopupHooks = useCallback(async (): Promise<void> => {
     const userFromPopup = await userManager.signinPopup();
     setUserData(userFromPopup);
@@ -113,17 +116,9 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
 
-  const isMountedRef = useRef(true);
   useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
-
-  useEffect(() => {
+    isMountedRef.current = true;
     (async () => {
-      // Store current isMounted since this could change while awaiting async operations below
-      const isMounted = isMountedRef.current;
       const user = await userManager!.getUser();
       /**
        * Check if the user is returning back from OIDC.
@@ -138,23 +133,38 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
 
       if ((!user || user.expired) && autoSignIn) {
         const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
-        userManager.signinRedirect({ state });
-      } else if (isMounted) {
+        await userManager.signinRedirect({ ...autoSignInArgs, state });
+      } else if (isMountedRef.current) {
         setUserData(user);
         setIsLoading(false);
       }
     })();
+    return () => {
+      isMountedRef.current = false;
+    };
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
 
   /**
-   * Registers a UserLoadedCallback to update the userData state on a userLoaded event
+   * Registers UserManager event callbacks for handling changes to user state due to automaticSilentRenew, session expiry, etc.
    */
   useEffect(() => {
     const updateUserData: UserLoadedCallback = (user: User): void => {
-      isMountedRef.current && setUserData(user);
+      setUserData(user);
+    };
+    const onSilentRenewError: SilentRenewErrorCallback = async (
+      error: Error,
+    ): Promise<void> => {
+      if (autoSignOut) {
+        await signOutHooks();
+        await userManager.signoutRedirect(autoSignOutArgs);
+      }
     };
     userManager.events.addUserLoaded(updateUserData);
-    return () => userManager.events.removeUserLoaded(updateUserData);
+    userManager.events.addSilentRenewError(onSilentRenewError);
+    return () => {
+      userManager.events.removeUserLoaded(updateUserData);
+      userManager.events.removeSilentRenewError(onSilentRenewError);
+    };
   }, [userManager]);
 
   const value = useMemo<AuthContextProps>(() => {
@@ -166,11 +176,11 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         await signInPopupHooks();
       },
       signOut: async (): Promise<void> => {
-        await userManager!.removeUser();
+        await userManager.removeUser();
         await signOutHooks();
       },
       signOutRedirect: async (args?: SignoutRedirectArgs): Promise<void> => {
-        await userManager!.signoutRedirect(args);
+        await userManager.signoutRedirect(args);
         await signOutHooks();
       },
       userManager,
