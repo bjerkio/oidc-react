@@ -29,7 +29,7 @@ oidc-react
 
 #### Defined in
 
-[src/AuthContext.tsx:23](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContext.tsx#L23)
+[src/AuthContext.tsx:24](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContext.tsx#L24)
 
 ## Functions
 
