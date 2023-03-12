@@ -8,6 +8,9 @@
 
 - [authority](AuthProviderProps.md#authority)
 - [autoSignIn](AuthProviderProps.md#autosignin)
+- [autoSignInArgs](AuthProviderProps.md#autosigninargs)
+- [autoSignOut](AuthProviderProps.md#autosignout)
+- [autoSignOutArgs](AuthProviderProps.md#autosignoutargs)
 - [automaticSilentRenew](AuthProviderProps.md#automaticsilentrenew)
 - [clientId](AuthProviderProps.md#clientid)
 - [clientSecret](AuthProviderProps.md#clientsecret)
@@ -45,11 +48,51 @@ ___
 
 • `Optional` **autoSignIn**: `boolean`
 
-defaults to true
+Flag to control automatic redirection to the OIDC/OAuth2 provider when not signed in.
+
+Defaults to true.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:82](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L82)
+[src/AuthContextInterface.ts:84](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L84)
+
+___
+
+### autoSignInArgs
+
+• `Optional` **autoSignInArgs**: `SigninRedirectArgs`
+
+Optional sign in arguments to be used when `autoSignIn` is enabled.
+
+#### Defined in
+
+[src/AuthContextInterface.ts:88](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L88)
+
+___
+
+### autoSignOut
+
+• `Optional` **autoSignOut**: `boolean`
+
+Flag to control automatic sign out redirection to the OIDC/OAuth2 provider when silent renewal fails.
+
+Defaults to true.
+
+#### Defined in
+
+[src/AuthContextInterface.ts:94](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L94)
+
+___
+
+### autoSignOutArgs
+
+• `Optional` **autoSignOutArgs**: `SignoutRedirectArgs`
+
+Optional sign out arguments to be used when `autoSignOut` is enabled.
+
+#### Defined in
+
+[src/AuthContextInterface.ts:98](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L98)
 
 ___
 
@@ -59,11 +102,11 @@ ___
 
 Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
 
-defaults to false
+Defaults to true.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:88](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L88)
+[src/AuthContextInterface.ts:104](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L104)
 
 ___
 
@@ -109,11 +152,11 @@ ___
 
 Flag to control if additional identity data is loaded from the user info endpoint in order to populate the user's profile.
 
-defaults to true
+Defaults to true.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:94](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L94)
+[src/AuthContextInterface.ts:110](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L110)
 
 ___
 
@@ -147,7 +190,7 @@ This only gets called if autoSignIn is true
 
 #### Defined in
 
-[src/AuthContextInterface.ts:117](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L117)
+[src/AuthContextInterface.ts:131](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L131)
 
 ___
 
@@ -173,7 +216,7 @@ On sign out hook. Can be a async function.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:122](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L122)
+[src/AuthContextInterface.ts:136](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L136)
 
 ___
 
@@ -199,7 +242,7 @@ On sign out hook. Can be a async function.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:126](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L126)
+[src/AuthContextInterface.ts:140](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L140)
 
 ___
 
@@ -211,7 +254,7 @@ The URL for the page containing the call to signinPopupCallback to handle the ca
 
 #### Defined in
 
-[src/AuthContextInterface.ts:105](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L105)
+[src/AuthContextInterface.ts:121](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L121)
 
 ___
 
@@ -225,7 +268,7 @@ defaults to 'location=no,toolbar=no,width=500,height=500,left=100,top=100'
 
 #### Defined in
 
-[src/AuthContextInterface.ts:100](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L100)
+[src/AuthContextInterface.ts:116](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L116)
 
 ___
 
@@ -233,13 +276,12 @@ ___
 
 • `Optional` **popupWindowTarget**: `string`
 
-The target parameter to window.open for the popup signin window.
-
+The target parameter to window.open for the popup signin window.   *
 defaults to '_blank'
 
 #### Defined in
 
-[src/AuthContextInterface.ts:111](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L111)
+[src/AuthContextInterface.ts:126](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L126)
 
 ___
 
