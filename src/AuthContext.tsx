@@ -155,14 +155,13 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     const updateUserData: UserLoadedCallback = (user: User): void => {
       setUserData(user);
     };
-    const onSilentRenewError: SilentRenewErrorCallback = async (
-      error: Error,
-    ): Promise<void> => {
-      if (autoSignOut) {
-        await signOutHooks();
-        await userManager.signoutRedirect(autoSignOutArgs);
-      }
-    };
+    const onSilentRenewError: SilentRenewErrorCallback =
+      async (): Promise<void> => {
+        if (autoSignOut) {
+          await signOutHooks();
+          await userManager.signoutRedirect(autoSignOutArgs);
+        }
+      };
     userManager.events.addUserLoaded(updateUserData);
     userManager.events.addSilentRenewError(onSilentRenewError);
     return () => {
