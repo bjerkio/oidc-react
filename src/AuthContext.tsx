@@ -116,25 +116,29 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
 
+  /**
+   * Handles user auth flow on initial render.
+   */
   useEffect(() => {
     isMountedRef.current = true;
     (async () => {
       const user = await userManager!.getUser();
-      /**
-       * Check if the user is returning back from OIDC.
-       */
-      if (!user && hasCodeInUrl(location)) {
-        const user = (await userManager.signinCallback()) || null;
-        setUserData(user);
-        setIsLoading(false);
-        onSignIn && onSignIn(user);
-        return;
+      if (!user || user.expired) {
+        // If the user is returning back from the OIDC provider, get and set the user data.
+        if (hasCodeInUrl(location)) {
+          const user = (await userManager.signinCallback()) || null;
+          setUserData(user);
+          setIsLoading(false);
+          onSignIn && onSignIn(user);
+        }
+        // If autoSignIn is enabled, redirect to the OIDC provider.
+        else if (autoSignIn) {
+          const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
+          await userManager.signinRedirect({ ...autoSignInArgs, state });
+        }
       }
-
-      if ((!user || user.expired) && autoSignIn) {
-        const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
-        await userManager.signinRedirect({ ...autoSignInArgs, state });
-      } else if (isMountedRef.current) {
+      // Otherwise if the user is already signed in, set the user data.
+      else if (isMountedRef.current) {
         setUserData(user);
         setIsLoading(false);
       }
