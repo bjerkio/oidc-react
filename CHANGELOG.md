@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/bjerkio/oidc-react/compare/v3.0.2...v3.0.3) (2023-03-16)
+
+
+### Bug Fixes
+
+* handle both null user and user.expired when autoSignIn is disabled ([#977](https://github.com/bjerkio/oidc-react/issues/977)) ([1a95930](https://github.com/bjerkio/oidc-react/commit/1a9593060f902ae89880fb6bfd076bb24fbac8ab))
+
 ## [3.0.2](https://github.com/bjerkio/oidc-react/compare/v3.0.1...v3.0.2) (2023-03-12)
 
 
