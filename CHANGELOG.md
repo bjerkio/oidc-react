@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/bjerkio/oidc-react/compare/v3.0.3...v3.0.4) (2023-03-21)
+
+
+### Bug Fixes
+
+* isLoading has correct status when autoSignIn is disabled and user is signed out ([#982](https://github.com/bjerkio/oidc-react/issues/982)) ([db28cdd](https://github.com/bjerkio/oidc-react/commit/db28cdd6a6368d8d07f01f1827d77afd18d70bf1))
+
 ## [3.0.3](https://github.com/bjerkio/oidc-react/compare/v3.0.2...v3.0.3) (2023-03-16)
 
 
