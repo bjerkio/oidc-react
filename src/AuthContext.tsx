@@ -121,6 +121,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
    */
   useEffect(() => {
     isMountedRef.current = true;
+    setIsLoading(true);
     (async () => {
       const user = await userManager!.getUser();
       if (!user || user.expired) {
@@ -128,7 +129,6 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         if (hasCodeInUrl(location)) {
           const user = (await userManager.signinCallback()) || null;
           setUserData(user);
-          setIsLoading(false);
           onSignIn && onSignIn(user);
         }
         // If autoSignIn is enabled, redirect to the OIDC provider.
@@ -140,8 +140,8 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       // Otherwise if the user is already signed in, set the user data.
       else if (isMountedRef.current) {
         setUserData(user);
-        setIsLoading(false);
       }
+      setIsLoading(false);
     })();
     return () => {
       isMountedRef.current = false;
