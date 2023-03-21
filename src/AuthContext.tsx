@@ -153,7 +153,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
    */
   useEffect(() => {
     const updateUserData: UserLoadedCallback = (user: User): void => {
-      setUserData(user);
+      isMountedRef.current && setUserData(user);
     };
     const onSilentRenewError: SilentRenewErrorCallback =
       async (): Promise<void> => {
