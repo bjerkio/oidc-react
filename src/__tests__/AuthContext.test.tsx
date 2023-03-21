@@ -97,25 +97,29 @@ describe('AuthContext', () => {
   });
 
   it('should generate a UserManager', async () => {
-    render(
-      <AuthProvider
-        authority="http://127.0.0.1"
-        clientId="client-id-test"
-        redirectUri="http://127.0.0.1"
-      />,
-    );
+    await act(async () => {
+      render(
+        <AuthProvider
+          authority="http://127.0.0.1"
+          clientId="client-id-test"
+          redirectUri="http://127.0.0.1"
+        />,
+      );
+    });
     expect(UserManager).toHaveBeenCalled();
   });
 
   it('should use post-logout redirect URI when given', async () => {
-    render(
-      <AuthProvider
-        authority="http://127.0.0.1"
-        clientId="client-id-test"
-        redirectUri="http://127.0.0.1"
-        postLogoutRedirectUri="https://localhost"
-      />,
-    );
+    await act(async () => {
+      render(
+        <AuthProvider
+          authority="http://127.0.0.1"
+          clientId="client-id-test"
+          redirectUri="http://127.0.0.1"
+          postLogoutRedirectUri="https://localhost"
+        />,
+      );
+    });
     expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({
         post_logout_redirect_uri: 'https://localhost',
@@ -124,40 +128,46 @@ describe('AuthContext', () => {
   });
 
   it('should fall back to redirectUri when post-logout redirect URI is not given', async () => {
-    render(
-      <AuthProvider
-        authority="http://127.0.0.1"
-        clientId="client-id-test"
-        redirectUri="http://127.0.0.1"
-      />,
-    );
+    await act(async () => {
+      render(
+        <AuthProvider
+          authority="http://127.0.0.1"
+          clientId="client-id-test"
+          redirectUri="http://127.0.0.1"
+        />,
+      );
+    });
     expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({ post_logout_redirect_uri: 'http://127.0.0.1' }),
     );
   });
 
   it('should use silent redirect URI when given', async () => {
-    render(
-      <AuthProvider
-        authority="http://127.0.0.1"
-        clientId="client-id-test"
-        redirectUri="http://127.0.0.1"
-        silentRedirectUri="https://localhost"
-      />,
-    );
+    await act(async () => {
+      render(
+        <AuthProvider
+          authority="http://127.0.0.1"
+          clientId="client-id-test"
+          redirectUri="http://127.0.0.1"
+          silentRedirectUri="https://localhost"
+        />,
+      );
+    });
     expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({ silent_redirect_uri: 'https://localhost' }),
     );
   });
 
   it('should fall back to redirectUri when silent redirect URI is not given', async () => {
-    render(
-      <AuthProvider
-        authority="http://127.0.0.1"
-        clientId="client-id-test"
-        redirectUri="http://127.0.0.1"
-      />,
-    );
+    await act(async () => {
+      render(
+        <AuthProvider
+          authority="http://127.0.0.1"
+          clientId="client-id-test"
+          redirectUri="http://127.0.0.1"
+        />,
+      );
+    });
     expect(UserManager).toHaveBeenLastCalledWith(
       expect.objectContaining({ silent_redirect_uri: 'http://127.0.0.1' }),
     );
