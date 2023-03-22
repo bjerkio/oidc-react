@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/bjerkio/oidc-react/compare/v3.0.4...v4.0.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* `signIn` and `signOutRedirect` now has it's own types.
+* replace oidc-client-js with oidc-client-ts ([#860](https://github.com/bjerkio/oidc-react/issues/860))
+* migrate to react 18 ([#827](https://github.com/bjerkio/oidc-react/issues/827))
+
+### Features
+
+* `isLoading` state ([#577](https://github.com/bjerkio/oidc-react/issues/577)) ([b24e9ff](https://github.com/bjerkio/oidc-react/commit/b24e9ff5434b7ddf59000890637fbca36cf8e8ec))
+* add auto silent renew option ([6bb2df5](https://github.com/bjerkio/oidc-react/commit/6bb2df5e1c7c8b9f12fc220bcd51c1eac4890fe4))
+* add extraQueryParams to AuthProvider ([#890](https://github.com/bjerkio/oidc-react/issues/890)) ([89dc4ea](https://github.com/bjerkio/oidc-react/commit/89dc4ea0a1aaecabe73c164a7f519b03e94c28d4))
+* Add signInPopup method ([#479](https://github.com/bjerkio/oidc-react/issues/479)) ([a50c196](https://github.com/bjerkio/oidc-react/commit/a50c196bba92cc95698eb10d7e5b68eb7b0959b1))
+* Add silentRedirectUri option. ([#528](https://github.com/bjerkio/oidc-react/issues/528)) ([a349d4d](https://github.com/bjerkio/oidc-react/commit/a349d4dc770ed22af9c68b9c5c178550382e7006))
+* add sourcemap and comments ([#947](https://github.com/bjerkio/oidc-react/issues/947)) ([a605296](https://github.com/bjerkio/oidc-react/commit/a605296a7ebffe9952850593b22670475f4701f9))
+* create ES5 output for IE11 compatibility. ([#696](https://github.com/bjerkio/oidc-react/issues/696)) ([4d9712c](https://github.com/bjerkio/oidc-react/commit/4d9712c1882384cc89311c16a56bc6b091a53b0c))
+* migrate to react 18 ([#827](https://github.com/bjerkio/oidc-react/issues/827)) ([28e998a](https://github.com/bjerkio/oidc-react/commit/28e998a1c56c8fd32ef15143ae4d31993f8d22d5))
+* pin and update all dependencies ([#948](https://github.com/bjerkio/oidc-react/issues/948)) ([caf90a7](https://github.com/bjerkio/oidc-react/commit/caf90a789c1864b01648578c874ca85b818cdf0a))
+* update + pin a key dependencies in use ([#945](https://github.com/bjerkio/oidc-react/issues/945)) ([9e69e80](https://github.com/bjerkio/oidc-react/commit/9e69e80a5fc1e2596ed2b176f95d3ae8b3ac655b))
+* upgrade to oidc-client 1.11.5 ([#527](https://github.com/bjerkio/oidc-react/issues/527)) ([3943c94](https://github.com/bjerkio/oidc-react/commit/3943c942237cfc6bbe8346ef1543a9a0fcf202f9))
+
+
+### Bug Fixes
+
+* Add React 17 to peer dependencies ([#874](https://github.com/bjerkio/oidc-react/issues/874)) ([54fd6e0](https://github.com/bjerkio/oidc-react/commit/54fd6e0ea21b773e26e9e5fb0a42610de54097e5))
+* alway userData=null - isLoading=true ([#877](https://github.com/bjerkio/oidc-react/issues/877)) ([d2d78ce](https://github.com/bjerkio/oidc-react/commit/d2d78ce29fced9598bf9928fd4561fb83c9d9834))
+* AuthContext cannot be null ([#576](https://github.com/bjerkio/oidc-react/issues/576)) ([61bd0fa](https://github.com/bjerkio/oidc-react/commit/61bd0fa65dbd682437aee3aae13258b8f4668f69))
+* avoid reinitiating partial authentication flow when user is already authenticated  ([#962](https://github.com/bjerkio/oidc-react/issues/962)) ([7c88d80](https://github.com/bjerkio/oidc-react/commit/7c88d800d2dd64f8b032787076709fc98cf8486d))
+* change callback method to allow other sign in method ([c497f49](https://github.com/bjerkio/oidc-react/commit/c497f49ddbca100ff5f52419ce07ac64c00d2656))
+* handle both null user and user.expired when autoSignIn is disabled ([#977](https://github.com/bjerkio/oidc-react/issues/977)) ([1a95930](https://github.com/bjerkio/oidc-react/commit/1a9593060f902ae89880fb6bfd076bb24fbac8ab))
+* handle token refresh failure ([#968](https://github.com/bjerkio/oidc-react/issues/968)) ([751732b](https://github.com/bjerkio/oidc-react/commit/751732b636b1911ff07bb86e34fff80ff5f39933))
+* Including 'Log' in export ([#383](https://github.com/bjerkio/oidc-react/issues/383)) ([1f10c07](https://github.com/bjerkio/oidc-react/commit/1f10c075f90dcf0e2abb3d48ea768c38164f2f74))
+* initUserManager in AuthContext called every render call ([#764](https://github.com/bjerkio/oidc-react/issues/764)) ([2cef6c7](https://github.com/bjerkio/oidc-react/commit/2cef6c748be19f278ba49900025f92dbd392885e))
+* isLoading has correct status when autoSignIn is disabled and user is signed out ([#982](https://github.com/bjerkio/oidc-react/issues/982)) ([db28cdd](https://github.com/bjerkio/oidc-react/commit/db28cdd6a6368d8d07f01f1827d77afd18d70bf1))
+* Load new state from session/local storage when available after a silent renew ([#363](https://github.com/bjerkio/oidc-react/issues/363)) ([319d0e3](https://github.com/bjerkio/oidc-react/commit/319d0e34d3f890a4838f436af6b4cb3859a0ad85))
+* Move react, react-dom to peerDependencies ([b4fd437](https://github.com/bjerkio/oidc-react/commit/b4fd437dfb81248766cb5be59b2bd684e95dcf7e)), closes [#301](https://github.com/bjerkio/oidc-react/issues/301)
+* move release-please to after checkout ([9b70ccf](https://github.com/bjerkio/oidc-react/commit/9b70ccf581e8844d63717a17797790a0c0419443))
+* Remove `getUser` in callback handler ([#461](https://github.com/bjerkio/oidc-react/issues/461)) ([7abb83d](https://github.com/bjerkio/oidc-react/commit/7abb83d97135aed1370c3a86582a1a689fa676f5))
+* remove bundlesize dependency ([#936](https://github.com/bjerkio/oidc-react/issues/936)) ([e9f8d8a](https://github.com/bjerkio/oidc-react/commit/e9f8d8a596eb695c875956bd00c3c379fb4e4898))
+* Remove react-router 🤷 ([527bcd3](https://github.com/bjerkio/oidc-react/commit/527bcd3a9d07fd3097924d022b13d31afb7d2dcf))
+* state update on an unmounted component ([#522](https://github.com/bjerkio/oidc-react/issues/522)) ([0e873f4](https://github.com/bjerkio/oidc-react/commit/0e873f4e6ac7d14cc39f4cb5196b2a79b866da93))
+* use memoized context value ([#880](https://github.com/bjerkio/oidc-react/issues/880)) ([3342a8d](https://github.com/bjerkio/oidc-react/commit/3342a8d29a7b42d4428bd01a409ca079619e9549))
+* validation environment  ([#945](https://github.com/bjerkio/oidc-react/issues/945)) ([9e69e80](https://github.com/bjerkio/oidc-react/commit/9e69e80a5fc1e2596ed2b176f95d3ae8b3ac655b))
+
+
+### Code Refactoring
+
+* add types ([#945](https://github.com/bjerkio/oidc-react/issues/945)) ([9e69e80](https://github.com/bjerkio/oidc-react/commit/9e69e80a5fc1e2596ed2b176f95d3ae8b3ac655b))
+* replace oidc-client-js with oidc-client-ts ([#860](https://github.com/bjerkio/oidc-react/issues/860)) ([a07bb70](https://github.com/bjerkio/oidc-react/commit/a07bb705d4cd6d4074a055f46b83b2b4053fed1b))
+
 ## [3.0.4](https://github.com/bjerkio/oidc-react/compare/v3.0.3...v3.0.4) (2023-03-21)
 
 
