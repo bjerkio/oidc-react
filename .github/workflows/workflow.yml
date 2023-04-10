@@ -64,7 +64,7 @@ jobs:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
           release-type: node
           package-name: oidc-react
-          bootstrap-sha: 07ac025
+          last-release-sha: 07ac025
 
       - if: ${{ steps.release.outputs.release_created }}
         run: yarn publish
