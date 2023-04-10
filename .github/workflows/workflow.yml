@@ -62,9 +62,7 @@ jobs:
         id: release
         with:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
-          release-type: node
-          package-name: oidc-react
-          last-release-sha: 07ac025
+          command: manifest
 
       - if: ${{ steps.release.outputs.release_created }}
         run: yarn publish
