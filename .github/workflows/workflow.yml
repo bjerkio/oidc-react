@@ -62,7 +62,8 @@ jobs:
         id: release
         with:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
-          command: manifest
+          release-type: node
+          package-name: create-bjerk-typescript
 
       - if: ${{ steps.release.outputs.release_created }}
         run: yarn publish
