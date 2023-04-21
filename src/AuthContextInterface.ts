@@ -4,6 +4,7 @@ import {
   PopupWindowFeatures,
   SigninRedirectArgs,
   SignoutRedirectArgs,
+  OidcMetadata,
 } from 'oidc-client-ts';
 export interface Location {
   search: string;
@@ -38,6 +39,10 @@ export interface AuthProviderProps {
    * The URL of the OIDC/OAuth2 provider.
    */
   authority?: string;
+  /**
+   * Manually set metadata if CORS is not configured on the OIDC/OAuth2 provider.
+   */
+  metadata?: Partial<OidcMetadata>;
   /**
    * Extra query params passed to the authorization url.
    */
