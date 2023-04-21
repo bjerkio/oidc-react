@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/bjerkio/oidc-react/compare/oidc-react-v3.0.4...oidc-react-v3.1.0) (2023-04-21)
+
+
+### Features
+
+* add `metadata` parameter to AuthContext ([1e6703b](https://github.com/bjerkio/oidc-react/commit/1e6703b11a8eda0ced7e76cd9e8a27b5abb902f9))
+
 ## [3.0.4](https://github.com/bjerkio/oidc-react/compare/oidc-react-v3.0.4...oidc-react-v3.0.4) (2023-04-10)
 
 
