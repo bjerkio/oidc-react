@@ -28,8 +28,7 @@ $ npm install oidc-react
 
 ## Usage
 
-```typescript
-...
+```tsx
 import { AuthProvider } from 'oidc-react';
 
 const oidcConfig = {

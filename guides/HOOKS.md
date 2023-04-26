@@ -6,7 +6,7 @@ OIDC React comes with hooks! Hooks are a great way, much better then using our [
 
 useAuth returns the same as our [authContext](../docs/interfaces/authcontextprops.md). Let's look at an example of use.
 
-```typescript
+```tsx
 import { useAuth } from 'oidc-react';
 
 export default () => {
