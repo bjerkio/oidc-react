@@ -59,7 +59,7 @@ Apart from this README, you can find details and examples of using the SDK in th
 
 - [SDK Documentation](docs/README.md)
 - [Guides](guides/)
-- [Example repository](https://github.com/simenandre/example-react-oidc)
+- [Example repository](https://github.com/simenandre/example-oidc-react)
 - [oidc-client-ts Documentation](https://authts.github.io/oidc-client-ts/)
 
 ## Contribute & Disclaimer
