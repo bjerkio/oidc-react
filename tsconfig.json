@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "jsx": "react",
     "rootDir": ".",
-    "inlineSourceMap": true
+    "sourceMap": true,
+    "inlineSources": true
   },
   "include": [
     "*.ts",
