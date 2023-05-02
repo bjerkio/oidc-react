@@ -37,7 +37,7 @@ const oidcConfig = {
   },
   authority: 'https://oidc.io/oauth',
   clientId: 'this-is-a-client-id',
-  redirectUri: 'https://my-app.com/'
+  redirectUri: 'https://my-app.com/',
 };
 
 const Routes = () => (

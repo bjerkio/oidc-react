@@ -11,9 +11,7 @@ import { withAuth } from 'oidc-react';
 
 class Hello extends React.PureComponent<{}, {}> {
   render() {
-    return (
-      <p>Hello {this.props.authData.profile.name}!</p>
-    );
+    return <p>Hello {this.props.authData.profile.name}!</p>;
   }
 }
 
