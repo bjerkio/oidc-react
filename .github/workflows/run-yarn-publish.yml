@@ -1,0 +1,32 @@
+# This workflow is used mainly when/if something goes wrong with the automated
+# publishing process.
+
+name: Run yarn publish
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use current LTS Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          registry-url: 'https://registry.npmjs.org'
+          cache: yarn
+
+      - run: yarn install
+
+      - run: yarn run build
+
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

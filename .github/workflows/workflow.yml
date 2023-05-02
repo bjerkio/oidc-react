@@ -39,7 +39,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
       pull-requests: write
@@ -63,7 +63,7 @@ jobs:
         with:
           token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
           release-type: node
-          package-name: oidc-react
+          package-name: create-bjerk-typescript
 
       - if: ${{ steps.release.outputs.release_created }}
         run: yarn publish
@@ -87,7 +87,7 @@ jobs:
         run: yarn run generate-docs
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           branch: update-documentation
           delete-branch: true

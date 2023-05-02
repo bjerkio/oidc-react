@@ -24,7 +24,7 @@ Auth state: True until the library has been initialized.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:171](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L171)
+[src/AuthContextInterface.ts:176](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L176)
 
 ___
 
@@ -50,7 +50,7 @@ Alias for userManager.signInRedirect
 
 #### Defined in
 
-[src/AuthContextInterface.ts:147](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L147)
+[src/AuthContextInterface.ts:152](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L152)
 
 ___
 
@@ -70,7 +70,7 @@ Alias for userManager.signinPopup
 
 #### Defined in
 
-[src/AuthContextInterface.ts:151](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L151)
+[src/AuthContextInterface.ts:156](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L156)
 
 ___
 
@@ -90,7 +90,7 @@ Alias for removeUser
 
 #### Defined in
 
-[src/AuthContextInterface.ts:155](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L155)
+[src/AuthContextInterface.ts:160](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L160)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[src/AuthContextInterface.ts:159](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L159)
+[src/AuthContextInterface.ts:164](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L164)
 
 ___
 
@@ -126,7 +126,7 @@ See [User](https://authts.github.io/oidc-client-ts/classes/User.html) for more d
 
 #### Defined in
 
-[src/AuthContextInterface.ts:167](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L167)
+[src/AuthContextInterface.ts:172](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L172)
 
 ___
 
@@ -138,4 +138,4 @@ See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.ht
 
 #### Defined in
 
-[src/AuthContextInterface.ts:163](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L163)
+[src/AuthContextInterface.ts:168](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L168)

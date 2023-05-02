@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/bjerkio/oidc-react/compare/v3.0.4...v3.1.0) (2023-04-21)
+
+
+### Features
+
+* add `metadata` parameter to AuthContext ([1e6703b](https://github.com/bjerkio/oidc-react/commit/1e6703b11a8eda0ced7e76cd9e8a27b5abb902f9))
+
+## [3.0.4](https://github.com/bjerkio/oidc-react/compare/oidc-react-v3.0.4...oidc-react-v3.0.4) (2023-04-10)
+
+
+### Bug Fixes
+
+* isLoading has correct status when autoSignIn is disabled and user is signed out ([#982](https://github.com/bjerkio/oidc-react/issues/982)) ([db28cdd](https://github.com/bjerkio/oidc-react/commit/db28cdd6a6368d8d07f01f1827d77afd18d70bf1))
+
+
+### Miscellaneous Chores
+
+* **main:** release 3.0.4 ([01051e9](https://github.com/bjerkio/oidc-react/commit/01051e9d8117cba5ca0ddb631a20a5af179214ec))
+
 ## [3.0.3](https://github.com/bjerkio/oidc-react/compare/v3.0.2...v3.0.3) (2023-03-16)
 
 
