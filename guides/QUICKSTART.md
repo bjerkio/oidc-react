@@ -12,7 +12,7 @@ AuthProvider is a [Context](https://reactjs.org/docs/context.html) and holds mos
 
 Let's look at an example component.
 
-```typescript
+```tsx
 import { AuthProvider } from 'oidc-react';
 
 export default () => (
@@ -37,7 +37,7 @@ However, if we want the user to be sent to our dashboard when authenticated, we 
 
 Let's look at another example for that!
 
-```typescript
+```tsx
 import { AuthProvider } from 'oidc-react';
 
 export default App = () => (
