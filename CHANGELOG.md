@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.0](https://github.com/bjerkio/oidc-react/compare/v3.1.0...v3.2.0) (2023-05-02)
+
+
+### Features
+
+* add inline source maps ([efdf184](https://github.com/bjerkio/oidc-react/commit/efdf184bd585a3b7d2c8ad59cac03e83c27133c4))
+
 ## [3.1.0](https://github.com/bjerkio/oidc-react/compare/v3.0.4...v3.1.0) (2023-04-21)
 
 
