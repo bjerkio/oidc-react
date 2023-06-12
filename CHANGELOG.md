@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/bjerkio/oidc-react/compare/v3.2.0...v3.2.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency oidc-client-ts to v2.2.4 ([#1006](https://github.com/bjerkio/oidc-react/issues/1006)) ([423be19](https://github.com/bjerkio/oidc-react/commit/423be19c9a09ea43e53931d7eeaab6972651eb32))
+
 ## [3.2.0](https://github.com/bjerkio/oidc-react/compare/v3.1.0...v3.2.0) (2023-05-02)
 
 
