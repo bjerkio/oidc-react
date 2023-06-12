@@ -35,7 +35,7 @@ oidc-react
 
 ### AuthProvider
 
-▸ **AuthProvider**(`props`, `context?`): ``null`` \| `ReactElement`<`any`, `any`\>
+▸ **AuthProvider**(`props`, `context?`): `ReactNode`
 
 #### Parameters
 
@@ -46,11 +46,11 @@ oidc-react
 
 #### Returns
 
-``null`` \| `ReactElement`<`any`, `any`\>
+`ReactNode`
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:521
+node_modules/@types/react/index.d.ts:556
 
 ___
 
