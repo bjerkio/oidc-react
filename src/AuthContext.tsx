@@ -122,11 +122,14 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
    * Handles user auth flow on initial render.
    */
   useEffect(() => {
+    let isMounted = true;
     isMountedRef.current = true;
     setIsLoading(true);
     (async () => {
       const user = await userManager!.getUser();
-      if (!user || user.expired) {
+      // isMountedRef cannot be used here as its value is updated by next useEffect.
+      // We intend to keep context of current useEffect.
+      if (isMounted && (!user || user.expired)) {
         // If the user is returning back from the OIDC provider, get and set the user data.
         if (hasCodeInUrl(location)) {
           const user = (await userManager.signinCallback()) || null;
@@ -146,6 +149,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       setIsLoading(false);
     })();
     return () => {
+      isMounted = false;
       isMountedRef.current = false;
     };
   }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
