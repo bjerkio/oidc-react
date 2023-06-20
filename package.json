@@ -1,6 +1,6 @@
 {
   "name": "oidc-react",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "private": false,
   "description": "OpenID Connect Authentication for React. Supports Hooks 🚀",
   "repository": "github:bjerkio/oidc-react",
