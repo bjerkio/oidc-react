@@ -187,11 +187,11 @@ ___
 
 ### onBeforeSignIn
 
-• `Optional` **onBeforeSignIn**: () => `string`
+• `Optional` **onBeforeSignIn**: () => `unknown`
 
 #### Type declaration
 
-▸ (): `string`
+▸ (): `unknown`
 
 On before sign in hook. Can be use to store the current url for use after signing in.
 
@@ -199,7 +199,7 @@ This only gets called if autoSignIn is true
 
 ##### Returns
 
-`string`
+`unknown`
 
 #### Defined in
 
