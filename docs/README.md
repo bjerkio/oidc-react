@@ -25,11 +25,11 @@ oidc-react
 
 ### AuthContext
 
-• `Const` **AuthContext**: `Context`<`undefined` \| [`AuthContextProps`](interfaces/AuthContextProps.md)\>
+• `Const` **AuthContext**: `Context`\<`undefined` \| [`AuthContextProps`](interfaces/AuthContextProps.md)\>
 
 #### Defined in
 
-[src/AuthContext.tsx:24](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContext.tsx#L24)
+[src/auth-context.tsx:24](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context.tsx#L24)
 
 ## Functions
 
@@ -41,7 +41,7 @@ oidc-react
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `props` | `PropsWithChildren`<[`AuthProviderProps`](interfaces/AuthProviderProps.md)\> | AuthProviderProps |
+| `props` | `PropsWithChildren`\<[`AuthProviderProps`](interfaces/AuthProviderProps.md)\> | AuthProviderProps |
 | `context?` | `any` | - |
 
 #### Returns
@@ -50,7 +50,7 @@ oidc-react
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:556
+node_modules/.pnpm/@types+react@18.2.37/node_modules/@types/react/index.d.ts:567
 
 ___
 
@@ -64,13 +64,13 @@ ___
 
 #### Defined in
 
-[src/useAuth.ts:6](https://github.com/bjerkio/oidc-react/blob/main/src/useAuth.ts#L6)
+[src/use-auth.ts:6](https://github.com/bjerkio/oidc-react/blob/main/src/use-auth.ts#L6)
 
 ___
 
 ### withAuth
 
-▸ **withAuth**<`P`\>(`Component`): `React.ComponentType`<`Omit`<`P`, keyof [`AuthContextProps`](interfaces/AuthContextProps.md)\>\>
+▸ **withAuth**\<`P`\>(`Component`): `React.ComponentType`\<`Omit`\<`P`, keyof [`AuthContextProps`](interfaces/AuthContextProps.md)\>\>
 
 A public higher-order component to access the imperative API
 
@@ -84,12 +84,12 @@ A public higher-order component to access the imperative API
 
 | Name | Type |
 | :------ | :------ |
-| `Component` | `ComponentType`<`P`\> |
+| `Component` | `ComponentType`\<`P`\> |
 
 #### Returns
 
-`React.ComponentType`<`Omit`<`P`, keyof [`AuthContextProps`](interfaces/AuthContextProps.md)\>\>
+`React.ComponentType`\<`Omit`\<`P`, keyof [`AuthContextProps`](interfaces/AuthContextProps.md)\>\>
 
 #### Defined in
 
-[src/withAuth.tsx:8](https://github.com/bjerkio/oidc-react/blob/main/src/withAuth.tsx#L8)
+[src/with-auth.tsx:8](https://github.com/bjerkio/oidc-react/blob/main/src/with-auth.tsx#L8)
