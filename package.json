@@ -22,7 +22,7 @@
     "bundlewatch": "bundlewatch --config .bundlewatch.config.json"
   },
   "dependencies": {
-    "oidc-client-ts": "2.2.4"
+    "oidc-client-ts": "2.4.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.16.5",
