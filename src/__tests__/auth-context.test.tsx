@@ -1,9 +1,9 @@
 // @vitest-environment jsdom
 import React from 'react';
 import { SilentRenewErrorCallback, UserManager } from 'oidc-client-ts';
-import { AuthProvider, AuthContext } from '../AuthContext';
+import { AuthProvider, AuthContext } from '../auth-context';
 import { render, act, waitFor, RenderResult } from '@testing-library/react';
-import { describe, it, expect, vi,  } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
 const events = {
   addUserLoaded: () => undefined,
@@ -309,10 +309,7 @@ describe('AuthContext', () => {
     } as any;
     const onSignOut = vi.fn();
     render(
-      <AuthProvider
-        onSignOut={onSignOut}
-        userManager={userManager}
-      >
+      <AuthProvider onSignOut={onSignOut} userManager={userManager}>
         <AuthContext.Consumer>
           {value => {
             value?.signOutRedirect({
@@ -360,9 +357,7 @@ describe('AuthContext', () => {
     expect(callbacks).toHaveLength(1);
 
     // when: the registered silentRenewError callback is called
-    await act(async () => {
-      callbacks[0](new Error('test'));
-    });
+    await act(async () => callbacks[0](new Error('test')));
 
     // then: the callback should trigger a signout redirect
     expect(u.signoutRedirect).toHaveBeenCalledTimes(1);

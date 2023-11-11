@@ -27,7 +27,7 @@ export interface AuthProviderSignOutProps {
    * };
    * ```
    */
-  signoutRedirect?: boolean | unknown;
+  signoutRedirect?: unknown;
 }
 
 export interface AuthProviderProps {

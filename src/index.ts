@@ -1,6 +1,6 @@
-export * from './useAuth';
-export * from './withAuth';
-export * from './AuthContext';
-export * from './AuthContextInterface';
+export * from './use-auth';
+export * from './with-auth';
+export * from './auth-context';
+export * from './auth-context-interface';
 
 export { User, UserManager, Log } from 'oidc-client-ts';

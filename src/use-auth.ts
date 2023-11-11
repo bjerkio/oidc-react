@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/explicit-function-return-type: 0 */
 import { useContext } from 'react';
-import { AuthContextProps } from './AuthContextInterface';
-import { AuthContext } from './AuthContext';
+import { AuthContextProps } from './auth-context-interface';
+import { AuthContext } from './auth-context';
 
 export const useAuth = (): AuthContextProps => {
   const context = useContext<AuthContextProps | undefined>(AuthContext);
