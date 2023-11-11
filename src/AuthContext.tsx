@@ -100,6 +100,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
   onSignIn,
   onSignOut,
   location = window.location,
+  onSignInError,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -132,9 +133,15 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       if (isMounted && (!user || user.expired)) {
         // If the user is returning back from the OIDC provider, get and set the user data.
         if (hasCodeInUrl(location)) {
-          const user = (await userManager.signinCallback()) || null;
-          setUserData(user);
-          onSignIn && onSignIn(user);
+          const user = await userManager.signinCallback().catch((error) => {
+            if (onSignInError) {
+              onSignInError(error);
+            }
+          });
+          if (user) {
+            setUserData(user);
+            onSignIn && onSignIn(user);
+          }
         }
         // If autoSignIn is enabled, redirect to the OIDC provider.
         else if (autoSignIn) {
@@ -152,7 +159,14 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       isMounted = false;
       isMountedRef.current = false;
     };
-  }, [location, userManager, autoSignIn, onBeforeSignIn, onSignIn]);
+  }, [
+    location,
+    userManager,
+    autoSignIn,
+    onBeforeSignIn,
+    onSignIn,
+    onSignInError,
+  ]);
 
   /**
    * Registers UserManager event callbacks for handling changes to user state due to automaticSilentRenew, session expiry, etc.
