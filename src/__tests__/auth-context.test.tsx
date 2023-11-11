@@ -234,7 +234,7 @@ describe('AuthContext', () => {
       search: '?code=login-test-code',
       hash: '',
     };
-    
+
     const onSignIn = vi.fn();
     render(
       <AuthProvider
