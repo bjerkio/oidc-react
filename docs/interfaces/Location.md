@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[src/AuthContextInterface.ts:11](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L11)
+[src/auth-context-interface.ts:11](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L11)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[src/AuthContextInterface.ts:10](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L10)
+[src/auth-context-interface.ts:10](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L10)

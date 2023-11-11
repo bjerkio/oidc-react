@@ -20,6 +20,7 @@
 - [metadata](AuthProviderProps.md#metadata)
 - [onBeforeSignIn](AuthProviderProps.md#onbeforesignin)
 - [onSignIn](AuthProviderProps.md#onsignin)
+- [onSignInError](AuthProviderProps.md#onsigninerror)
 - [onSignOut](AuthProviderProps.md#onsignout)
 - [popupRedirectUri](AuthProviderProps.md#popupredirecturi)
 - [popupWindowFeatures](AuthProviderProps.md#popupwindowfeatures)
@@ -41,7 +42,7 @@ The URL of the OIDC/OAuth2 provider.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:41](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L41)
+[src/auth-context-interface.ts:41](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L41)
 
 ___
 
@@ -55,7 +56,7 @@ Defaults to true.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:89](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L89)
+[src/auth-context-interface.ts:89](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L89)
 
 ___
 
@@ -67,7 +68,7 @@ Optional sign in arguments to be used when `autoSignIn` is enabled.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:93](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L93)
+[src/auth-context-interface.ts:93](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L93)
 
 ___
 
@@ -81,7 +82,7 @@ Defaults to true.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:99](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L99)
+[src/auth-context-interface.ts:99](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L99)
 
 ___
 
@@ -93,7 +94,7 @@ Optional sign out arguments to be used when `autoSignOut` is enabled.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:103](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L103)
+[src/auth-context-interface.ts:103](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L103)
 
 ___
 
@@ -107,7 +108,7 @@ Defaults to true.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:109](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L109)
+[src/auth-context-interface.ts:109](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L109)
 
 ___
 
@@ -119,7 +120,7 @@ Your client application's identifier as registered with the OIDC/OAuth2 provider
 
 #### Defined in
 
-[src/AuthContextInterface.ts:53](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L53)
+[src/auth-context-interface.ts:53](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L53)
 
 ___
 
@@ -131,19 +132,19 @@ Client secret defined on the identity server.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:57](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L57)
+[src/auth-context-interface.ts:57](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L57)
 
 ___
 
 ### extraQueryParams
 
-• `Optional` **extraQueryParams**: `Record`<`string`, `string`\>
+• `Optional` **extraQueryParams**: `Record`\<`string`, `string`\>
 
 Extra query params passed to the authorization url.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:49](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L49)
+[src/auth-context-interface.ts:49](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L49)
 
 ___
 
@@ -157,7 +158,7 @@ Defaults to true.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:115](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L115)
+[src/auth-context-interface.ts:115](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L115)
 
 ___
 
@@ -169,19 +170,19 @@ Defaults to `windows.location`.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:83](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L83)
+[src/auth-context-interface.ts:83](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L83)
 
 ___
 
 ### metadata
 
-• `Optional` **metadata**: `Partial`<`OidcMetadata`\>
+• `Optional` **metadata**: `Partial`\<`OidcMetadata`\>
 
 Manually set metadata if CORS is not configured on the OIDC/OAuth2 provider.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:45](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L45)
+[src/auth-context-interface.ts:45](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L45)
 
 ___
 
@@ -203,19 +204,19 @@ This only gets called if autoSignIn is true
 
 #### Defined in
 
-[src/AuthContextInterface.ts:136](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L136)
+[src/auth-context-interface.ts:136](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L136)
 
 ___
 
 ### onSignIn
 
-• `Optional` **onSignIn**: (`userData`: ``null`` \| `User`) => `void` \| `Promise`<`void`\>
+• `Optional` **onSignIn**: (`userData`: ``null`` \| `User`) => `void` \| `Promise`\<`void`\>
 
 #### Type declaration
 
-▸ (`userData`): `void` \| `Promise`<`void`\>
+▸ (`userData`): `void` \| `Promise`\<`void`\>
 
-On sign out hook. Can be a async function.
+On sign in hook. Can be a async function.
 
 ##### Parameters
 
@@ -225,21 +226,47 @@ On sign out hook. Can be a async function.
 
 ##### Returns
 
-`void` \| `Promise`<`void`\>
+`void` \| `Promise`\<`void`\>
 
 #### Defined in
 
-[src/AuthContextInterface.ts:141](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L141)
+[src/auth-context-interface.ts:141](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L141)
+
+___
+
+### onSignInError
+
+• `Optional` **onSignInError**: (`error`: `Error`) => `void`
+
+#### Type declaration
+
+▸ (`error`): `void`
+
+On sign in error. Can be a async function.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `error` | `Error` |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+[src/auth-context-interface.ts:150](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L150)
 
 ___
 
 ### onSignOut
 
-• `Optional` **onSignOut**: (`options?`: [`AuthProviderSignOutProps`](AuthProviderSignOutProps.md)) => `void` \| `Promise`<`void`\>
+• `Optional` **onSignOut**: (`options?`: [`AuthProviderSignOutProps`](AuthProviderSignOutProps.md)) => `void` \| `Promise`\<`void`\>
 
 #### Type declaration
 
-▸ (`options?`): `void` \| `Promise`<`void`\>
+▸ (`options?`): `void` \| `Promise`\<`void`\>
 
 On sign out hook. Can be a async function.
 
@@ -251,11 +278,11 @@ On sign out hook. Can be a async function.
 
 ##### Returns
 
-`void` \| `Promise`<`void`\>
+`void` \| `Promise`\<`void`\>
 
 #### Defined in
 
-[src/AuthContextInterface.ts:145](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L145)
+[src/auth-context-interface.ts:145](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L145)
 
 ___
 
@@ -267,7 +294,7 @@ The URL for the page containing the call to signinPopupCallback to handle the ca
 
 #### Defined in
 
-[src/AuthContextInterface.ts:126](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L126)
+[src/auth-context-interface.ts:126](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L126)
 
 ___
 
@@ -281,7 +308,7 @@ defaults to 'location=no,toolbar=no,width=500,height=500,left=100,top=100'
 
 #### Defined in
 
-[src/AuthContextInterface.ts:121](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L121)
+[src/auth-context-interface.ts:121](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L121)
 
 ___
 
@@ -294,7 +321,7 @@ defaults to '_blank'
 
 #### Defined in
 
-[src/AuthContextInterface.ts:131](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L131)
+[src/auth-context-interface.ts:131](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L131)
 
 ___
 
@@ -306,7 +333,7 @@ The post-logout redirect URI of your client application which your OIDC/OAuth2 p
 
 #### Defined in
 
-[src/AuthContextInterface.ts:69](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L69)
+[src/auth-context-interface.ts:69](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L69)
 
 ___
 
@@ -318,7 +345,7 @@ The redirect URI of your client application to receive a response from the OIDC/
 
 #### Defined in
 
-[src/AuthContextInterface.ts:61](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L61)
+[src/auth-context-interface.ts:61](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L61)
 
 ___
 
@@ -332,7 +359,7 @@ Read more: https://tools.ietf.org/html/rfc6749#section-3.1.1
 
 #### Defined in
 
-[src/AuthContextInterface.ts:75](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L75)
+[src/auth-context-interface.ts:75](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L75)
 
 ___
 
@@ -344,7 +371,7 @@ A space-delimited list of permissions that the application requires.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:79](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L79)
+[src/auth-context-interface.ts:79](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L79)
 
 ___
 
@@ -356,7 +383,7 @@ The redirect URI of your client application to receive a response from the OIDC/
 
 #### Defined in
 
-[src/AuthContextInterface.ts:65](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L65)
+[src/auth-context-interface.ts:65](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L65)
 
 ___
 
@@ -368,4 +395,4 @@ See [UserManager](https://github.com/authts/oidc-client-ts) for more details.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:37](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L37)
+[src/auth-context-interface.ts:37](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L37)

@@ -24,17 +24,17 @@ Auth state: True until the library has been initialized.
 
 #### Defined in
 
-[src/AuthContextInterface.ts:176](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L176)
+[src/auth-context-interface.ts:181](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L181)
 
 ___
 
 ### signIn
 
-• **signIn**: (`args?`: `SigninRedirectArgs`) => `Promise`<`void`\>
+• **signIn**: (`args?`: `SigninRedirectArgs`) => `Promise`\<`void`\>
 
 #### Type declaration
 
-▸ (`args?`): `Promise`<`void`\>
+▸ (`args?`): `Promise`\<`void`\>
 
 Alias for userManager.signInRedirect
 
@@ -46,61 +46,61 @@ Alias for userManager.signInRedirect
 
 ##### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[src/AuthContextInterface.ts:152](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L152)
+[src/auth-context-interface.ts:157](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L157)
 
 ___
 
 ### signInPopup
 
-• **signInPopup**: () => `Promise`<`void`\>
+• **signInPopup**: () => `Promise`\<`void`\>
 
 #### Type declaration
 
-▸ (): `Promise`<`void`\>
+▸ (): `Promise`\<`void`\>
 
 Alias for userManager.signinPopup
 
 ##### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[src/AuthContextInterface.ts:156](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L156)
+[src/auth-context-interface.ts:161](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L161)
 
 ___
 
 ### signOut
 
-• **signOut**: () => `Promise`<`void`\>
+• **signOut**: () => `Promise`\<`void`\>
 
 #### Type declaration
 
-▸ (): `Promise`<`void`\>
+▸ (): `Promise`\<`void`\>
 
 Alias for removeUser
 
 ##### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[src/AuthContextInterface.ts:160](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L160)
+[src/auth-context-interface.ts:165](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L165)
 
 ___
 
 ### signOutRedirect
 
-• **signOutRedirect**: (`args?`: `SignoutRedirectArgs`) => `Promise`<`void`\>
+• **signOutRedirect**: (`args?`: `SignoutRedirectArgs`) => `Promise`\<`void`\>
 
 #### Type declaration
 
-▸ (`args?`): `Promise`<`void`\>
+▸ (`args?`): `Promise`\<`void`\>
 
 ##### Parameters
 
@@ -110,11 +110,11 @@ ___
 
 ##### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[src/AuthContextInterface.ts:164](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L164)
+[src/auth-context-interface.ts:169](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L169)
 
 ___
 
@@ -126,7 +126,7 @@ See [User](https://authts.github.io/oidc-client-ts/classes/User.html) for more d
 
 #### Defined in
 
-[src/AuthContextInterface.ts:172](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L172)
+[src/auth-context-interface.ts:177](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L177)
 
 ___
 
@@ -138,4 +138,4 @@ See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.ht
 
 #### Defined in
 
-[src/AuthContextInterface.ts:168](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L168)
+[src/auth-context-interface.ts:173](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L173)
