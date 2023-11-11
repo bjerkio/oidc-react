@@ -1,9 +1,9 @@
-/* eslint @typescript-eslint/no-explicit-any: 0 */
-/* eslint @typescript-eslint/explicit-function-return-type: 0 */
+// @vitest-environment jsdom
 import React from 'react';
 import { SilentRenewErrorCallback, UserManager } from 'oidc-client-ts';
-import { AuthProvider, AuthContext } from '../AuthContext';
+import { AuthProvider, AuthContext } from '../auth-context';
 import { render, act, waitFor, RenderResult } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 
 const events = {
   addUserLoaded: () => undefined,
@@ -12,12 +12,12 @@ const events = {
   removeSilentRenewError: () => undefined,
 };
 
-jest.mock('oidc-client-ts', () => {
+vi.mock('oidc-client-ts', () => {
   return {
-    UserManager: jest.fn().mockImplementation(() => {
+    UserManager: vi.fn().mockImplementation(() => {
       return {
-        getUser: jest.fn(),
-        signinRedirect: jest.fn(),
+        getUser: vi.fn(),
+        signinRedirect: vi.fn(),
         events,
       };
     }),
@@ -27,11 +27,11 @@ jest.mock('oidc-client-ts', () => {
 describe('AuthContext', () => {
   it('should check for user and redirect', async () => {
     const u = {
-      getUser: jest.fn(),
-      signinRedirect: jest.fn(),
+      getUser: vi.fn(),
+      signinRedirect: vi.fn(),
       events,
     } as any;
-    const onBeforeSignIn = jest.fn();
+    const onBeforeSignIn = vi.fn();
     await act(async () => {
       render(<AuthProvider userManager={u} onBeforeSignIn={onBeforeSignIn} />);
     });
@@ -42,15 +42,15 @@ describe('AuthContext', () => {
 
   it('should redirect when asked', async () => {
     const u = {
-      getUser: jest.fn(),
-      signinRedirect: jest.fn(),
+      getUser: vi.fn(),
+      signinRedirect: vi.fn(),
       events,
     } as any;
     await act(async () => {
       render(
         <AuthProvider userManager={u} autoSignIn={false}>
           <AuthContext.Consumer>
-            {(value) => {
+            {value => {
               value?.signIn();
               return <p>Bjerk</p>;
             }}
@@ -64,16 +64,16 @@ describe('AuthContext', () => {
 
   it('should open Popup when asked', async () => {
     const u = {
-      getUser: jest.fn(),
-      signinPopupCallback: jest.fn(),
-      signinPopup: jest.fn(),
+      getUser: vi.fn(),
+      signinPopupCallback: vi.fn(),
+      signinPopup: vi.fn(),
       events,
     } as any;
     await act(async () => {
       render(
         <AuthProvider userManager={u} autoSignIn={false}>
           <AuthContext.Consumer>
-            {(value) => {
+            {value => {
               value?.signInPopup();
               return <p>Bjerk</p>;
             }}
@@ -87,7 +87,7 @@ describe('AuthContext', () => {
 
   it('should not redirect when asked', async () => {
     const u = {
-      getUser: jest.fn(),
+      getUser: vi.fn(),
       events,
     } as any;
     await act(async () => {
@@ -178,7 +178,7 @@ describe('AuthContext', () => {
       getUser: async () => ({
         access_token: 'token',
       }),
-      signinCallback: jest.fn(),
+      signinCallback: vi.fn(),
       events,
     } as any;
     let result: any;
@@ -186,7 +186,7 @@ describe('AuthContext', () => {
       result = render(
         <AuthProvider userManager={userManager}>
           <AuthContext.Consumer>
-            {(value) =>
+            {value =>
               value?.userData && (
                 <span>Received: {value.userData.access_token}</span>
               )
@@ -203,14 +203,14 @@ describe('AuthContext', () => {
       getUser: async () => ({
         access_token: 'token',
       }),
-      signinCallback: jest.fn(),
-      signoutRedirect: jest.fn(),
+      signinCallback: vi.fn(),
+      signoutRedirect: vi.fn(),
       events,
     } as any;
     const { getByText } = render(
       <AuthProvider userManager={userManager}>
         <AuthContext.Consumer>
-          {(value) =>
+          {value =>
             value?.userData && (
               <span>Received: {value.userData.access_token}</span>
             )
@@ -225,15 +225,17 @@ describe('AuthContext', () => {
 
   it('should login the user', async () => {
     const userManager = {
-      getUser: jest.fn(),
-      signinCallback: jest.fn(),
+      getUser: vi.fn(),
+      signinCallback: vi.fn(() => true),
       events,
     } as any;
+
     const location = {
-      search: '?code=test-code',
+      search: '?code=login-test-code',
       hash: '',
     };
-    const onSignIn = jest.fn();
+
+    const onSignIn = vi.fn();
     render(
       <AuthProvider
         onSignIn={onSignIn}
@@ -250,10 +252,10 @@ describe('AuthContext', () => {
       getUser: async () => ({
         access_token: 'token',
       }),
-      removeUser: jest.fn(),
+      removeUser: vi.fn(),
       events,
     } as any;
-    const onSignOut = jest.fn();
+    const onSignOut = vi.fn();
     render(
       <AuthProvider
         onSignOut={onSignOut}
@@ -261,7 +263,7 @@ describe('AuthContext', () => {
         location={location}
       >
         <AuthContext.Consumer>
-          {(value) => {
+          {value => {
             value?.signOut();
             return <p>Bjerk</p>;
           }}
@@ -277,10 +279,10 @@ describe('AuthContext', () => {
       getUser: async () => ({
         access_token: 'token',
       }),
-      signoutRedirect: jest.fn(),
+      signoutRedirect: vi.fn(),
       events,
     } as any;
-    const onSignOut = jest.fn();
+    const onSignOut = vi.fn();
     render(
       <AuthProvider
         onSignOut={onSignOut}
@@ -288,7 +290,7 @@ describe('AuthContext', () => {
         location={location}
       >
         <AuthContext.Consumer>
-          {(value) => {
+          {value => {
             value?.signOutRedirect();
             return <p>Bjerk</p>;
           }}
@@ -304,18 +306,14 @@ describe('AuthContext', () => {
       getUser: async () => ({
         access_token: 'token',
       }),
-      signoutRedirect: jest.fn(),
+      signoutRedirect: vi.fn(),
       events,
     } as any;
-    const onSignOut = jest.fn();
+    const onSignOut = vi.fn();
     render(
-      <AuthProvider
-        onSignOut={onSignOut}
-        userManager={userManager}
-        location={location}
-      >
+      <AuthProvider onSignOut={onSignOut} userManager={userManager}>
         <AuthContext.Consumer>
-          {(value) => {
+          {value => {
             value?.signOutRedirect({
               state: 'thebranches',
             });
@@ -339,12 +337,12 @@ describe('AuthContext', () => {
       getUser: async () => ({
         access_token: 'token',
       }),
-      signinCallback: jest.fn(),
-      signoutRedirect: jest.fn(),
+      signinCallback: vi.fn(),
+      signoutRedirect: vi.fn(),
       events: {
         ...events,
-        addSilentRenewError: jest.fn((callback) => callbacks.push(callback)),
-        removeSilentRenewError: jest.fn((callback) =>
+        addSilentRenewError: vi.fn(callback => callbacks.push(callback)),
+        removeSilentRenewError: vi.fn(callback =>
           callbacks.splice(callbacks.indexOf(callback), 1),
         ),
       },
@@ -361,9 +359,7 @@ describe('AuthContext', () => {
     expect(callbacks).toHaveLength(1);
 
     // when: the registered silentRenewError callback is called
-    await act(async () => {
-      callbacks[0](new Error('test'));
-    });
+    await act(async () => callbacks[0](new Error('test')));
 
     // then: the callback should trigger a signout redirect
     expect(u.signoutRedirect).toHaveBeenCalledTimes(1);

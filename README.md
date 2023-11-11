@@ -14,7 +14,8 @@
 
 ## About
 
-React component (AuthProvider) to provide OpenID Connect and OAuth2 protocol support. Has [hooks](guides/HOOKS.md) 🎉
+React component (AuthProvider) to provide OpenID Connect and OAuth2 protocol
+support. Has [hooks](guides/HOOKS.md) 🎉
 
 Based on [oidc-client-ts](https://github.com/authts/oidc-client-ts).
 
@@ -54,7 +55,8 @@ const Routes = () => (
 
 # Documentation
 
-Apart from this README, you can find details and examples of using the SDK in the following places:
+Apart from this README, you can find details and examples of using the SDK in
+the following places:
 
 - [SDK Documentation](docs/README.md)
 - [Guides](guides/)
@@ -63,4 +65,5 @@ Apart from this README, you can find details and examples of using the SDK in th
 
 ## Contribute & Disclaimer
 
-We love to get help 🙏 Read more about how to get started in [CONTRIBUTING](CONTRIBUTING.md) 🌳
+We love to get help 🙏 Read more about how to get started in
+[CONTRIBUTING](CONTRIBUTING.md) 🌳

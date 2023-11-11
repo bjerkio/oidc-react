@@ -1,4 +1,4 @@
-name: Release
+name: On Push
 on:
   push:
     branches:
@@ -15,60 +15,51 @@ jobs:
         node-version: [lts/-2, lts/-1, lts/*, current]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm 📦️
+        uses: pnpm/action-setup@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: yarn
+          cache: pnpm
 
       - run: node --version
 
-      - run: yarn install
+      - run: pnpm install --frozen-lockfile
 
-      - run: yarn test
+      - run: pnpm run test
 
-      - run: yarn run build
+      - run: pnpm run build
+
+      - uses: codecov/codecov-action@v3
 
       - name: Bundlewatch
-        run: yarn run bundlewatch
+        run: pnpm run bundlewatch
         env:
           BUNDLEWATCH_GITHUB_TOKEN: '${{ secrets.BJERKBOT_GITHUB_TOKEN }}'
           CI_BRANCH_BASE: main
 
-  release-please:
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      pull-requests: write
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: google-github-actions/release-please-action@v3
-        id: release
-        with:
-          token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
-          release-type: node
-          package-name: create-bjerk-typescript
-
   generate-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup pnpm 📦️
+        uses: pnpm/action-setup@v2
+
+      - name: Use Node.js LTS
         uses: actions/setup-node@v3
         with:
-          node-version: lts/*
-          cache: yarn
+          node-version: lts
+          cache: pnpm
 
-      - run: yarn install
+      - run: pnpm install --frozen-lockfile
 
       - name: Run typegen
-        run: yarn run generate-docs
+        run: pnpm run generate-docs
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
@@ -77,4 +68,6 @@ jobs:
           delete-branch: true
           commit-message: 'chore(docs): run typegen'
           title: 'chore(docs): run typegen'
-          body: 'This is automatically created since the documentation is out of date.'
+          body:
+            'This is automatically created since the documentation is out of
+            date.'

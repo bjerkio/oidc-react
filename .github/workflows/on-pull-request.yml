@@ -1,4 +1,4 @@
-name: Build
+name: On PR
 on: [pull_request]
 
 jobs:
@@ -11,25 +11,28 @@ jobs:
         node-version: [lts/-2, lts/-1, lts/*, current]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm 📦️
+        uses: pnpm/action-setup@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: yarn
+          cache: pnpm
 
-      - run: yarn install
+      - run: node --version
 
-      - run: yarn run lint
+      - run: pnpm install --frozen-lockfile
 
-      - run: yarn run build
+      - run: pnpm run lint
 
-      - run: yarn run format:check
+      - run: pnpm run test
 
-      - run: yarn test
-        env:
-          CI: true
+      - run: pnpm run build
+
+      - run: pnpm run format:check
 
       - uses: codecov/codecov-action@v3
 

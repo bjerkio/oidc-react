@@ -1,33 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>bjerkio/workflows"],
-  "postUpdateOptions": ["yarnDedupeHighest"],
+  
   "packageRules": [
-    {
-      "matchDatasources": ["npm"],
-      "matchUpdateTypes": ["pin"],
-      "groupName": "pin dependencies",
-      "groupSlug": "yarn-unpinned"
-    },
-    {
-      "matchDatasources": ["npm"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "excludePackageNames": ["oidc-client-ts"],
-      "groupName": "minor dependency updates",
-      "groupSlug": "minor-deps"
-    },
-    {
-      "matchDatasources": ["npm"],
-      "matchPackageNames": [
-        "react",
-        "react-dom",
-        "@types/react",
-        "@types/react-dom"
-      ],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "React minor dependency updates",
-      "groupSlug": "react-minor-deps"
-    },
     {
       "matchDatasources": ["npm"],
       "matchPackageNames": [

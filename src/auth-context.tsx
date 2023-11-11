@@ -19,7 +19,7 @@ import {
   Location,
   AuthProviderProps,
   AuthContextProps,
-} from './AuthContextInterface';
+} from './auth-context-interface';
 
 export const AuthContext = React.createContext<AuthContextProps | undefined>(
   undefined,
@@ -34,13 +34,13 @@ export const hasCodeInUrl = (location: Location): boolean => {
   const searchParams = new URLSearchParams(location.search);
   const hashParams = new URLSearchParams(location.hash.replace('#', '?'));
 
-  return Boolean(
-    searchParams.get('code') ||
-      searchParams.get('id_token') ||
-      searchParams.get('session_state') ||
-      hashParams.get('code') ||
-      hashParams.get('id_token') ||
-      hashParams.get('session_state'),
+  return (
+    searchParams.has('code') ??
+    searchParams.has('id_token') ??
+    searchParams.has('session_state') ??
+    hashParams.has('code') ??
+    hashParams.has('id_token') ??
+    hashParams.has('session_state')
   );
 };
 /**
@@ -49,7 +49,10 @@ export const hasCodeInUrl = (location: Location): boolean => {
  * @param props
  */
 export const initUserManager = (props: AuthProviderProps): UserManager => {
-  if (props.userManager) return props.userManager;
+  if (props.userManager) {
+    return props.userManager;
+  }
+
   const {
     authority,
     clientId,
@@ -68,15 +71,15 @@ export const initUserManager = (props: AuthProviderProps): UserManager => {
     metadata,
   } = props;
   return new UserManager({
-    authority: authority || '',
-    client_id: clientId || '',
+    authority: authority ?? '',
+    client_id: clientId ?? '',
     client_secret: clientSecret,
-    redirect_uri: redirectUri || '',
-    silent_redirect_uri: silentRedirectUri || redirectUri,
-    post_logout_redirect_uri: postLogoutRedirectUri || redirectUri,
-    response_type: responseType || 'code',
-    scope: scope || 'openid',
-    loadUserInfo: loadUserInfo !== undefined ? loadUserInfo : true,
+    redirect_uri: redirectUri ?? '',
+    silent_redirect_uri: silentRedirectUri ?? redirectUri,
+    post_logout_redirect_uri: postLogoutRedirectUri ?? redirectUri,
+    response_type: responseType ?? 'code',
+    scope: scope ?? 'openid',
+    loadUserInfo: loadUserInfo ?? true,
     popupWindowFeatures: popupWindowFeatures,
     popup_redirect_uri: popupRedirectUri,
     popupWindowTarget: popupWindowTarget,
@@ -110,12 +113,16 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
 
   const signOutHooks = useCallback(async (): Promise<void> => {
     setUserData(null);
-    onSignOut && onSignOut();
+    if (onSignOut) {
+      await onSignOut();
+    }
   }, [onSignOut]);
   const signInPopupHooks = useCallback(async (): Promise<void> => {
     const userFromPopup = await userManager.signinPopup();
     setUserData(userFromPopup);
-    onSignIn && onSignIn(userFromPopup);
+    if (onSignIn) {
+      await onSignIn(userFromPopup);
+    }
     await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
 
@@ -126,21 +133,32 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     let isMounted = true;
     isMountedRef.current = true;
     setIsLoading(true);
-    (async () => {
-      const user = await userManager!.getUser();
+    void (async () => {
+      if (!userManager) {
+        return;
+      }
+
+      const user = await userManager.getUser();
+
       // isMountedRef cannot be used here as its value is updated by next useEffect.
       // We intend to keep context of current useEffect.
       if (isMounted && (!user || user.expired)) {
         // If the user is returning back from the OIDC provider, get and set the user data.
         if (hasCodeInUrl(location)) {
-          const user = await userManager.signinCallback().catch((error) => {
-            if (onSignInError) {
-              onSignInError(error);
+          try {
+            const user = await userManager.signinCallback();
+            if (user) {
+              setUserData(user);
+              if (onSignIn) {
+                await onSignIn(user);
+              }
             }
-          });
-          if (user) {
-            setUserData(user);
-            onSignIn && onSignIn(user);
+          } catch (error) {
+            if (onSignInError) {
+              onSignInError(error as Error);
+            } else {
+              throw error;
+            }
           }
         }
         // If autoSignIn is enabled, redirect to the OIDC provider.
@@ -173,7 +191,9 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
    */
   useEffect(() => {
     const updateUserData: UserLoadedCallback = (user: User): void => {
-      isMountedRef.current && setUserData(user);
+      if (isMountedRef.current) {
+        setUserData(user);
+      }
     };
     const onSilentRenewError: SilentRenewErrorCallback =
       async (): Promise<void> => {
