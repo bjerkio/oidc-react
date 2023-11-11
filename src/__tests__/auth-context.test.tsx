@@ -226,13 +226,15 @@ describe('AuthContext', () => {
   it('should login the user', async () => {
     const userManager = {
       getUser: vi.fn(),
-      signinCallback: vi.fn(),
+      signinCallback: vi.fn(() => true),
       events,
     } as any;
+
     const location = {
-      search: '?code=test-code',
+      search: '?code=login-test-code',
       hash: '',
     };
+    
     const onSignIn = vi.fn();
     render(
       <AuthProvider

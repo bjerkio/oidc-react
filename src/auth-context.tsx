@@ -34,13 +34,13 @@ export const hasCodeInUrl = (location: Location): boolean => {
   const searchParams = new URLSearchParams(location.search);
   const hashParams = new URLSearchParams(location.hash.replace('#', '?'));
 
-  return Boolean(
-    searchParams.get('code') ??
-      searchParams.get('id_token') ??
-      searchParams.get('session_state') ??
-      hashParams.get('code') ??
-      hashParams.get('id_token') ??
-      hashParams.get('session_state'),
+  return (
+    searchParams.has('code') ??
+    searchParams.has('id_token') ??
+    searchParams.has('session_state') ??
+    hashParams.has('code') ??
+    hashParams.has('id_token') ??
+    hashParams.has('session_state')
   );
 };
 /**
@@ -139,22 +139,25 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       }
 
       const user = await userManager.getUser();
+
       // isMountedRef cannot be used here as its value is updated by next useEffect.
       // We intend to keep context of current useEffect.
       if (isMounted && (!user || user.expired)) {
         // If the user is returning back from the OIDC provider, get and set the user data.
         if (hasCodeInUrl(location)) {
-          const user = await userManager
-            .signinCallback()
-            .catch((error: Error) => {
-              if (onSignInError) {
-                onSignInError(error);
+          try {
+            const user = await userManager.signinCallback();
+            if (user) {
+              setUserData(user);
+              if (onSignIn) {
+                await onSignIn(user);
               }
-            });
-          if (user) {
-            setUserData(user);
-            if (onSignIn) {
-              await onSignIn(user);
+            }
+          } catch (error) {
+            if (onSignInError) {
+              onSignInError(error as Error);
+            } else {
+              throw error;
             }
           }
         }
