@@ -28,7 +28,7 @@
   "devDependencies": {
     "@bjerk/eslint-config": "^6.0.2",
     "@simenandre/prettier": "^5.0.0",
-    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.1.0",
     "@types/faker": "^6.6.9",
     "@types/node": "^18.18.9",
