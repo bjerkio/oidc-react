@@ -105,3 +105,4 @@ dist
 
 # GitHub Actions
 .github/renovate.json
+pnpm-lock.yaml
