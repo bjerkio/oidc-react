@@ -133,7 +133,7 @@ export interface AuthProviderProps {
    * On before sign in hook. Can be use to store the current url for use after signing in.
    *
    * This only gets called if autoSignIn is true   */
-  onBeforeSignIn?: () => string;
+  onBeforeSignIn?: () => unknown;
   /**
    * On sign in hook. Can be a async function.
    * @param userData User
