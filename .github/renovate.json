@@ -1,18 +1,7 @@
 {
+  {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    ":semanticPrefixFixDepsChoreOthers",
-    ":ignoreModulesAndTests",
-    ":autodetectPinVersions",
-    ":dependencyDashboardApproval",
-    ":prHourlyLimit2",
-    ":prConcurrentLimit10",
-    ":semanticCommits",
-    ":semanticCommitTypeAll(chore)",
-    ":semanticCommitScope(deps-dev)",
-    "workarounds:all"
-  ],
-  "dependencyDashboard": false,
+  "extends": ["github>bjerkio/workflows"],
   "packageRules": [
     {
       "matchDatasources": ["npm"],
