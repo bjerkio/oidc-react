@@ -31,4 +31,4 @@ const config = {
 
 #### Defined in
 
-[src/AuthContextInterface.ts:30](https://github.com/bjerkio/oidc-react/blob/main/src/AuthContextInterface.ts#L30)
+[src/auth-context-interface.ts:30](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L30)
