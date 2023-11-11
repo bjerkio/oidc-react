@@ -11,6 +11,8 @@ jobs:
         node-version: [lts/-2, lts/-1, lts/*, current]
 
     steps:
+      - uses: actions/checkout@v4
+      
       - name: Setup pnpm 📦️
         uses: pnpm/action-setup@v2
 
