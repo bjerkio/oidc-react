@@ -7,8 +7,6 @@ build/*
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
@@ -70,9 +68,6 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
-
 # dotenv environment variables file
 .env
 .env.test
@@ -107,14 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
-
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 
 # GitHub Actions
 .github/renovate.json

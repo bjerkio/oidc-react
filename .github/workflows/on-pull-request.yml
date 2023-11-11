@@ -1,4 +1,4 @@
-name: Build
+name: On PR
 on: [pull_request]
 
 jobs:

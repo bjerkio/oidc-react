@@ -1,10 +1,13 @@
 # Hooks
 
-OIDC React comes with hooks! Hooks are a great way, much better then using our [Consumer](https://reactjs.org/docs/context.html#contextconsumer).
+OIDC React comes with hooks! Hooks are a great way, much better then using our
+[Consumer](https://reactjs.org/docs/context.html#contextconsumer).
 
 ## `useAuth`
 
-useAuth returns the same as our [authContext](../docs/interfaces/authcontextprops.md). Let's look at an example of use.
+useAuth returns the same as our
+[authContext](../docs/interfaces/authcontextprops.md). Let's look at an example
+of use.
 
 ```tsx
 import { useAuth } from 'oidc-react';
@@ -16,6 +19,7 @@ export default () => {
 };
 ```
 
-The example above uses `id_token` object (`profile`) and displays the name of the user.
+The example above uses `id_token` object (`profile`) and displays the name of
+the user.
 
 It should be as easy as that!
