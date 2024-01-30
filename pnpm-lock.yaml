@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   oidc-client-ts:
-    specifier: ^2.4.0
-    version: 2.4.0
+    specifier: ^3.0.0
+    version: 3.0.0
 
 devDependencies:
   '@bjerk/eslint-config':
@@ -1115,10 +1115,6 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
-
-  /crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
-    dev: false
 
   /cssstyle@3.0.0:
     resolution: {integrity: sha512-N4u2ABATi3Qplzf0hWbVCdjenim8F3ojEXpBDF5hBpjzW182MjNGLqfmQ0SkSPeQ+V86ZXgeH8aXj6kayd4jgg==}
@@ -2253,8 +2249,9 @@ packages:
     resolution: {integrity: sha512-d2vwomK605ks7Q+uCpbwGyoIF5j+UZuJjlYcugISBt3CxM+eBo/W6y63yVPIyIvbYON+pvJYsYZjCYbzqJj/xQ==}
     dev: true
 
-  /jwt-decode@3.1.2:
-    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+  /jwt-decode@4.0.0:
+    resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
+    engines: {node: '>=18'}
     dev: false
 
   /keyv@4.5.4:
@@ -2504,12 +2501,11 @@ packages:
       es-abstract: 1.22.3
     dev: true
 
-  /oidc-client-ts@2.4.0:
-    resolution: {integrity: sha512-WijhkTrlXK2VvgGoakWJiBdfIsVGz6CFzgjNNqZU1hPKV2kyeEaJgLs7RwuiSp2WhLfWBQuLvr2SxVlZnk3N1w==}
-    engines: {node: '>=12.13.0'}
+  /oidc-client-ts@3.0.0:
+    resolution: {integrity: sha512-YUcel/+C4AmXXhM/geNWc1jBsBVYzd+xhvSl1NMkxKpzZXqhLKmtj1ttSdxtDYm3P2YelnAr4zS4c96+p02iFQ==}
+    engines: {node: '>=18'}
     dependencies:
-      crypto-js: 4.2.0
-      jwt-decode: 3.1.2
+      jwt-decode: 4.0.0
     dev: false
 
   /once@1.4.0:
