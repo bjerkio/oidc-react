@@ -3,4 +3,4 @@ export * from './with-auth';
 export * from './auth-context';
 export * from './auth-context-interface';
 
-export { User, UserManager, Log } from 'oidc-client-ts';
+export { User, UserManager, Log, WebStorageStateStore } from 'oidc-client-ts';
