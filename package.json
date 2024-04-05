@@ -33,7 +33,7 @@
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.12",
     "bundlewatch": "^0.3.3",
-    "eslint": "^8.53.0",
+    "eslint": "^9.0.0",
     "faker": "^6.6.6",
     "jsdom": "^22.1.0",
     "prettier": "^3.0.3",
