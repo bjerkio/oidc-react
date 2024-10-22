@@ -1,6 +1,6 @@
 /**
  * @type {import('eslint').Linter.Config}
- **/
+ */
 
 module.exports = {
   extends: [
@@ -9,6 +9,7 @@ module.exports = {
     // '@bjerk/eslint-config/import',
     // '@bjerk/eslint-config/prettier',
   ],
+  ignores: ['/**/*.js', 'build/'],
   overrides: [
     {
       files: ['*.test.ts', '*.test.tsx'],
