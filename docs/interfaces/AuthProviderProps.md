@@ -190,13 +190,13 @@ ___
 
 • `Optional` **onBeforeSignIn**: () => `unknown`
 
-#### Type declaration
-
-▸ (): `unknown`
-
 On before sign in hook. Can be use to store the current url for use after signing in.
 
 This only gets called if autoSignIn is true
+
+#### Type declaration
+
+▸ (): `unknown`
 
 ##### Returns
 
@@ -212,11 +212,11 @@ ___
 
 • `Optional` **onSignIn**: (`userData`: ``null`` \| `User`) => `void` \| `Promise`\<`void`\>
 
+On sign in hook. Can be a async function.
+
 #### Type declaration
 
 ▸ (`userData`): `void` \| `Promise`\<`void`\>
-
-On sign in hook. Can be a async function.
 
 ##### Parameters
 
@@ -238,11 +238,11 @@ ___
 
 • `Optional` **onSignInError**: (`error`: `Error`) => `void`
 
+On sign in error. Can be a async function.
+
 #### Type declaration
 
 ▸ (`error`): `void`
-
-On sign in error. Can be a async function.
 
 ##### Parameters
 
@@ -264,11 +264,11 @@ ___
 
 • `Optional` **onSignOut**: (`options?`: [`AuthProviderSignOutProps`](AuthProviderSignOutProps.md)) => `void` \| `Promise`\<`void`\>
 
+On sign out hook. Can be a async function.
+
 #### Type declaration
 
 ▸ (`options?`): `void` \| `Promise`\<`void`\>
-
-On sign out hook. Can be a async function.
 
 ##### Parameters
 
