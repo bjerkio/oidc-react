@@ -43,7 +43,7 @@
     "typedoc": "^0.25.3",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.2.2",
-    "vitest": "^0.34.6"
+    "vitest": "^2.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
