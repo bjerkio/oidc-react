@@ -3,5 +3,6 @@
   "plugin": "typedoc-plugin-markdown",
   "out": "docs/",
   "gitRevision": "main",
+  "exclude": ["node_modules/**"],
   "entryPoints": ["src/index.ts"],
 }

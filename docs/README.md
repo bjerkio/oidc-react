@@ -4,20 +4,6 @@
 
 # oidc-react
 
-## Namespaces
-
-- [Log](namespaces/Log/README.md)
-
-## Enumerations
-
-- [Log](enumerations/Log.md)
-
-## Classes
-
-- [User](classes/User.md)
-- [UserManager](classes/UserManager.md)
-- [WebStorageStateStore](classes/WebStorageStateStore.md)
-
 ## Interfaces
 
 - [AuthContextProps](interfaces/AuthContextProps.md)

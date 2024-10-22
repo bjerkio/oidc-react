@@ -92,7 +92,7 @@ Alias for removeUser
 
 ### userData?
 
-> `optional` **userData**: `null` \| [`User`](../classes/User.md)
+> `optional` **userData**: `null` \| `User`
 
 See [User](https://authts.github.io/oidc-client-ts/classes/User.html) for more details.
 
@@ -104,7 +104,7 @@ See [User](https://authts.github.io/oidc-client-ts/classes/User.html) for more d
 
 ### userManager
 
-> **userManager**: [`UserManager`](../classes/UserManager.md)
+> **userManager**: `UserManager`
 
 See [UserManager](https://authts.github.io/oidc-client-ts/classes/UserManager.html) for more details.
 

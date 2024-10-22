@@ -186,7 +186,7 @@ On sign in hook. Can be a async function.
 
 #### Parameters
 
-• **userData**: `null` \| [`User`](../classes/User.md)
+• **userData**: `null` \| `User`
 
 User
 
@@ -343,7 +343,7 @@ The redirect URI of your client application to receive a response from the OIDC/
 
 ### userManager?
 
-> `optional` **userManager**: [`UserManager`](../classes/UserManager.md)
+> `optional` **userManager**: `UserManager`
 
 See [UserManager](https://github.com/authts/oidc-client-ts) for more details.
 
