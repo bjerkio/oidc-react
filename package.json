@@ -27,7 +27,7 @@
   "devDependencies": {
     "@bjerk/eslint-config": "^6.0.2",
     "@simenandre/prettier": "^5.0.0",
-    "@testing-library/react": "^14.1.0",
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.12",
     "eslint": "^8.53.0",
