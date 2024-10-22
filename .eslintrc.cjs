@@ -1,6 +1,6 @@
 /**
  * @type {import('eslint').Linter.Config}
- **/
+ */
 
 module.exports = {
   extends: [
@@ -24,6 +24,7 @@ module.exports = {
       },
     },
   ],
+  ignores: ['/**/*.js', 'build/'],
   parserOptions: {
     project: true,
     tsconfigRootDir: __dirname,
