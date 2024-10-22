@@ -4,11 +4,7 @@
 [![code style: airbnb](https://img.shields.io/badge/eslint-airbnb-ff5a5f.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
-![Build & Deploy](https://github.com/bjerkio/oidc-react/workflows/Build%20&%20Deploy/badge.svg)
-
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/bjerkio/oidc-react.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/bjerkio/oidc-react/context:javascript)
 [![codecov](https://codecov.io/gh/bjerkio/oidc-react/branch/master/graph/badge.svg)](https://codecov.io/gh/bjerkio/oidc-react)
-[![Maintainability](https://api.codeclimate.com/v1/badges/69bf0921275f61ef6dd0/maintainability)](https://codeclimate.com/github/bjerkio/oidc-react/maintainability)
 
 ![oidc-react logo](assets/logo.jpg)
 
