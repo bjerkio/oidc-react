@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^18.2.12
     version: 18.3.11
   bundlewatch:
-    specifier: ^0.3.3
-    version: 0.3.3
+    specifier: ^0.4.0
+    version: 0.4.0
   eslint:
     specifier: ^8.53.0
     version: 8.57.1
@@ -1050,10 +1050,12 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: true
 
-  /axios@0.24.0:
-    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
+  /axios@0.28.1:
+    resolution: {integrity: sha512-iUcGA5a7p0mVb4Gm/sy+FSECNkPFT4y7wt6OM/CDpO/OnNCvSs3PoMG8ibrC9jRoGYU0gUK5pXVC4NPXq6lHRQ==}
     dependencies:
       follow-redirects: 1.15.9
+      form-data: 4.0.1
+      proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: true
@@ -1096,12 +1098,12 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /bundlewatch@0.3.3:
-    resolution: {integrity: sha512-qzSVWrZyyWXa546JpAPRPTFmnXms9YNVnfzB05DRJKmN6wRRa7SkxE4OgKQmbAY74Z6CM2mKAc6vwvd2R+1lUQ==}
-    engines: {node: '>=10'}
+  /bundlewatch@0.4.0:
+    resolution: {integrity: sha512-w8w4K8RdrsHMZD9Ss4Ailfsrax/0zSIgh25GCaiudNHg45xXuh/u/xezzjbu+WCQJGjL9O1Fg9k9TEdS/XkZFA==}
+    engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      axios: 0.24.0
+      axios: 0.28.1
       bytes: 3.1.2
       chalk: 4.1.2
       ci-env: 1.17.0
@@ -2853,6 +2855,10 @@ packages:
       ansi-regex: 5.0.1
       ansi-styles: 5.2.0
       react-is: 17.0.2
+    dev: true
+
+  /proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: true
 
   /psl@1.9.0:
