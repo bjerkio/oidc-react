@@ -19,8 +19,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts,.tsx",
-    "generate-docs": "typedoc --gitRevision main --out docs src",
-    "bundlewatch": "bundlewatch --config .bundlewatch.config.json"
+    "generate-docs": "typedoc"
   },
   "dependencies": {
     "oidc-client-ts": "^2.4.0"
@@ -31,15 +30,14 @@
     "@testing-library/react": "^14.1.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.12",
-    "bundlewatch": "^0.3.3",
     "eslint": "^8.53.0",
     "jsdom": "^22.1.0",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ts-node-dev": "^2.0.0",
-    "typedoc": "^0.25.3",
-    "typedoc-plugin-markdown": "^3.17.1",
+    "typedoc": "^0.26.10",
+    "typedoc-plugin-markdown": "^4.2.9",
     "typescript": "^5.2.2",
     "vitest": "^2.0.0"
   },

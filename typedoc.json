@@ -2,5 +2,5 @@
   "readme": "none",
   "plugin": "typedoc-plugin-markdown",
   "out": "docs/",
-  "exclude": ["node_modules/**"]
+  "gitRevision": "main"
 }
