@@ -34,7 +34,7 @@
     "@types/react": "^18.2.12",
     "bundlewatch": "^0.3.3",
     "eslint": "^8.53.0",
-    "faker": "^6.6.6",
+    "@faker-js/faker": "^5.5.3",
     "jsdom": "^22.1.0",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
