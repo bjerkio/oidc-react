@@ -4,5 +4,5 @@
   "out": "docs/",
   "gitRevision": "main",
   "exclude": ["node_modules/**"],
-  "entryPoints": ["src/index.ts"],
+  "entryPoints": ["src/index.ts"]
 }
