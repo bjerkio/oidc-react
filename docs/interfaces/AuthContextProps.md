@@ -32,11 +32,11 @@ ___
 
 • **signIn**: (`args?`: `SigninRedirectArgs`) => `Promise`\<`void`\>
 
+Alias for userManager.signInRedirect
+
 #### Type declaration
 
 ▸ (`args?`): `Promise`\<`void`\>
-
-Alias for userManager.signInRedirect
 
 ##### Parameters
 
@@ -58,11 +58,11 @@ ___
 
 • **signInPopup**: () => `Promise`\<`void`\>
 
+Alias for userManager.signinPopup
+
 #### Type declaration
 
 ▸ (): `Promise`\<`void`\>
-
-Alias for userManager.signinPopup
 
 ##### Returns
 
@@ -78,11 +78,11 @@ ___
 
 • **signOut**: () => `Promise`\<`void`\>
 
+Alias for removeUser
+
 #### Type declaration
 
 ▸ (): `Promise`\<`void`\>
-
-Alias for removeUser
 
 ##### Returns
 

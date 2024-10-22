@@ -35,14 +35,14 @@ oidc-react
 
 ### AuthProvider
 
-▸ **AuthProvider**(`props`, `context?`): `ReactNode`
+▸ **AuthProvider**(`props`, `deprecatedLegacyContext?`): `ReactNode`
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `props` | `PropsWithChildren`\<[`AuthProviderProps`](interfaces/AuthProviderProps.md)\> | AuthProviderProps |
-| `context?` | `any` | - |
+| `deprecatedLegacyContext?` | `any` | **`Deprecated`** **`See`** [React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods) |
 
 #### Returns
 
@@ -50,7 +50,7 @@ oidc-react
 
 #### Defined in
 
-node_modules/.pnpm/@types+react@18.2.37/node_modules/@types/react/index.d.ts:567
+[src/auth-context.tsx:96](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context.tsx#L96)
 
 ___
 
