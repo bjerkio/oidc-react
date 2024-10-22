@@ -2,5 +2,6 @@
   "readme": "none",
   "plugin": "typedoc-plugin-markdown",
   "out": "docs/",
-  "gitRevision": "main"
+  "gitRevision": "main",
+  "entryPoints": ["src/index.ts"],
 }
