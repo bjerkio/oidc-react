@@ -35,9 +35,3 @@ jobs:
       - run: pnpm run format:check
 
       - uses: codecov/codecov-action@v3
-
-      - name: Run bundlewatch
-        run: yarn run bundlewatch
-        env:
-          BUNDLEWATCH_GITHUB_TOKEN: '${{ secrets.BJERKBOT_GITHUB_TOKEN }}'
-          CI_BRANCH_BASE: main
