@@ -1,48 +1,44 @@
 {
-  "name": "oidc-react",
-  "version": "3.4.0",
-  "private": false,
-  "description": "OpenID Connect Authentication for React. Supports Hooks 🚀",
-  "repository": "github:bjerkio/oidc-react",
-  "license": "MIT",
-  "author": "Bjerk AS",
-  "main": "build/src/index.js",
-  "packageManager": "pnpm@8.15.9",
-  "files": [
-    "/build"
-  ],
-  "prettier": "@simenandre/prettier",
-  "scripts": {
-    "start": "node build/index.js",
-    "build": "tsc -p tsconfig.release.json",
-    "test": "vitest",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint .",
-    "generate-docs": "typedoc"
-  },
-  "dependencies": {
-    "oidc-client-ts": "^2.4.0"
-  },
-  "devDependencies": {
-    "@bjerk/eslint-config": "^6.0.2",
-    "@simenandre/prettier": "^5.0.0",
-    "@testing-library/react": "^16.0.0",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.2.12",
-    "eslint": "^9.0.0",
-    "jsdom": "^22.1.0",
-    "prettier": "^3.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "ts-node-dev": "^2.0.0",
-    "typedoc": "^0.26.10",
-    "typedoc-plugin-markdown": "^4.2.9",
-    "typescript": "^5.2.2",
-    "vitest": "^2.0.0"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.8.0 || || ^17.0.0 ||  ^18.0.0"
-  }
+	"name": "oidc-react",
+	"version": "3.4.0",
+	"private": false,
+	"description": "OpenID Connect Authentication for React. Supports Hooks 🚀",
+	"repository": "github:bjerkio/oidc-react",
+	"license": "MIT",
+	"author": "Bjerk AS",
+	"main": "build/src/index.js",
+	"packageManager": "pnpm@8.15.9",
+	"files": ["/build"],
+	"scripts": {
+		"start": "node build/index.js",
+		"build": "tsc -p tsconfig.release.json",
+		"test": "vitest",
+		"format": "biome format --write src/",
+		"format:check": "biome format --check src/",
+		"lint": "biome lint src/",
+		"generate-docs": "typedoc"
+	},
+	"dependencies": {
+		"oidc-client-ts": "^2.4.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@testing-library/react": "^16.0.0",
+		"@types/node": "^20.0.0",
+		"@types/react": "^18.2.12",
+		"eslint": "^9.0.0",
+		"jsdom": "^22.1.0",
+		"prettier": "^3.0.3",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"ts-node-dev": "^2.0.0",
+		"typedoc": "^0.26.10",
+		"typedoc-plugin-markdown": "^4.2.9",
+		"typescript": "^5.2.2",
+		"vitest": "^2.0.0"
+	},
+	"peerDependencies": {
+		"react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+		"react-dom": "^16.8.0 || || ^17.0.0 ||  ^18.0.0"
+	}
 }

@@ -1,21 +1,21 @@
 import React, {
-  FC,
+  type FC,
   useState,
   useEffect,
   useRef,
-  PropsWithChildren,
+  type PropsWithChildren,
   useMemo,
   useCallback,
 } from 'react';
 import {
   UserManager,
-  User,
-  SigninRedirectArgs,
-  SignoutRedirectArgs,
-  UserLoadedCallback,
-  SilentRenewErrorCallback,
+  type User,
+  type SigninRedirectArgs,
+  type SignoutRedirectArgs,
+  type UserLoadedCallback,
+  type SilentRenewErrorCallback,
 } from 'oidc-client-ts';
-import {
+import type {
   Location,
   AuthProviderProps,
   AuthContextProps,

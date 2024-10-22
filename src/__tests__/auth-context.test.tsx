@@ -1,8 +1,8 @@
 // @vitest-environment jsdom
 import React from 'react';
-import { SilentRenewErrorCallback, UserManager } from 'oidc-client-ts';
+import { type SilentRenewErrorCallback, UserManager } from 'oidc-client-ts';
 import { AuthProvider, AuthContext } from '../auth-context';
-import { render, act, waitFor, RenderResult } from '@testing-library/react';
+import { render, act, waitFor, type RenderResult } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
 const events = {
