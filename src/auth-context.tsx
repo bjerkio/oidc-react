@@ -35,11 +35,11 @@ export const hasCodeInUrl = (location: Location): boolean => {
   const hashParams = new URLSearchParams(location.hash.replace('#', '?'));
 
   return (
-    searchParams.has('code') ??
-    searchParams.has('id_token') ??
-    searchParams.has('session_state') ??
-    hashParams.has('code') ??
-    hashParams.has('id_token') ??
+    searchParams.has('code') ||
+    searchParams.has('id_token') ||
+    searchParams.has('session_state') ||
+    hashParams.has('code') ||
+    hashParams.has('id_token') ||
     hashParams.has('session_state')
   );
 };

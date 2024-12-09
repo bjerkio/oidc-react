@@ -223,7 +223,7 @@ describe('AuthContext', () => {
     });
   });
 
-  it('should login the user', async () => {
+  it('should login the user with query params', async () => {
     const userManager = {
       getUser: vi.fn(),
       signinCallback: vi.fn(() => true),
@@ -233,6 +233,30 @@ describe('AuthContext', () => {
     const location = {
       search: '?code=login-test-code',
       hash: '',
+    };
+
+    const onSignIn = vi.fn();
+    render(
+      <AuthProvider
+        onSignIn={onSignIn}
+        userManager={userManager}
+        location={location}
+      />,
+    );
+    await waitFor(() => expect(onSignIn).toHaveBeenCalled());
+    await waitFor(() => expect(userManager.signinCallback).toHaveBeenCalled());
+  });
+
+  it('should login the user with hash params', async () => {
+    const userManager = {
+      getUser: vi.fn(),
+      signinCallback: vi.fn(() => true),
+      events,
+    } as any;
+
+    const location = {
+      search: '',
+      hash: '#code=login-test-code',
     };
 
     const onSignIn = vi.fn();
