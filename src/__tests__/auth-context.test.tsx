@@ -65,7 +65,6 @@ describe('AuthContext', () => {
   it('should open Popup when asked', async () => {
     const u = {
       getUser: vi.fn(),
-      signinPopupCallback: vi.fn(),
       signinPopup: vi.fn(),
       events,
     } as any;
@@ -81,8 +80,35 @@ describe('AuthContext', () => {
         </AuthProvider>,
       );
     });
-    expect(u.signinPopupCallback).toHaveBeenCalled();
     expect(u.signinPopup).toHaveBeenCalled();
+  });
+
+  it('should handle OIDC callback', async () => {
+    const u = {
+      getUser: vi.fn(),
+      signinCallback: vi.fn().mockResolvedValue({
+        access_token: 'token',
+      }),
+      events,
+    } as any;
+    const onSignIn = vi.fn();
+    
+    await act(async () => {
+      render(
+        <AuthProvider autoSignIn={false} onSignIn={onSignIn} userManager={u}>
+          <AuthContext.Consumer>
+            {value => {
+              value?.signInCallback();
+              return <p>Bjerk</p>;
+            }}
+          </AuthContext.Consumer>
+        </AuthProvider>,
+      );
+    });
+    expect(u.signinCallback).toHaveBeenCalled();
+    expect(onSignIn).toHaveBeenCalledWith({
+      access_token: 'token',
+    });
   });
 
   it('should not redirect when asked', async () => {
