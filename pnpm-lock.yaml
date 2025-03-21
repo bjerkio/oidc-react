@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   oidc-client-ts:
-    specifier: ^2.4.0
-    version: 2.4.1
+    specifier: ^3.2.0
+    version: 3.2.0
 
 devDependencies:
   '@bjerk/eslint-config':
@@ -1340,10 +1340,6 @@ packages:
       which: 2.0.2
     dev: true
 
-  /crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
-    dev: false
-
   /cssstyle@3.0.0:
     resolution: {integrity: sha512-N4u2ABATi3Qplzf0hWbVCdjenim8F3ojEXpBDF5hBpjzW182MjNGLqfmQ0SkSPeQ+V86ZXgeH8aXj6kayd4jgg==}
     engines: {node: '>=14'}
@@ -2561,8 +2557,9 @@ packages:
       minimist: 1.2.8
     dev: true
 
-  /jwt-decode@3.1.2:
-    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+  /jwt-decode@4.0.0:
+    resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
+    engines: {node: '>=18'}
     dev: false
 
   /keyv@4.5.4:
@@ -2846,12 +2843,11 @@ packages:
       es-object-atoms: 1.1.1
     dev: true
 
-  /oidc-client-ts@2.4.1:
-    resolution: {integrity: sha512-IxlGMsbkZPsHJGCliWT3LxjUcYzmiN21656n/Zt2jDncZlBFc//cd8WqFF0Lt681UT3AImM57E6d4N53ziTCYA==}
-    engines: {node: '>=12.13.0'}
+  /oidc-client-ts@3.2.0:
+    resolution: {integrity: sha512-wUvVcG3SXzZDKHxi/VGQGaTUk9qguMKfYh26Y1zOVrQsu1zp85JWx/SjZzKSXK5j3NA1RcasgMoaHe6gt1WNtw==}
+    engines: {node: '>=18'}
     dependencies:
-      crypto-js: 4.2.0
-      jwt-decode: 3.1.2
+      jwt-decode: 4.0.0
     dev: false
 
   /once@1.4.0:

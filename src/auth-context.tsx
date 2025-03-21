@@ -117,13 +117,19 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       await onSignOut();
     }
   }, [onSignOut]);
+  const signInCallbackHooks = useCallback(async (url?: string): Promise<void> => {
+    const userFromCallback = await userManager.signinCallback(url) ?? null;
+    setUserData(userFromCallback);
+    if (onSignIn) {
+      await onSignIn(userFromCallback);
+    }
+  }, [userManager, onSignIn]);
   const signInPopupHooks = useCallback(async (): Promise<void> => {
     const userFromPopup = await userManager.signinPopup();
     setUserData(userFromPopup);
     if (onSignIn) {
       await onSignIn(userFromPopup);
     }
-    await userManager.signinPopupCallback();
   }, [userManager, onSignIn]);
 
   /**
@@ -214,6 +220,9 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
     return {
       signIn: async (args?: SigninRedirectArgs): Promise<void> => {
         await userManager.signinRedirect(args);
+      },
+      signInCallback: async (url?: string): Promise<void> => {
+        await signInCallbackHooks(url);
       },
       signInPopup: async (): Promise<void> => {
         await signInPopupHooks();
