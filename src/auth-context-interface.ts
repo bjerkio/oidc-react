@@ -156,6 +156,10 @@ export interface AuthContextProps {
    */
   signIn: (args?: SigninRedirectArgs) => Promise<void>;
   /**
+   * Alias for userManager.signInCallback
+   */
+  signInCallback: () => Promise<void>;
+  /**
    * Alias for userManager.signinPopup
    */
   signInPopup: () => Promise<void>;
