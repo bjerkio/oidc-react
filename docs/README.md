@@ -1,4 +1,4 @@
-**oidc-react** • **Docs**
+**oidc-react**
 
 ***
 
@@ -14,9 +14,9 @@
 ## Variables
 
 - [AuthContext](variables/AuthContext.md)
+- [AuthProvider](variables/AuthProvider.md)
 
 ## Functions
 
-- [AuthProvider](functions/AuthProvider.md)
 - [useAuth](functions/useAuth.md)
 - [withAuth](functions/withAuth.md)
