@@ -29,12 +29,12 @@
     "@simenandre/prettier": "^5.0.0",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^20.0.0",
-    "@types/react": "^18.2.12",
+    "@types/react": "^19.0.0",
     "eslint": "^9.0.0",
     "jsdom": "^22.1.0",
     "prettier": "^3.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "ts-node-dev": "^2.0.0",
     "typedoc": "^0.26.10",
     "typedoc-plugin-markdown": "^4.2.9",
@@ -42,7 +42,7 @@
     "vitest": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react": "^19.0.0",
     "react-dom": "^16.8.0 || || ^17.0.0 ||  ^18.0.0"
   }
 }
