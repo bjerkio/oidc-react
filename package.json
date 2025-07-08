@@ -22,7 +22,7 @@
     "generate-docs": "typedoc"
   },
   "dependencies": {
-    "oidc-client-ts": "^2.4.0"
+    "oidc-client-ts": "^3.2.0"
   },
   "devDependencies": {
     "@bjerk/eslint-config": "^6.0.2",
