@@ -1,4 +1,4 @@
-[**oidc-react**](../README.md) • **Docs**
+[**oidc-react**](../README.md)
 
 ***
 
@@ -6,11 +6,15 @@
 
 # Interface: AuthProviderSignOutProps
 
+Defined in: [auth-context-interface.ts:14](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L14)
+
 ## Properties
 
 ### signoutRedirect?
 
 > `optional` **signoutRedirect**: `unknown`
+
+Defined in: [auth-context-interface.ts:30](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L30)
 
 Trigger a redirect of the current window to the end session endpoint
 
@@ -26,7 +30,3 @@ const config = {
  },
 };
 ```
-
-#### Defined in
-
-[src/auth-context-interface.ts:30](https://github.com/bjerkio/oidc-react/blob/main/src/auth-context-interface.ts#L30)

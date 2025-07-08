@@ -1,4 +1,4 @@
-[**oidc-react**](../README.md) • **Docs**
+[**oidc-react**](../README.md)
 
 ***
 
@@ -6,22 +6,24 @@
 
 # Function: withAuth()
 
-> **withAuth**\<`P`\>(`Component`): `React.ComponentType`\<`Omit`\<`P`, keyof [`AuthContextProps`](../interfaces/AuthContextProps.md)\>\>
+> **withAuth**\<`P`\>(`Component`): `ComponentType`\<`Omit`\<`P`, keyof [`AuthContextProps`](../interfaces/AuthContextProps.md)\>\>
+
+Defined in: [with-auth.tsx:8](https://github.com/bjerkio/oidc-react/blob/main/src/with-auth.tsx#L8)
 
 A public higher-order component to access the imperative API
 
 ## Type Parameters
 
-• **P** *extends* [`AuthContextProps`](../interfaces/AuthContextProps.md)
+### P
+
+`P` *extends* [`AuthContextProps`](../interfaces/AuthContextProps.md)
 
 ## Parameters
 
-• **Component**: `ComponentType`\<`P`\>
+### Component
+
+`ComponentType`\<`P`\>
 
 ## Returns
 
-`React.ComponentType`\<`Omit`\<`P`, keyof [`AuthContextProps`](../interfaces/AuthContextProps.md)\>\>
-
-## Defined in
-
-[src/with-auth.tsx:8](https://github.com/bjerkio/oidc-react/blob/main/src/with-auth.tsx#L8)
+`ComponentType`\<`Omit`\<`P`, keyof [`AuthContextProps`](../interfaces/AuthContextProps.md)\>\>

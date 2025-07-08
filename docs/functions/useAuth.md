@@ -1,4 +1,4 @@
-[**oidc-react**](../README.md) • **Docs**
+[**oidc-react**](../README.md)
 
 ***
 
@@ -8,10 +8,8 @@
 
 > **useAuth**(): [`AuthContextProps`](../interfaces/AuthContextProps.md)
 
+Defined in: [use-auth.ts:6](https://github.com/bjerkio/oidc-react/blob/main/src/use-auth.ts#L6)
+
 ## Returns
 
 [`AuthContextProps`](../interfaces/AuthContextProps.md)
-
-## Defined in
-
-[src/use-auth.ts:6](https://github.com/bjerkio/oidc-react/blob/main/src/use-auth.ts#L6)
