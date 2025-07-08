@@ -28,7 +28,7 @@
     "@bjerk/eslint-config": "^6.0.2",
     "@simenandre/prettier": "^5.0.0",
     "@testing-library/react": "^16.0.0",
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "eslint": "^9.0.0",
     "jsdom": "^22.1.0",
