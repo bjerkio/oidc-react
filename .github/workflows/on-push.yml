@@ -34,7 +34,7 @@ jobs:
 
       - run: pnpm run build
 
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
 
   generate-docs:
     runs-on: ubuntu-latest
