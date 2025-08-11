@@ -15,7 +15,7 @@ jobs:
         node-version: [lts/-2, lts/-1, lts/*, current]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup pnpm 📦️
         uses: pnpm/action-setup@v4
@@ -39,7 +39,7 @@ jobs:
   generate-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup pnpm 📦️
         uses: pnpm/action-setup@v4
