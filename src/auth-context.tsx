@@ -117,13 +117,16 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
       await onSignOut();
     }
   }, [onSignOut]);
-  const signInCallbackHooks = useCallback(async (url?: string): Promise<void> => {
-    const userFromCallback = await userManager.signinCallback(url) ?? null;
-    setUserData(userFromCallback);
-    if (onSignIn) {
-      await onSignIn(userFromCallback);
-    }
-  }, [userManager, onSignIn]);
+  const signInCallbackHooks = useCallback(
+    async (url?: string): Promise<void> => {
+      const userFromCallback = (await userManager.signinCallback(url)) ?? null;
+      setUserData(userFromCallback);
+      if (onSignIn) {
+        await onSignIn(userFromCallback);
+      }
+    },
+    [userManager, onSignIn],
+  );
   const signInPopupHooks = useCallback(async (): Promise<void> => {
     const userFromPopup = await userManager.signinPopup();
     setUserData(userFromPopup);
@@ -171,6 +174,11 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = ({
         else if (autoSignIn) {
           const state = onBeforeSignIn ? onBeforeSignIn() : undefined;
           await userManager.signinRedirect({ ...autoSignInArgs, state });
+        }
+        // If there is an existing user whose access token has expired
+        // but has a refresh token, attempt a silent renewal
+        else if (user && user.refresh_token) {
+          await userManager.signinSilent();
         }
       }
       // Otherwise if the user is already signed in, set the user data.
