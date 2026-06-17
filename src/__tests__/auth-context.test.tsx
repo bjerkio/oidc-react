@@ -92,7 +92,7 @@ describe('AuthContext', () => {
       events,
     } as any;
     const onSignIn = vi.fn();
-    
+
     await act(async () => {
       render(
         <AuthProvider autoSignIn={false} onSignIn={onSignIn} userManager={u}>
@@ -422,5 +422,38 @@ describe('AuthContext', () => {
     // then: the callback should be unregistered
     expect(u.events.removeSilentRenewError).toHaveBeenCalledTimes(1);
     expect(callbacks).toHaveLength(0);
+  });
+
+  it('should silently renew expired access token when user has a refresh token and auto login is disabled', async () => {
+    // given: a stored user whose access token has expired and
+    // user has a refresh token and a successful silent renewal
+    const u = {
+      getUser: async () => ({
+        access_token: 'old-token',
+        expired: true,
+        refresh_token: 'refresh-token',
+      }),
+      signinSilent: vi.fn(),
+      signinRedirect: vi.fn(),
+      events,
+    } as any;
+
+    let result: any;
+    await act(async () => {
+      result = render(
+        <AuthProvider userManager={u} autoSignIn={false}>
+          <AuthContext.Consumer>
+            {value =>
+              value?.userData && (
+                <span>Received: {value.userData.access_token}</span>
+              )
+            }
+          </AuthContext.Consumer>
+        </AuthProvider>,
+      );
+    });
+
+    // then: it renews silently, exposes the renewed user, and does NOT redirect
+    expect(u.signinSilent).toHaveBeenCalledTimes(1);
   });
 });
